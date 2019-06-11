@@ -55,8 +55,8 @@
         sucess: function(response) {  // response is a custom name
           var tableData = [];
           var itemsJSON = response.data.items;
-          for (var i = 0, len = itemsJSON.length; i < len; i++) {
-          //for (var i in response) {
+          //for (var i = 0, len = itemsJSON.length; i < len; i++) {
+          for (var i in response) {
             tableData.push({   // data.items is the CrunchBase API JSON Structure
               "uuid": itemsJSON[i].uuid,
               "type": itemsJSON[i].type,
