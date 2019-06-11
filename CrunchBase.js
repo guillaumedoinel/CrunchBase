@@ -59,7 +59,7 @@
               "uuid": response.data.items[i].uuid,
               "type": response.data.items[i].type,
               "name": response.data.items[i].properties.name
-            })
+            });
           }
           table.appendRows(tableData); // append data for each API call
         },
