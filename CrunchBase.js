@@ -24,14 +24,13 @@
     schemaCallback([tableSchema]);
   };
 
-  myConnector.getData = function(table, doneCallback) {
+  // ONE CALL API EXAMPLE
+  /*myConnector.getData = function(table, doneCallback) {
     $.getJSON("https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3", function(resp) {
 
       // &categories=Automotive&name=BMW
-
       var itemsJSON = resp.data.items, // data Structure in JSON to read
         tableData = [];
-
       // Iterate over the JSON object
       for (var i = 0, len = itemsJSON.length; i < len; i++) {
         tableData.push({
@@ -44,6 +43,31 @@
       table.appendRows(tableData);
       doneCallback();
     });
+  };*/
+
+  // MULTIPLE CALLS API EXAMPLE
+  var PageNo = 1;
+  myConnector.getData = function(table, doneCallback) {
+    do {
+      $.ajax({
+        url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo,
+        async: false,
+        sucess: function(response) {  // response is a custom name
+          var tableData = [];
+          for (var i in response) {
+            tableData.push({   // data.items is the CrunchBase API JSON Structure
+              "uuid": response.data.items[i].uuid,
+              "type": response.data.items[i].type,
+              "name": response.data.items[i].properties.name
+            })
+          }
+          table.appendRows(tableData); // append data for each API call
+        }
+      });
+      PageNo++;
+    } while (PageNo<4);
+
+    doneCallback();
   };
 
   tableau.registerConnector(myConnector);
