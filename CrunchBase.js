@@ -54,15 +54,22 @@
         async: false,
         sucess: function(response) {  // response is a custom name
           var tableData = [];
-          var itemsJSON = response.data.items;
+          //var itemsJSON = response.data.items;
           //for (var i = 0, len = itemsJSON.length; i < len; i++) {
-          for (var i in response) {
+          /*for (var i in response) {
             tableData.push({   // data.items is the CrunchBase API JSON Structure
               "uuid": itemsJSON[i].uuid,
               "type": itemsJSON[i].type,
               "name": itemsJSON[i].properties.name
             });
-          }
+          }*/
+
+          tableData.push({   // data.items is the CrunchBase API JSON Structure
+            "uuid": 1,
+            "type": 2,
+            "name": 3
+          });
+
           table.appendRows(tableData); // append data for each API call
         }
       });
