@@ -26,7 +26,7 @@
 
   // ONE CALL API EXAMPLE
   myConnector.getData = function(table, doneCallback) {
-    $.getJSON("https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=1", function(resp) {
+  /*  $.getJSON("https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=1", function(resp) {
 
       // &categories=Automotive&name=BMW
       var itemsJSON = resp.data.items, // data Structure in JSON to read
@@ -43,10 +43,10 @@
       table.appendRows(tableData);
       doneCallback();
     });
-  };
+  }; */
 
   // MULTIPLE CALLS API EXAMPLE
-  /*var PageNo = 1;
+  var PageNo = 1;
   myConnector.getData = function(table, doneCallback) {
     do {
       $.ajax({
@@ -54,11 +54,13 @@
         async: false,
         sucess: function(response) {  // response is a custom name
           var tableData = [];
-          for (var i in response) {
+          var itemsJSON = response.data.items;
+          for (var i = 0, len = itemsJSON.length; i < len; i++) {
+          //for (var i in response) {
             tableData.push({   // data.items is the CrunchBase API JSON Structure
-              "uuid": response.data.items[i].uuid,
-              "type": response.data.items[i].type,
-              "name": response.data.items[i].properties.name
+              "uuid": itemsJSON[i].uuid,
+              "type": itemsJSON[i].type,
+              "name": itemsJSON[i].properties.name
             });
           }
           table.appendRows(tableData); // append data for each API call
@@ -68,7 +70,7 @@
     } while (PageNo<4);
 
     doneCallback();
-  };*/
+  };
 
   tableau.registerConnector(myConnector);
 
