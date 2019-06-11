@@ -62,7 +62,7 @@
             })
           }
           table.appendRows(tableData); // append data for each API call
-        }
+        },
       });
       PageNo++;
     } while (PageNo<4);
