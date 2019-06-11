@@ -25,8 +25,8 @@
   };
 
   // ONE CALL API EXAMPLE
-  myConnector.getData = function(table, doneCallback) {
-  /*  $.getJSON("https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=1", function(resp) {
+  /*myConnector.getData = function(table, doneCallback) {
+    $.getJSON("https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=1", function(resp) {
 
       // &categories=Automotive&name=BMW
       var itemsJSON = resp.data.items, // data Structure in JSON to read
