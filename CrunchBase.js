@@ -25,7 +25,7 @@
   };
 
   // ONE CALL API EXAMPLE
-  /*myConnector.getData = function(table, doneCallback) {
+  myConnector.getData = function(table, doneCallback) {
     $.getJSON("https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3", function(resp) {
 
       // &categories=Automotive&name=BMW
@@ -43,10 +43,10 @@
       table.appendRows(tableData);
       doneCallback();
     });
-  };*/
+  };
 
   // MULTIPLE CALLS API EXAMPLE
-  var PageNo = 1;
+  /*var PageNo = 1;
   myConnector.getData = function(table, doneCallback) {
     do {
       $.ajax({
@@ -68,7 +68,7 @@
     } while (PageNo<4);
 
     doneCallback();
-  };
+  };*/
 
   tableau.registerConnector(myConnector);
 
