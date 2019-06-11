@@ -48,10 +48,10 @@
   // MULTIPLE CALLS API EXAMPLE
   var PageNo = 1;
   myConnector.getData = function(table, doneCallback) {
-    do {
+    //do {
       $.ajax({
         url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo,
-        async: true,
+        async: false,
         sucess: function(response) {  // response is a custom name
           var tableData = [];
           var itemsJSON = response.data.items;
@@ -86,7 +86,7 @@
 
 
       PageNo++;
-    } while (PageNo<4);
+    //} while (PageNo<4);
 
     doneCallback();
   };
