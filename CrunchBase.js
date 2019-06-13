@@ -22,25 +22,6 @@
       columns: Organizations_cols
     };
 
-    // CrunchBase People
-    var People_cols = [{
-      id: "uuid",
-      dataType: tableau.dataTypeEnum.string
-    }, {
-      id: "title",
-      alias: "Job Title",
-      dataType: tableau.dataTypeEnum.string
-    }, {
-      id: "last_name",
-      alias: "Person's Name",
-      dataType: tableau.dataTypeEnum.string
-    }];
-    var People_Schema = {
-      id: "CrunchBase_People",     // table.tableInfo.id
-      alias: "List of People",
-      columns: People_cols
-    };
-
     schemaCallback([Organizations_Schema]);
   };
 
