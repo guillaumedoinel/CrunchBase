@@ -19,13 +19,6 @@
       columns: Categories_cols
     };*/
 
-    "transaction_type": "Investment",
-    "company_name": Company_Name,
-    "transaction_date": Announced_On,
-    "funded_company_name": FundedCompanyName,
-    "transaction_amount": TransactionAmount
-
-
     // CrunchBase Organizations
     var Organizations_cols = [{
       id: "transaction_type",
@@ -88,6 +81,7 @@
                   var CompanyName = organizationsJSON[iO].properties.name;
                   var URL = "https://api.crunchbase.com/v3.1/organizations/" + UUID + "?user_key=9df45b533650fb1b95e83357b5da2db3";
 
+                  // Use of Ajax, even if there is only one call per Organization, to use the async: false feature
                   $.ajax({
                     url: URL,
                     async: false,
