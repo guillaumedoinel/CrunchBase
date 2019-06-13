@@ -54,9 +54,9 @@
         async: false,
         success: function(response) {  // response is a custom name
           var tableData = [];
-          var itemsJSON = response.data.items;
+          var itemsJSON = response.data.items; // data.items is the CrunchBase API JSON Structure
           for (var i = 0, len = itemsJSON.length; i < len; i++) {
-            tableData.push({   // data.items is the CrunchBase API JSON Structure
+            tableData.push({
               "uuid": itemsJSON[i].uuid,
               "type": itemsJSON[i].type,
               "name": itemsJSON[i].properties.name
@@ -67,26 +67,8 @@
         }
       });
 
-      /*$.getJSON("https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page="+PageNo, function(resp) {
-
-        // &categories=Automotive&name=BMW
-        var itemsJSON = resp.data.items, // data Structure in JSON to read
-          tableData = [];
-        // Iterate over the JSON object
-        for (var i = 0, len = itemsJSON.length; i < len; i++) {
-          tableData.push({
-            "uuid": itemsJSON[i].uuid,
-            "type": itemsJSON[i].type,
-            "name": itemsJSON[i].properties.name
-          });
-        }
-
-        table.appendRows(tableData);
-      });*/
-
-
       PageNo++;
-    } while (PageNo<4);
+    } while (PageNo<=4);    // while next_page_url is not null ...
 
     doneCallback();
   };
