@@ -22,7 +22,7 @@
     // CrunchBase Organizations
     var Organizations_cols = [{
       id: "transaction_type",
-      alias: "Company UUID",
+      alias: "Transaction Type",
       dataType: tableau.dataTypeEnum.string
     }, {
       id: "company_name",
@@ -91,15 +91,18 @@
                       var investmentsJSON = response2.data.relationships.investments.items;
                       for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
                         var Announced_On = investmentsJSON[iI].properties.announced_on;
-                        var FundedCompanyName = investmentsJSON[iI].properties.relationships.invested_in.properties.name;
-                        var TransactionAmount = investmentsJSON[iI].properties.relationships.invested_in.properties.total_funding_usd;
-                        tableData.push({
-                          "transaction_type": "Investment",
-                          "company_name": Company_Name,
-                          "transaction_date": Announced_On,
-                          "funded_company_name": FundedCompanyName,
-                          "transaction_amount": TransactionAmount
-                        });
+
+                        if (investmentsJSON[iI].properties.relationships.invested_in != null) { // test if invested_in type of investment is there, try others ?
+                          var FundedCompanyName = investmentsJSON[iI].properties.relationships.invested_in.properties.name;
+                          var TransactionAmount = investmentsJSON[iI].properties.relationships.invested_in.properties.total_funding_usd;
+                          investmentTableData.push({
+                            "transaction_type": "Investment",
+                            "company_name": Company_Name,
+                            "transaction_date": Announced_On,
+                            "funded_company_name": FundedCompanyName,
+                            "transaction_amount": TransactionAmount
+                          });
+                        }
                       }
                       table.appendRows(investmentTableData); // append INVESTMENTS data
 
