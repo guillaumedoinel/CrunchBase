@@ -50,7 +50,7 @@
         });
 
         PageNo++;
-      } while (next_page_url != null);    // while next_page_url is not null ...
+      } while (next_page_url != null);    // while there are some data left
       doneCallback();
     }
 

@@ -41,7 +41,7 @@
       columns: People_cols
     };
 
-    schemaCallback([Organizations_Schema,People_Schema]);
+    schemaCallback([Organizations_Schema]);
   };
 
   // When you create multiple table schemas, the WDC API calls the getData function once for each schema.
@@ -51,6 +51,7 @@
     if (table.tableInfo.id == "CrunchBase_Organizations") {
       // Organizations : MULTIPLE CALLS API EXAMPLE
       var PageNo = 1;
+      var next_page_url = "init";
       do {
         $.ajax({
           url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo,
@@ -67,11 +68,12 @@
             }
 
             table.appendRows(tableData); // append data for each API call
+            next_page_url = response.data.paging.next_page_url;
           }
         });
 
         PageNo++;
-      } while (PageNo<=4);    // while next_page_url is not null ...
+      } while (next_page_url != null);    // while there are some data left
       doneCallback();
     }
 
