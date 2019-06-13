@@ -85,8 +85,8 @@
         for (var i = 0, len = itemsJSON.length; i < len; i++) {
           tableData.push({
             "uuid": itemsJSON[i].uuid,
-            "type": itemsJSON[i].type,
-            "name": itemsJSON[i].properties.name
+            "title": itemsJSON[i].properties.title,
+            "last_name": itemsJSON[i].properties.last_name
           });
         }
 
