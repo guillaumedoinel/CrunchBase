@@ -47,7 +47,7 @@
     if (table.tableInfo.id == "CrunchBase_Organizations") {
 
       // Calls the Organizations API for as many categories listed
-      var CategoriesList = ["Auto Insurance"]; //"Automotive","Battery"
+      var CategoriesList = ["Auto Insurance","Automotive","Autonomous Vehicles","Battery","Car Sharing","Electric Vehicle","Last Mile Transportation","Limousine Service","Ride Sharing","Taxi Service"]; 
 
       for (var j = 0, len2 = CategoriesList.length; j < len2; j++) {
         var CategoryName = CategoriesList[j];
