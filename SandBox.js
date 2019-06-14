@@ -92,9 +92,9 @@
                       for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
                         var Announced_On = investmentsJSON[iI].properties.announced_on;
 
-                        if (typeof(investmentsJSON[iI].properties.relationships.funding_round) != 'undefined') { // test if funding_round type of investment is there, try others ?
-                          var FundedCompanyName = investmentsJSON[iI].properties.relationships.funding_round.relationships.funded_organization.properties.name;
-                          var TransactionAmount = investmentsJSON[iI].properties.relationships.funding_round.properties.money_raised_usd;
+                        if (typeof(investmentsJSON[iI].relationships.funding_round) != 'undefined') { // test if funding_round type of investment is there, try others ?
+                          var FundedCompanyName = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
+                          var TransactionAmount = investmentsJSON[iI].relationships.funding_round.properties.money_raised_usd;
                           investmentTableData.push({
                             "transaction_type": "Investment",
                             "company_name": Company_Name,
