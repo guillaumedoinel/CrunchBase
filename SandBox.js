@@ -120,7 +120,7 @@
                     success: function(response3) {
                       var acquisitionsJSON = response3.data.items;
                       var acquisitionTableData = [];
-                      for (var iA = 0, leniA = acquisitionsJSON.length; iA < leniI; iA++) {
+                      for (var iA = 0, leniA = acquisitionsJSON.length; iA < leniA; iA++) {
                         var Announced_Date = acquisitionsJSON[iA].properties.announced_on;
                         var MoneyRaised = acquisitionsJSON[iA].relationships.funding_round.properties.price_usd;
                         if (MoneyRaised == null) MoneyRaised = 0;
