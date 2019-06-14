@@ -89,7 +89,7 @@
               var investmentTableData = [];
               do {
                 $.ajax({
-                  url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "/investments?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=" + PageNo2, // browse the list of investments
+                  url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "/investments?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo2, // browse the list of investments
                   async: false,
                   indexValue: {
                     paramCompanyName: CompanyName
