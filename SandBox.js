@@ -63,15 +63,15 @@
       //var CategoriesList = ["Auto Insurance","Automotive","Autonomous Vehicles","Battery","Car Sharing","Electric Vehicle","Last Mile Transportation","Limousine Service","Ride Sharing","Taxi Service"];
       var CategoriesList = ["Auto Insurance"];
 
-      for (var i = 0, len = CategoriesList.length; i < len; i++) {
-        var CategoryName = CategoriesList[i];
+      //for (var i = 0, len = CategoriesList.length; i < len; i++) {
+        //var CategoryName = CategoriesList[i];
 
         // Organizations : MULTIPLE CALLS to a PAGED API
         var PageNo = 1;
         var Next_page_url = "init";
         do {
           $.ajax({
-            url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&categories=" + CategoryName + "&page=" + PageNo,
+            url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&name=Daimler&page=" + PageNo,
             async: false,
             success: function(response) { // response is a custom name
               //var tableData = [];
@@ -92,9 +92,9 @@
                       for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
                         var Announced_On = investmentsJSON[iI].properties.announced_on;
 
-                        if (typeof(investmentsJSON[iI].properties.relationships.invested_in) != 'undefined') { // test if invested_in type of investment is there, try others ?
-                          var FundedCompanyName = investmentsJSON[iI].properties.relationships.invested_in.properties.name;
-                          var TransactionAmount = investmentsJSON[iI].properties.relationships.invested_in.properties.total_funding_usd;
+                        if (typeof(investmentsJSON[iI].properties.relationships.funding_round) != 'undefined') { // test if funding_round type of investment is there, try others ?
+                          var FundedCompanyName = investmentsJSON[iI].properties.relationships.funding_round.relationships.funded_organization.properties.name;
+                          var TransactionAmount = investmentsJSON[iI].properties.relationships.funding_round.properties.money_raised_usd;
                           investmentTableData.push({
                             "transaction_type": "Investment",
                             "company_name": Company_Name,
@@ -117,7 +117,7 @@
           });
           PageNo++;
         } while (Next_page_url != null); // while there are some data left
-      }
+      //}
 
 
       doneCallback();
