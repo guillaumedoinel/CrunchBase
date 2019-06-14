@@ -106,7 +106,7 @@
                         var FundingType = investmentsJSON[iI].relationships.funding_round.properties.funding_type;
                         var Series = investmentsJSON[iI].relationships.funding_round.properties.series; if (Series == null) Series = "";
                         var FundedCompanyName = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
-                        var FinalFundingType = FundingRoundType + FundingType + Series;
+                        var FinalFundingType = FundingRoundType + " " + FundingType + " " + Series;
 
                         investmentTableData.push({
                           "company_name": this.indexValue.paramCompanyName, // to get CompanyName value from out of the ajaxCall
@@ -118,10 +118,10 @@
                         });
                       }
                     }
-                    table.appendRows(investmentTableData); // append INVESTMENTS data
                     Next_page_url2 = response2.data.paging.next_page_url;
                   }
                 });
+                table.appendRows(investmentTableData); // append INVESTMENTS data
                 PageNo2++;
               } while (Next_page_url2 != null)
 
