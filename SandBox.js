@@ -21,17 +21,17 @@
 
     // CrunchBase Organizations
     var Organizations_cols = [{
-      id: "transaction_type",
-      alias: "Transaction Type",
-      dataType: tableau.dataTypeEnum.string
-    }, {
       id: "company_name",
       alias: "Company Name",
       dataType: tableau.dataTypeEnum.string
     }, {
-      id: "transaction_date",
-      alias: "Transaction Date",
-      dataType: tableau.dataTypeEnum.date
+      id: "transaction_type",
+      alias: "Transaction Type",
+      dataType: tableau.dataTypeEnum.string
+    }, {
+      id: "funding_type",
+      alias: "Funding Type",
+      dataType: tableau.dataTypeEnum.string
     }, {
       id: "funded_company_name",
       alias: "Funded Company Name",
@@ -40,9 +40,13 @@
       id: "transaction_amount",
       alias: "Transaction Amount",
       dataType: tableau.dataTypeEnum.int
+    }, {
+      id: "transaction_date",
+      alias: "Transaction Date",
+      dataType: tableau.dataTypeEnum.date
     }];
     var Organizations_Schema = {
-      id: "CrunchBase_Organizations",   // table.tableInfo.id
+      id: "CrunchBase_Organizations", // table.tableInfo.id
       alias: "Organizations",
       columns: Organizations_cols
     };
@@ -64,60 +68,70 @@
       var CategoriesList = ["Auto Insurance"];
 
       //for (var i = 0, len = CategoriesList.length; i < len; i++) {
-        //var CategoryName = CategoriesList[i];
+      //var CategoryName = CategoriesList[i];
 
-        // Organizations : MULTIPLE CALLS to a PAGED API
-        var PageNo = 1;
-        var Next_page_url = "init";
-        do {
-          $.ajax({
-            url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&name=Daimler&page=" + PageNo,
-            async: false,
-            success: function(response) { // response is a custom name
-              //var tableData = [];
-              var organizationsJSON = response.data.items; // data.items is the CrunchBase API JSON Structure
-              for (var iO = 0, leniO = organizationsJSON.length; iO < leniO; iO++) { // For each organization, call the organization permalink API to get investments details
-                  var UUID = organizationsJSON[iO].uuid;
-                  var CompanyName = organizationsJSON[iO].properties.name;
-                  var URL = "https://api.crunchbase.com/v3.1/organizations/" + UUID + "?user_key=9df45b533650fb1b95e83357b5da2db3";
+      // Organizations : MULTIPLE CALLS to a PAGED API
+      var PageNo = 1;
+      var Next_page_url = "init";
+      do {
+        $.ajax({
+          url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&name=Daimler&page=" + PageNo, // browse the list of companies
+          async: false,
+          success: function(response) { // response is a custom name
+            var organizationsJSON = response.data.items; // data.items is the CrunchBase API JSON Structure
+            for (var iO = 0, leniO = organizationsJSON.length; iO < leniO; iO++) { // For each organization, call the organization's investments URL
+              var UUID = organizationsJSON[iO].uuid;
+              var CompanyName = organizationsJSON[iO].properties.name;
 
-                  // Use of Ajax, even if there is only one call per Organization, to use the async: false feature
-                  $.ajax({
-                    url: URL,
-                    async: false,
-                    indexValue: {paramCompanyName:CompanyName}, // to get CompanyName value from out of the ajaxCall
-                    success: function(response2) {
-                      var investmentTableData = [];
-                      // FIRST GET INVESTMENTS DATA
-                      var investmentsJSON = response2.data.relationships.investments.items;
-                      for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
-                        var Announced_On = investmentsJSON[iI].properties.announced_on;
+              // FIRST GET INVESTMENTS DATA
+              var PageNo2 = 1;
+              var Next_page_url2 = "init";
+              do {
+                $.ajax({
+                  url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "/investments?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=" + PageNo2, // browse the list of investments
+                  async: false,
+                  indexValue: {
+                    paramCompanyName: CompanyName
+                  }, // to get CompanyName value from out of the ajaxCall
+                  success: function(response2) {
+                    var investmentTableData = [];
 
-                        if (typeof(investmentsJSON[iI].relationships.funding_round) != 'undefined') { // test if funding_round type of investment is there, try others ?
-                          var FundedCompanyName = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
-                          var TransactionAmount = investmentsJSON[iI].relationships.funding_round.properties.money_raised_usd; if (TransactionAmount == null) TransactionAmount = 0;
-                          investmentTableData.push({
-                            "transaction_type": "Investment",
-                            "company_name": this.indexValue.paramCompanyName, // to get CompanyName value from out of the ajaxCall
-                            "transaction_date": Announced_On,
-                            "funded_company_name": FundedCompanyName,
-                            "transaction_amount": TransactionAmount
-                          });
-                        }
+                    var investmentsJSON = response2.data.items;
+                    for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
+                      var Announced_On = investmentsJSON[iI].properties.announced_on;
+
+                      if (typeof(investmentsJSON[iI].relationships.funding_round) != 'undefined') { // test if funding_round type of investment is there ; TO DELETE ?
+                        var TransactionAmount = investmentsJSON[iI].relationships.funding_round.properties.money_raised_usd; if (TransactionAmount == null) TransactionAmount = 0;
+                        var FundingRoundType = investmentsJSON[iI].relationships.funding_round.type;
+                        var FundingType = investmentsJSON[iI].relationships.funding_round.properties.funding_type;
+                        var Series = investmentsJSON[iI].relationships.funding_round.properties.series; if (Series == null) Series = "";
+                        var FundedCompanyName = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
+                        var FinalFundingType = FundingRoundType + FundingType + Series;
+
+                        investmentTableData.push({
+                          "company_name": this.indexValue.paramCompanyName, // to get CompanyName value from out of the ajaxCall
+                          "transaction_type": "Investment",
+                          "funding_type": FinalFundingType,
+                          "funded_company_name": FundedCompanyName,
+                          "transaction_amount": TransactionAmount,
+                          "transaction_date": Announced_On
+                        });
                       }
-                      table.appendRows(investmentTableData); // append INVESTMENTS data
-
-                      // THEN GET ACQUISITIONS DATA
-
                     }
-                  });
+                    table.appendRows(investmentTableData); // append INVESTMENTS data
+                    Next_page_url2 = response2.data.paging.next_page_url;
+                  }
+                });
+                PageNo2++;
+              } while (Next_page_url2 != null)
 
-              }
-              Next_page_url = response.data.paging.next_page_url;
+              // THEN GET ACQUISITIONS DATA ?
             }
-          });
-          PageNo++;
-        } while (Next_page_url != null); // while there are some data left
+            Next_page_url = response.data.paging.next_page_url;
+          }
+        });
+        PageNo++;
+      } while (Next_page_url != null); // while there are some data left
       //}
 
 
