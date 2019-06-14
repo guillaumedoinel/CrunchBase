@@ -31,7 +31,7 @@
     }, {
       id: "transaction_date",
       alias: "Transaction Date",
-      dataType: tableau.dataTypeEnum.string
+      dataType: tableau.dataTypeEnum.date
     }, {
       id: "funded_company_name",
       alias: "Funded Company Name",
@@ -39,7 +39,7 @@
     }, {
       id: "transaction_amount",
       alias: "Transaction Amount",
-      dataType: tableau.dataTypeEnum.string
+      dataType: tableau.dataTypeEnum.int
     }];
     var Organizations_Schema = {
       id: "CrunchBase_Organizations",   // table.tableInfo.id
@@ -101,7 +101,7 @@
                             "company_name": this.indexValue.paramCompanyName, // to get CompanyName value from out of the ajaxCall
                             "transaction_date": Announced_On,
                             "funded_company_name": FundedCompanyName,
-                            "transaction_amount": TransactionAmount
+                            "transaction_amount": if (TransactionAmount == null) 0 else TransactionAmount
                           });
                         }
                       }
