@@ -85,6 +85,7 @@
                   $.ajax({
                     url: URL,
                     async: false,
+                    indexValue: {paramCompanyName:CompanyName}, // to get CompanyName value from out of the ajaxCall
                     success: function(response2) {
                       var investmentTableData = [];
                       // FIRST GET INVESTMENTS DATA
@@ -97,7 +98,7 @@
                           var TransactionAmount = investmentsJSON[iI].relationships.funding_round.properties.money_raised_usd;
                           investmentTableData.push({
                             "transaction_type": "Investment",
-                            "company_name": Company_Name,
+                            "company_name": this.indexValue.paramCompanyName, // to get CompanyName value from out of the ajaxCall
                             "transaction_date": Announced_On,
                             "funded_company_name": FundedCompanyName,
                             "transaction_amount": TransactionAmount
