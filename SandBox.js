@@ -92,7 +92,7 @@
                       for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
                         var Announced_On = investmentsJSON[iI].properties.announced_on;
 
-                        if (investmentsJSON[iI].properties.relationships.invested_in != null) { // test if invested_in type of investment is there, try others ?
+                        if (typeof(investmentsJSON[iI].properties.relationships.invested_in) != 'undefined') { // test if invested_in type of investment is there, try others ?
                           var FundedCompanyName = investmentsJSON[iI].properties.relationships.invested_in.properties.name;
                           var TransactionAmount = investmentsJSON[iI].properties.relationships.invested_in.properties.total_funding_usd;
                           investmentTableData.push({
