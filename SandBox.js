@@ -4,7 +4,7 @@
   myConnector.getSchema = function(schemaCallback) {
 
     // CrunchBase Organizations
-    var Organizations_cols = [{
+    var Transactions_cols = [{
       id: "investor",
       alias: "Investor",
       dataType: tableau.dataTypeEnum.string
@@ -29,13 +29,13 @@
       alias: "Announced Date",
       dataType: tableau.dataTypeEnum.date
     }];
-    var Organizations_Schema = {
+    var Transactions_Schema = {
       id: "Transactions", // table.tableInfo.id
       alias: "Transactions",
-      columns: Organizations_cols
+      columns: Transactions_cols
     };
 
-    schemaCallback([Organizations_Schema]);
+    schemaCallback([Transactions_Schema]);
   };
 
   // When you create multiple table schemas, the WDC API calls the getData function once for each schema.
@@ -49,16 +49,16 @@
       var CategoriesList = ["Auto Insurance"];
 
       // Iterate for as many categories as listed above
-      for (var i = 0, len = CategoriesList.length; i < len; i++) {
-        var CategoryName = CategoriesList[i];
+      //for (var i = 0, len = CategoriesList.length; i < len; i++) {
+        //var CategoryName = CategoriesList[i];
 
         // Organizations : MULTIPLE CALLS to a PAGED API
         var PageNo = 1;
         var Next_page_url = "init";
         do {
           $.ajax({
-            //url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&name=Daimler&page=" + PageNo, // browse the list of companies
-            url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&categories=" + CategoryName + "&page=" + PageNo, // browse the list of companies
+            url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&name=Daimler&page=" + PageNo, // browse the list of companies
+            //url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&categories=" + CategoryName + "&page=" + PageNo, // browse the list of companies
             async: false,
             success: function(response) { // response is a custom name
               var organizationsJSON = response.data.items; // data.items is the CrunchBase API JSON Structure
@@ -81,26 +81,24 @@
                       var investmentTableData = [];
                       for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
                         var Announced_Date = investmentsJSON[iI].properties.announced_on;
+                        var MoneyRaised = investmentsJSON[iI].relationships.funding_round.properties.money_raised_usd;
+                        if (MoneyRaised == null) MoneyRaised = 0;
+                        var FundingRoundType = investmentsJSON[iI].relationships.funding_round.type;
+                        var FundingType = investmentsJSON[iI].relationships.funding_round.properties.funding_type;
+                        var Series = investmentsJSON[iI].relationships.funding_round.properties.series;
+                        if (Series == null) Series = "";
+                        var FundedCompany = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
+                        var FinalFundingType = FundingRoundType + " " + FundingType + " " + Series;
 
-                        //if (typeof(investmentsJSON[iI].relationships.funding_round) != 'undefined') { // test if funding_round type of investment is there ; TO DELETE ?
-                          var MoneyRaised = investmentsJSON[iI].relationships.funding_round.properties.money_raised_usd;
-                          if (MoneyRaised == null) MoneyRaised = 0;
-                          var FundingRoundType = investmentsJSON[iI].relationships.funding_round.type;
-                          var FundingType = investmentsJSON[iI].relationships.funding_round.properties.funding_type;
-                          var Series = investmentsJSON[iI].relationships.funding_round.properties.series;
-                          if (Series == null) Series = "";
-                          var FundedCompany = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
-                          var FinalFundingType = FundingRoundType + " " + FundingType + " " + Series;
+                        investmentTableData.push({
+                          "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
+                          "transaction_type": "Investment",
+                          "funding_type": FinalFundingType,
+                          "funded_company": FundedCompany,
+                          "money_raised": MoneyRaised,
+                          "announced_date": Announced_Date
+                        });
 
-                          investmentTableData.push({
-                            "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
-                            "transaction_type": "Investment",
-                            "funding_type": FinalFundingType,
-                            "funded_company": FundedCompany,
-                            "money_raised": MoneyRaised,
-                            "announced_date": Announced_Date
-                          });
-                        //}
                       }
                       table.appendRows(investmentTableData);
                       Next_page_url2 = response2.data.paging.next_page_url;
@@ -109,14 +107,48 @@
                   PageNo2++;
                 } while (Next_page_url2 != null)
 
-                // THEN GET ACQUISITIONS DATA ?
+                // THEN GET ACQUISITIONS DATA
+                var PageNo3 = 1;
+                var Next_page_url3 = "init";
+                do {
+                  $.ajax({
+                    url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "/acquisitions?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo3, // browse the list of acquisitions
+                    async: false,
+                    indexValue: {
+                      paramInvestor: Investor
+                    }, // to get Investor value from out of the ajaxCall
+                    success: function(response3) {
+                      var acquisitionsJSON = response3.data.items;
+                      var acquisitionTableData = [];
+                      for (var iA = 0, leniA = acquisitionsJSON.length; iA < leniI; iA++) {
+                        var Announced_Date = acquisitionsJSON[iA].properties.announced_on;
+                        var MoneyRaised = acquisitionsJSON[iA].relationships.funding_round.properties.price_usd;
+                        if (MoneyRaised == null) MoneyRaised = 0;
+                        var AcquiredCompany = acquisitionsJSON[iA].relationships.acquiree.relationships.properties.name;
+
+                        acquisitionTableData.push({
+                          "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
+                          "transaction_type": "Acquisition",
+                          "funding_type": "",
+                          "funded_company": AcquiredCompany,
+                          "money_raised": MoneyRaised,
+                          "announced_date": Announced_Date
+                        });
+
+                      }
+                      table.appendRows(acquisitionTableData);
+                      Next_page_url3 = response3.data.paging.next_page_url;
+                    }
+                  });
+                  PageNo3++;
+                } while (Next_page_url3 != null)
               }
               Next_page_url = response.data.paging.next_page_url;
             }
           });
           PageNo++;
         } while (Next_page_url != null); // while there are some data left
-      }
+      //} // end of For categories loop
 
       doneCallback();
     }
