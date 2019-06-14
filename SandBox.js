@@ -86,7 +86,7 @@
               // FIRST GET INVESTMENTS DATA
               var PageNo2 = 1;
               var Next_page_url2 = "init";
-              var investmentTableData = [];
+              //var investmentTableData = [];
               do {
                 $.ajax({
                   url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "/investments?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo2, // browse the list of investments
@@ -96,6 +96,7 @@
                   }, // to get CompanyName value from out of the ajaxCall
                   success: function(response2) {
                     var investmentsJSON = response2.data.items;
+                    var investmentTableData = [];
                     for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
                       var Announced_On = investmentsJSON[iI].properties.announced_on;
 
@@ -117,11 +118,12 @@
                         });
                       }
                     }
+                    table.appendRows(investmentTableData);
                     Next_page_url2 = response2.data.paging.next_page_url;
                   }
                 });
-                table.appendRows(investmentTableData); // append INVESTMENTS data
-                investmentTableData = []; // clears table after load
+                //table.appendRows(investmentTableData); // append INVESTMENTS data
+                //investmentTableData = []; // clears table after load
                 PageNo2++;
               } while (Next_page_url2 != null)
 
