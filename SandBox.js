@@ -122,7 +122,7 @@
                       var acquisitionTableData = [];
                       for (var iA = 0, leniA = acquisitionsJSON.length; iA < leniA; iA++) {
                         var Announced_Date = acquisitionsJSON[iA].properties.announced_on;
-                        var MoneyRaised = acquisitionsJSON[iA].relationships.funding_round.properties.price_usd;
+                        var MoneyRaised = acquisitionsJSON[iA].properties.price_usd;
                         if (MoneyRaised == null) MoneyRaised = 0;
                         var AcquiredCompany = acquisitionsJSON[iA].relationships.acquiree.relationships.properties.name;
 
