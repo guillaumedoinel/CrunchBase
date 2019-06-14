@@ -95,13 +95,13 @@
 
                         if (typeof(investmentsJSON[iI].relationships.funding_round) != 'undefined') { // test if funding_round type of investment is there, try others ?
                           var FundedCompanyName = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
-                          var TransactionAmount = investmentsJSON[iI].relationships.funding_round.properties.money_raised_usd;
+                          var TransactionAmount = investmentsJSON[iI].relationships.funding_round.properties.money_raised_usd; if (TransactionAmount == null) TransactionAmount = 0;
                           investmentTableData.push({
                             "transaction_type": "Investment",
                             "company_name": this.indexValue.paramCompanyName, // to get CompanyName value from out of the ajaxCall
                             "transaction_date": Announced_On,
                             "funded_company_name": FundedCompanyName,
-                            "transaction_amount": if (TransactionAmount == null) 0 else TransactionAmount
+                            "transaction_amount": TransactionAmount
                           });
                         }
                       }
