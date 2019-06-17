@@ -89,7 +89,7 @@
 
                       //}
                       table.appendRows(investmentTableData);
-                      Next_page_url2 = response2.data.paging.next_page_url;
+                      //Next_page_url2 = response2.data.paging.next_page_url;
                     }
                   });/*
                   PageNo2++;
