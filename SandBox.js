@@ -5,29 +5,22 @@
 
     // CrunchBase Organizations
     var Transactions_cols = [{
+      id: "uuid",
+      alias: "UUID",
+      dataType: tableau.dataTypeEnum.string
+    },
+    {
       id: "investor",
       alias: "Investor",
       dataType: tableau.dataTypeEnum.string
     }, {
-      id: "transaction_type",
-      alias: "Transaction Type",
-      dataType: tableau.dataTypeEnum.string
-    }, {
-      id: "funding_type",
-      alias: "Funding Type",
-      dataType: tableau.dataTypeEnum.string
-    }, {
-      id: "funded_company",
-      alias: "Funded Company",
-      dataType: tableau.dataTypeEnum.string
-    }, {
-      id: "money_raised",
-      alias: "Money Raised",
+      id: "nb_investments",
+      alias: "Nb INVESTMENTS",
       dataType: tableau.dataTypeEnum.int
     }, {
-      id: "announced_date",
-      alias: "Announced Date",
-      dataType: tableau.dataTypeEnum.date
+      id: "nb_acquisitions",
+      alias: "Nb ACQUISITIONS",
+      dataType: tableau.dataTypeEnum.int
     }];
     var Transactions_Schema = {
       id: "Transactions", // table.tableInfo.id
@@ -46,19 +39,20 @@
     if (table.tableInfo.id == "Transactions") {
 
       //var CategoriesList = ["Auto Insurance","Automotive","Autonomous Vehicles","Battery","Car Sharing","Electric Vehicle","Last Mile Transportation","Limousine Service","Ride Sharing","Taxi Service"];
-      var CategoriesList = ["Auto Insurance"];
+      //var CompaniesList = ["Audi","BMW", "FCA","Ford","GM","Honda","Hyundai","JLR","KIA","Lexus","Mazda","Daimler","Mitsubishi","Nissan","Porsche","PSA","Renault","Seat","Skoda","Tesla","Toyota","Volvo","VW" ];
+      var CompaniesList = ["Audi","BMW"];
 
-      // Iterate for as many categories as listed above
-      //for (var i = 0, len = CategoriesList.length; i < len; i++) {
-        //var CategoryName = CategoriesList[i];
+      // Iterate for as many companies as listed above
+      for (var i = 0, len = CompaniesList.length; i < len; i++) {
+        var CompanyName = CompaniesList[i];
 
         // Organizations : MULTIPLE CALLS to a PAGED API
         var PageNo = 1;
         var Next_page_url = "init";
         do {
           $.ajax({
-            url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&name=Daimler&page=" + PageNo, // browse the list of companies
-            //url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&categories=" + CategoryName + "&page=" + PageNo, // browse the list of companies
+            //url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&name=Daimler&page=" + PageNo, // Daimler test example
+            url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&Categories=Automotive&name=" + CompanyName + "&page=" + PageNo, // browse the list of companies ; pas besoin de do/while
             async: false,
             success: function(response) { // response is a custom name
               var organizationsJSON = response.data.items; // data.items is the CrunchBase API JSON Structure
@@ -67,48 +61,42 @@
                 var Investor = organizationsJSON[iO].properties.name;
 
                 // FIRST GET INVESTMENTS DATA
-                var PageNo2 = 1;
+                /*var PageNo2 = 1;
                 var Next_page_url2 = "init";
-                do {
+                do {*/
                   $.ajax({
-                    url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "/investments?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo2, // browse the list of investments
+                    url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "?user_key=9df45b533650fb1b95e83357b5da2db3", // browse the list of investments
                     async: false,
                     indexValue: {
-                      paramInvestor: Investor
+                      paramInvestor: Investor,
+                      paramUID: UUID
                     }, // to get Investor value from out of the ajaxCall
                     success: function(response2) {
-                      var investmentsJSON = response2.data.items;
+                      var investmentsJSON = response2.data.relationships;
                       var investmentTableData = [];
-                      for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
-                        var Announced_Date = investmentsJSON[iI].properties.announced_on;
-                        var MoneyRaised = investmentsJSON[iI].relationships.funding_round.properties.money_raised_usd;
-                        if (MoneyRaised == null) MoneyRaised = 0;
-                        var FundingRoundType = investmentsJSON[iI].relationships.funding_round.type;
-                        var FundingType = investmentsJSON[iI].relationships.funding_round.properties.funding_type;
-                        var Series = investmentsJSON[iI].relationships.funding_round.properties.series;
-                        if (Series == null) Series = "";
-                        var FundedCompany = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
-                        var FinalFundingType = FundingRoundType + " " + FundingType + " " + Series;
+                      //for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
+                        var Nb_Investments = investmentsJSON.investments.paging.total_items;
+                        var Nb_Acquisitions = investmentsJSON.acquisitions.paging.total_items;
 
+                        if (Nb_Investments != 0 || Nb_Acquisitions!=0) {
                         investmentTableData.push({
+                          "uuid": this.indexValue.paramUUID,
                           "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
-                          "transaction_type": "Investment",
-                          "funding_type": FinalFundingType,
-                          "funded_company": FundedCompany,
-                          "money_raised": MoneyRaised,
-                          "announced_date": Announced_Date
-                        });
+                          "nb_investments":Nb_Investments,
+                          "nb_acquisitions":Nb_Acquisitions
+                          });
+                        }
 
-                      }
+                      //}
                       table.appendRows(investmentTableData);
                       Next_page_url2 = response2.data.paging.next_page_url;
                     }
-                  });
+                  });/*
                   PageNo2++;
-                } while (Next_page_url2 != null)
+                } while (Next_page_url2 != null)*/
 
                 // THEN GET ACQUISITIONS DATA
-                var PageNo3 = 1;
+                /*var PageNo3 = 1;
                 var Next_page_url3 = "init";
                 do {
                   $.ajax({
@@ -141,14 +129,14 @@
                     }
                   });
                   PageNo3++;
-                } while (Next_page_url3 != null)
+                } while (Next_page_url3 != null)*/
               }
               Next_page_url = response.data.paging.next_page_url;
             }
           });
           PageNo++;
         } while (Next_page_url != null); // while there are some data left
-      //} // end of For categories loop
+      } // end of For companies loop
 
       doneCallback();
     }
