@@ -69,7 +69,7 @@
                     async: false,
                     indexValue: {
                       paramInvestor: Investor,
-                      paramUID: UUID
+                      paramUUID: UUID
                     }, // to get Investor value from out of the ajaxCall
                     success: function(response2) {
                       var investmentsJSON = response2.data.relationships;
