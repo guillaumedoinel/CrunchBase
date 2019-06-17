@@ -39,8 +39,8 @@
     if (table.tableInfo.id == "Transactions") {
 
       //var CategoriesList = ["Auto Insurance","Automotive","Autonomous Vehicles","Battery","Car Sharing","Electric Vehicle","Last Mile Transportation","Limousine Service","Ride Sharing","Taxi Service"];
-      //var CompaniesList = ["Audi","BMW", "Fiat","Chrysler","Ford","General Motors","Honda","Hyundai","JLR","KIA","Lexus","Mazda","Daimler","Mitsubishi","Nissan","Porsche","PSA","Renault","Seat","Skoda","Tesla","Toyota","Volvo","VW" ];
-      var CompaniesList = ["Ford","General Motors","Honda","Hyundai"];
+      //var CompaniesList = ["Audi","BMW", "Fiat","Chrysler","Ford","General Motors","Honda","Hyundai","Jaguar","Land Rover","KIA","Lexus","Mazda","Daimler","Mitsubishi","Nissan","Porsche","PSA","Renault","Seat","Skoda","Tesla","Toyota","Volvo","VW" ];
+      var CompaniesList = ["Jaguar","Land Rover","Kia", "Lexus", "Mazda"];
 
       // Iterate for as many companies as listed above
       for (var i = 0, len = CompaniesList.length; i < len; i++) {
