@@ -8,7 +8,7 @@
   // Browse companies listed as parameter by Name, for the desired Category
   function listCompaniesByNameByCategory(p_companyList, p_category,p_table) {
     for (var i = 0, len = p_companyList.length; i < len; i++) {
-      var CompanyName = CompaniesList[i];
+      var CompanyName = p_companyList[i];
       var PageNo = 1;
       var Next_page_url = "init";
       do {
