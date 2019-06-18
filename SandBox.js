@@ -72,7 +72,7 @@
             paramInvestor: Investor
           }, // to get Investor value from out of the ajaxCall
           success: function(response) {
-            var investmentsJSON = response.data.relationships;
+            var investmentsJSON = response.data.items;
             var investmentTableData = [];
             for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
               var Announced_Date = investmentsJSON[iI].properties.announced_on;
@@ -205,7 +205,7 @@
       columns: Transactions_cols
     };
 
-
+    // It's only when several schemas are passed to this function that the getData function is called several times
     schemaCallback([Transactions_Schema]);
   };
 
