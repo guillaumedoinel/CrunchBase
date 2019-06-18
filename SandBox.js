@@ -4,6 +4,31 @@
   /**************************** PREPARATION CODE *****************************************************/
   /***************************************************************************************************/
 
+  // choose ONE category amongst all CrunchBase ones AND affects one AllianceVenture Category
+  // input is a table of categories | separated
+  function assignCategory(p_category) {
+    var InputCategories = p_category.split("|");
+    var TempCrunchBaseCategory = "";
+    var CrunchBaseCategory = "";
+    var AllianceCategory = "";
+
+    for (var i=0, len=InputCategories.length; i < len; i++) {  // CrunchBase preferred category Assignment
+      TempCrunchBaseCategory = InputCategories[i];
+      if (TempCrunchBaseCategory = "Ride Sharing" || TempCrunchBaseCategory = "Car Sharing" || TempCrunchBaseCategory = "Ride Hailing") CrunchBaseCategory = TempCrunchBaseCategory;
+    }
+
+    // Alliance category Assignment
+    if (CrunchBaseCategory = "Ride Sharing" || CrunchBaseCategory = "Car Sharing" || CrunchBaseCategory = "Ride Hailing") {
+      AllianceCategory = "New Mobility";
+    }
+    else AllianceCategory = "Other";
+
+    var AssignedCategories = {
+      crunchBaseCategory: CrunchBaseCategory,
+      allianceCategory: AllianceCategory
+    };
+    return AssignedCategories;
+  }
 
   // Browse companies listed as parameter by Name, for the desired Category
   function listCompaniesByNameByCategory(p_companyList, p_category, p_table) {
@@ -36,7 +61,7 @@
                   var categoriesJSON = organizationDetailJSON.categories.items;
                   var CategoryTable = "";
                   for (var iC = 0, lenC = categoriesJSON.length; iC < lenC; iC++) {
-                    CategoryTable += categoriesJSON[iC].properties.name + "|";
+                    CategoryTable += categoriesJSON[iC].properties.name + "|";  // adds a pipe after last category ; example : Auto|Finance|
                   }
 
                   if (Nb_Investments != 0 || Nb_Acquisitions != 0) {
@@ -45,7 +70,8 @@
                       "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                       "nb_investments": Nb_Investments,
                       "nb_acquisitions": Nb_Acquisitions,
-                      "categories": CategoryTable
+                      "crunchBaseCategory": assignCategory(CategoryTable).crunchBaseCategory,
+                      "allianceCategory": assignCategory(CategoryTable).allianceCategory
                     });
                   }
                   p_table.appendRows(organizationTableData);
@@ -173,8 +199,12 @@
         alias: "Nb ACQUISITIONS",
         dataType: tableau.dataTypeEnum.int
       }, {
-        id: "categories",
-        alias: "Categories",
+        id: "crunchBaseCategory",
+        alias: "CrunchBase Category",
+        dataType: tableau.dataTypeEnum.string
+      }, {
+        id: "allianceCategory",
+        alias: "Alliance Category",
         dataType: tableau.dataTypeEnum.string
       }
     ];
