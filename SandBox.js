@@ -34,9 +34,9 @@
                   var Nb_Investments = investmentsJSON.investments.paging.total_items;
                   var Nb_Acquisitions = investmentsJSON.acquisitions.paging.total_items;
                   var categoriesJSON = investmentsJSON.categories.items;
-                  var CategoryTable = [];
+                  var CategoryTable = "";
                   for (var iC = 0, lenC = categoriesJSON.length; iC < lenC; iC++) {
-                    CategoryTable[iC] = categoriesJSON[iC].properties.name;
+                    CategoryTable += categoriesJSON[iC].properties.name + "|";
                   }
 
                   if (Nb_Investments != 0 || Nb_Acquisitions != 0) {
