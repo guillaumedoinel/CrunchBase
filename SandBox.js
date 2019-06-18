@@ -58,8 +58,8 @@
   function getInvestmentsAcquisitionsByCompanies(p_companyList, p_table) {
     // Iterate for as many companies as listed above
     for (var i = 0, len = p_companyList.length; i < len; i++) {
-      var UUID = p_companyList[i].UUID;
       var Investor = p_companyList[i].CompanyName;
+      var UUID = p_companyList[i].UUID;
 
       // GET INVESTMENTS DATA
       var PageNo = 1;
