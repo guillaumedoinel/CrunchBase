@@ -112,8 +112,22 @@
               var FundingType = investmentsJSON[iI].relationships.funding_round.properties.funding_type;
               var Series = investmentsJSON[iI].relationships.funding_round.properties.series;
               if (Series == null) Series = "";
-              var FundedCompany = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
               var FinalFundingType = FundingRoundType + " " + FundingType + " " + Series;
+              var FundedCompany = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
+              var FundedCompanyUUID = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.uuid;
+
+              // GET FUNDED COMPANY CATEGORIES
+              var CategoryTable = "";
+              $.ajax({
+                url: "https://api.crunchbase.com/v3.1/organizations/" + FundedCompanyUUID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
+                async: false,
+                success: function(response3) {
+                  var categoriesJSON = response3.data.relationships.categories.items;
+                  for (var iC = 0, lenC = categoriesJSON.length; iC < lenC; iC++) {
+                    CategoryTable += categoriesJSON[iC].properties.name + "|";  // adds a pipe after last category ; example : Auto|Finance|
+                  }
+                }
+              });
 
               investmentTableData.push({
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
@@ -121,7 +135,9 @@
                 "funding_type": FinalFundingType,
                 "funded_company": FundedCompany,
                 "money_raised": MoneyRaised,
-                "announced_date": Announced_Date
+                "announced_date": Announced_Date,
+                "crunchBaseCategory": assignCategory(CategoryTable).crunchBaseCategory,
+                "allianceCategory": assignCategory(CategoryTable).allianceCategory
               });
             }
             p_table.appendRows(investmentTableData);
@@ -237,6 +253,14 @@
       id: "announced_date",
       alias: "Announced Date",
       dataType: tableau.dataTypeEnum.date
+    }, {
+      id: "crunchBaseCategory",
+      alias: "CrunchBase Category",
+      dataType: tableau.dataTypeEnum.string
+    }, {
+      id: "allianceCategory",
+      alias: "Alliance Category",
+      dataType: tableau.dataTypeEnum.string
     }];
     var Transactions_Schema = {
       id: "Transactions", // table.tableInfo.id
@@ -245,7 +269,7 @@
     };
 
     // It's only when several schemas are passed to this function that the getData function is called several times
-    schemaCallback([Companies_Schema]);
+    schemaCallback([Transactions_Schema]);
   };
 
   // When you create multiple table schemas, the WDC API calls the getData function once for each schema.
