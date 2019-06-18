@@ -120,6 +120,7 @@
               var MoneyRaised = acquisitionsJSON[iA].properties.price_usd;
               if (MoneyRaised == null) MoneyRaised = 0;
               var AcquiredCompany = acquisitionsJSON[iA].relationships.acquiree.properties.name;
+
               acquisitionTableData.push({
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Acquisition",
