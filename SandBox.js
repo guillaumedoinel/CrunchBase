@@ -223,7 +223,46 @@
     }
 
     if (table.tableInfo.id == "Transactions") {
-      var CompaniesList = [{UUID:"5d6ed201f03268afb4227e7c68129485",CompanyName:"Daimler"}];
+      var CompaniesList = [
+        {CompanyName:"Audi",UUID:"81a1ceaa081ffe4ffbb4ca4cbc8293a8"},
+        {CompanyName:"BMW i Ventures",UUID:"0e35699837f1d2b1b6eb2b62cf418b3e"},
+        {CompanyName:"FIAT S.p.A",UUID:"e7b7f5416f80e13f335f3b0932884c4c"},
+        {CompanyName:"Ford Motor Company",UUID:"9249e8b6409aa80c1a1e29ae21b1db47"},
+        {CompanyName:"Ford Foundation",UUID:"0ee8cd71bfd9bf6bfb96a38012b1e001"},
+        {CompanyName:"Ford Smart Mobility",UUID:"e5a7c1b5702f9efe3e3ebacc0e5e654c"},
+        {CompanyName:"General Motors",UUID:"5087a04780c54aa3dfdf30dd8ac88b5e"},
+        {CompanyName:"General Motors Ventures",UUID:"759be29a69e1615d373f8f8d8f020591"},
+        {CompanyName:"General Motors Investment Management",UUID:"a1d14b6f137ebeaa847a8ba7ad65b4ea"},
+        {CompanyName:"Honda Motor",UUID:"0017e370d941822e83bc538beaab28da"},
+        {CompanyName:"Hyundai Motor Company",UUID:"271e1bf5086adbb89806b76a591b864e"},
+        {CompanyName:"Jaguar Land Rover",UUID:"4b6fd457050953c1db591f694f5ef77b"},
+        {CompanyName:"Jaguar Ventures",UUID:"75213e229421b3687e50a36e9ddf1cec"},
+        {CompanyName:"Kia Motors",UUID:"396458db49b8888dfba24953402d3d66"},
+        {CompanyName:"Daimler",UUID:"5d6ed201f03268afb4227e7c68129485"},
+        {CompanyName:"Mitsubishi Motors",UUID:"fe8f7d6b2f90470223b5d7f18ca63a51"},
+        {CompanyName:"Mitsubishi Electric",UUID:"2e1e8791e661a34d9a78bcabfdd1825f"},
+        {CompanyName:"Mitsubishi UFJ Financial Group",UUID:"d4974159c3765f1b93c50cc0c187423b"},
+        {CompanyName:"Mitsubishi Corporation",UUID:"b8d382916018dd9083ec0723756f2949"},
+        {CompanyName:"Mitsubishi UFJ Capital",UUID:"d300b7548f03f143a08309c355f716ba"},
+        {CompanyName:"Bank Of Tokyo - Mitsubishi UFJ",UUID:"453bb5c7da0798805c29a960edbb0676"},
+        {CompanyName:"Mitsubishi International Corporation (MIC)",UUID:"176c343305f21c86a44393949ae65681"},
+        {CompanyName:"Nissan Motor Corporation",UUID:"718eb41ba3098cd45e019958ac876ee5"},
+        {CompanyName:"Renault-Nissan-Mitsubishi",UUID:"96fa22e600c4656428f64b2066e4021d"},
+        {CompanyName:"Porsche",UUID:"68255d6d16144c7c1a0b3d3998c1d2c2"},
+        {CompanyName:"Porsche Automobil Holding",UUID:"8ea457a172805992c020e741fef4a8dc"},
+        {CompanyName:"PSA Group",UUID:"7c01753993a20640220b5b05a855210a"},
+        {CompanyName:"Peugeot SA",UUID:"ee1dec4f08abb10cd37aa27ef162d215"},
+        {CompanyName:"Renault",UUID:"96ff3fd230b3249437059d861033a53e"},
+        {CompanyName:"Tesla",UUID:"a367b036595254357541ad7ee8869e24"},
+        {CompanyName:"Toyota Motor Corporation",UUID:"12b90373ab49a56a4b4ec7b3e9236faf"},
+        {CompanyName:"Toyota AI Ventures",UUID:"4419828e7e06f10e323c4e985821dafd"},
+        {CompanyName:"Toyota Tsusho",UUID:"4ecb67dc639df5b6cd57da212250cebc"},
+        {CompanyName:"Volvo Cars Group",UUID:"1894c8007d82904566067461508339da"},
+        {CompanyName:"Volvo Group Venture Capital",UUID:"9a59d1e9d183001585270a39d01a9bfc"},
+        {CompanyName:"Volvo Cars Tech Fund",UUID:"86d2a05fdff04a4cbccb9f467e5ecc6e"},
+        {CompanyName:"Volkswagen Group",UUID:"8a2b18d24cfbac1708b207b01d092e2a"},
+        {CompanyName:"Volkswagen Financial Services",UUID:"5449c78f0a2a24b1c2f1414ec2e27917"}
+      ];
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
       doneCallback();
     }
