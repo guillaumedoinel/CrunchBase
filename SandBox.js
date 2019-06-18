@@ -14,13 +14,11 @@
 
     for (var i=0, len=InputCategories.length; i < len; i++) {  // CrunchBase preferred category Assignment
       TempCrunchBaseCategory = InputCategories[i];
-      if (TempCrunchBaseCategory = "Ride Sharing" || TempCrunchBaseCategory = "Car Sharing" || TempCrunchBaseCategory = "Ride Hailing") CrunchBaseCategory = TempCrunchBaseCategory;
+      if (TempCrunchBaseCategory == "Ride Sharing" || TempCrunchBaseCategory == "Car Sharing" || TempCrunchBaseCategory == "Ride Hailing") CrunchBaseCategory = TempCrunchBaseCategory;
     }
 
     // Alliance category Assignment
-    if (CrunchBaseCategory = "Ride Sharing" || CrunchBaseCategory = "Car Sharing" || CrunchBaseCategory = "Ride Hailing") {
-      AllianceCategory = "New Mobility";
-    }
+    if (CrunchBaseCategory == "Ride Sharing" || CrunchBaseCategory == "Car Sharing" || CrunchBaseCategory == "Ride Hailing") AllianceCategory = "New Mobility";
     else AllianceCategory = "Other";
 
     var AssignedCategories = {
