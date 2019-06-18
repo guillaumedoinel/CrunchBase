@@ -66,7 +66,7 @@
       var Next_page_url = "init";
       do {
         $.ajax({
-          url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "/investments?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo // browse the list of investments
+          url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "/investments?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo, // browse the list of investments
           async: false,
           indexValue: {
             paramInvestor: Investor
@@ -120,7 +120,6 @@
               var MoneyRaised = acquisitionsJSON[iA].properties.price_usd;
               if (MoneyRaised == null) MoneyRaised = 0;
               var AcquiredCompany = acquisitionsJSON[iA].relationships.acquiree.properties.name;
-
               acquisitionTableData.push({
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Acquisition",
@@ -129,7 +128,6 @@
                 "money_raised": MoneyRaised,
                 "announced_date": Announced_Date
               });
-
             }
             table.appendRows(acquisitionTableData);
             Next_page_url2 = response2.data.paging.next_page_url;
