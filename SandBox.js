@@ -33,13 +33,19 @@
                   var investmentTableData = [];
                   var Nb_Investments = investmentsJSON.investments.paging.total_items;
                   var Nb_Acquisitions = investmentsJSON.acquisitions.paging.total_items;
+                  var categoriesJON = investmentsJSON.categories.items;
+                  var CategoryTable = [];
+                  for (var iC = 0, lenC = categoriesJON.length; iC < lenC; iC++) {
+                    CategoryTable[iC] = categoriesJSON[iC].properties.name;
+                  }
 
                   if (Nb_Investments != 0 || Nb_Acquisitions != 0) {
                     investmentTableData.push({
                       "uuid": this.indexValue.paramUUID, // to get UUID value from out of the ajaxCall
                       "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                       "nb_investments": Nb_Investments,
-                      "nb_acquisitions": Nb_Acquisitions
+                      "nb_acquisitions": Nb_Acquisitions,
+                      "categories": CategoryTable
                     });
                   }
                   p_table.appendRows(investmentTableData);
@@ -166,6 +172,10 @@
         id: "nb_acquisitions",
         alias: "Nb ACQUISITIONS",
         dataType: tableau.dataTypeEnum.int
+      }, {
+        id: "categories",
+        alias: "Categories",
+        dataType: tableau.dataTypeEnum.string
       }
     ];
     var Companies_Schema = {
@@ -207,7 +217,7 @@
     };
 
     // It's only when several schemas are passed to this function that the getData function is called several times
-    schemaCallback([Transactions_Schema]);
+    schemaCallback([Companies_Schema]);
   };
 
   // When you create multiple table schemas, the WDC API calls the getData function once for each schema.
@@ -224,12 +234,16 @@
 
     if (table.tableInfo.id == "Transactions") {
       var CompaniesList = [
+        {CompanyName:"Alliance RNM",UUID:"bded51bc070240d5ba0e6771d44c5146"}, // Alliance Ventures
         {CompanyName:"Audi",UUID:"81a1ceaa081ffe4ffbb4ca4cbc8293a8"},
         {CompanyName:"BMW",UUID:"0e35699837f1d2b1b6eb2b62cf418b3e"}, // BMW i Ventures
+        {CompanyName:"Daimler",UUID:"5d6ed201f03268afb4227e7c68129485"},
+        {CompanyName:"Didi",UUID:"eab915a8f41464e05138c5f341596a5b"}, // Didi Chuxing
         {CompanyName:"FIAT",UUID:"e7b7f5416f80e13f335f3b0932884c4c"}, // FIAT S.p.A
         {CompanyName:"Ford",UUID:"9249e8b6409aa80c1a1e29ae21b1db47"}, // Ford Motor Company
         {CompanyName:"Ford",UUID:"0ee8cd71bfd9bf6bfb96a38012b1e001"},    // Ford Foundation
         {CompanyName:"Ford",UUID:"e5a7c1b5702f9efe3e3ebacc0e5e654c"}, // Ford Smart Mobility
+        {CompanyName:"Geely",UUID:"cbcae3286143e6a215efd8b736ca9fff"}, // Zhejiang Geely Holding Group
         {CompanyName:"General Motors",UUID:"5087a04780c54aa3dfdf30dd8ac88b5e"},
         {CompanyName:"General Motors",UUID:"759be29a69e1615d373f8f8d8f020591"}, // General Motors Ventures
         {CompanyName:"General Motors",UUID:"a1d14b6f137ebeaa847a8ba7ad65b4ea"}, // General Motors Investment Management
@@ -238,7 +252,6 @@
         {CompanyName:"Jaguar Land Rover",UUID:"4b6fd457050953c1db591f694f5ef77b"},
         {CompanyName:"Jaguar Land Rover",UUID:"75213e229421b3687e50a36e9ddf1cec"}, // Jaguar Ventures
         {CompanyName:"Kia",UUID:"396458db49b8888dfba24953402d3d66"}, // Kia Motors
-        {CompanyName:"Daimler",UUID:"5d6ed201f03268afb4227e7c68129485"},
         {CompanyName:"Mitsubishi",UUID:"fe8f7d6b2f90470223b5d7f18ca63a51"}, // Mitsubishi Motors
         {CompanyName:"Mitsubishi",UUID:"2e1e8791e661a34d9a78bcabfdd1825f"}, // Mitsubishi Electric
         {CompanyName:"Mitsubishi",UUID:"d4974159c3765f1b93c50cc0c187423b"}, // Mitsubishi UFJ Financial Group
