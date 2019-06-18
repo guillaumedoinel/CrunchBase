@@ -12,14 +12,75 @@
     var CrunchBaseCategory = "";
     var AllianceCategory = "";
 
-    for (var i=0, len=InputCategories.length; i < len; i++) {  // CrunchBase preferred category Assignment
+    for (var i=0, len=InputCategories.length; i < len; i++) {  // CrunchBase preferred category Assignment in case serveral assignment per company
       TempCrunchBaseCategory = InputCategories[i];
-      if (TempCrunchBaseCategory == "Ride Sharing" || TempCrunchBaseCategory == "Car Sharing" || TempCrunchBaseCategory == "Ride Hailing") CrunchBaseCategory = TempCrunchBaseCategory;
-    }
 
-    // Alliance category Assignment
-    if (CrunchBaseCategory == "Ride Sharing" || CrunchBaseCategory == "Car Sharing" || CrunchBaseCategory == "Ride Hailing") AllianceCategory = "New Mobility";
-    else AllianceCategory = "Other";
+      // New Mobility
+      if (TempCrunchBaseCategory == "Air Mobility"
+       || TempCrunchBaseCategory == "Bike-Sharing"
+       || TempCrunchBaseCategory == "Car Hailing"
+       || TempCrunchBaseCategory == "Car Rental"
+       || TempCrunchBaseCategory == "Car Sharing"
+       || TempCrunchBaseCategory == "Delivery"
+       || TempCrunchBaseCategory == "e-scooter"
+       || TempCrunchBaseCategory == "Food Services"
+       || TempCrunchBaseCategory == "Mobility Platform"
+       || TempCrunchBaseCategory == "P2P Carpooling"
+       || TempCrunchBaseCategory == "Platform"
+       || TempCrunchBaseCategory == "Public Transportation"
+       || TempCrunchBaseCategory == "Ride Hailing"
+       || TempCrunchBaseCategory == "Ride Sharing"
+       || TempCrunchBaseCategory == "Scooter Sharing"
+       || TempCrunchBaseCategory == "Space Travel"
+       || TempCrunchBaseCategory == "Transportation info"
+       || TempCrunchBaseCategory == "Car Leasing"
+       || TempCrunchBaseCategory == "Car Manufacturer"
+     ) {CrunchBaseCategory = TempCrunchBaseCategory; AllianceCategory = "New Mobility";}
+
+      // EV & Energy
+      if (TempCrunchBaseCategory == "Battery technology"
+       || TempCrunchBaseCategory == "Charging Station"
+       || TempCrunchBaseCategory == "Electric Battery"
+       || TempCrunchBaseCategory == "Electric Vehicles"
+       || TempCrunchBaseCategory == "Energy storage"
+       || TempCrunchBaseCategory == "EV Battery"
+       || TempCrunchBaseCategory == "EV Bus"
+       || TempCrunchBaseCategory == "EV Components"
+      ) {CrunchBaseCategory = TempCrunchBaseCategory; AllianceCategory = "EV & Energy";}
+
+      // Enterprise 2.0
+      if (TempCrunchBaseCategory == "3D Printing"
+       || TempCrunchBaseCategory == "Car Marketplace"
+       || TempCrunchBaseCategory == "commerce"
+       || TempCrunchBaseCategory == "e-commerce"
+       || TempCrunchBaseCategory == "Electronics"
+       || TempCrunchBaseCategory == "Enterprise Software"
+       || TempCrunchBaseCategory == "Financial Services"
+       || TempCrunchBaseCategory == "Logistic"
+       || TempCrunchBaseCategory == "Manufacturing Solution"
+      ) {CrunchBaseCategory = TempCrunchBaseCategory; AllianceCategory = "Enterprise 2.0";}
+
+      // Autonomous Driving
+      if (TempCrunchBaseCategory == "AI"
+       || TempCrunchBaseCategory == "Artificial Intelligence"
+       || TempCrunchBaseCategory == "Autonomous vehicle"
+       || TempCrunchBaseCategory == "Big Data"
+       || TempCrunchBaseCategory == "Lidar solution"
+       || TempCrunchBaseCategory == "Sounds sensor"
+      ) {CrunchBaseCategory = TempCrunchBaseCategory; AllianceCategory = "Autonomous Driving";}
+
+      // Connectiviy & Services
+      if (TempCrunchBaseCategory == "AR"
+       || TempCrunchBaseCategory == "Cloud"
+       || TempCrunchBaseCategory == "Map"
+       || TempCrunchBaseCategory == "Navigation"
+       || TempCrunchBaseCategory == "Social Platform"
+       || TempCrunchBaseCategory == "VPA"
+       || TempCrunchBaseCategory == "Wireless Technology"
+       || TempCrunchBaseCategory == "Telecommunication"
+       || TempCrunchBaseCategory == "Action Cam"
+      ) {CrunchBaseCategory = TempCrunchBaseCategory; AllianceCategory = "Connectiviy & Services";}
+    }
 
     var AssignedCategories = {
       crunchBaseCategory: CrunchBaseCategory,
