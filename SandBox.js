@@ -94,7 +94,7 @@
                 "announced_date": Announced_Date
               });
             }
-            table.appendRows(investmentTableData);
+            p_table.appendRows(investmentTableData);
             Next_page_url = response.data.paging.next_page_url;
           }
         });
@@ -130,7 +130,7 @@
                 "announced_date": Announced_Date
               });
             }
-            table.appendRows(acquisitionTableData);
+            p_table.appendRows(acquisitionTableData);
             Next_page_url2 = response2.data.paging.next_page_url;
           }
         });
