@@ -29,18 +29,18 @@
                   paramUUID: UUID
                 }, // to get values from out of the ajaxCall
                 success: function(response2) {
-                  var investmentsJSON = response2.data.relationships;
-                  var investmentTableData = [];
-                  var Nb_Investments = investmentsJSON.investments.paging.total_items;
-                  var Nb_Acquisitions = investmentsJSON.acquisitions.paging.total_items;
-                  var categoriesJSON = investmentsJSON.categories.items;
+                  var organizationDetailJSON = response2.data.relationships;
+                  var organizationTableData = [];
+                  var Nb_Investments = organizationDetailJSON.investments.paging.total_items;
+                  var Nb_Acquisitions = organizationDetailJSON.acquisitions.paging.total_items;
+                  var categoriesJSON = organizationDetailJSON.categories.items;
                   var CategoryTable = "";
                   for (var iC = 0, lenC = categoriesJSON.length; iC < lenC; iC++) {
                     CategoryTable += categoriesJSON[iC].properties.name + "|";
                   }
 
                   if (Nb_Investments != 0 || Nb_Acquisitions != 0) {
-                    investmentTableData.push({
+                    organizationTableData.push({
                       "uuid": this.indexValue.paramUUID, // to get UUID value from out of the ajaxCall
                       "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                       "nb_investments": Nb_Investments,
@@ -48,7 +48,7 @@
                       "categories": CategoryTable
                     });
                   }
-                  p_table.appendRows(investmentTableData);
+                  p_table.appendRows(organizationTableData);
                 }
               });
             }
