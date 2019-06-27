@@ -347,7 +347,7 @@
 
     if (table.tableInfo.id == "Transactions") {
       var CompaniesList = [
-        {CompanyName:"Alliance RNM",UUID:"bded51bc070240d5ba0e6771d44c5146"}, // Alliance Ventures
+        {CompanyName:"Alliance RNM",UUID:"bded51bc070240d5ba0e6771d44c5146"}/*, // Alliance Ventures
         {CompanyName:"Audi",UUID:"81a1ceaa081ffe4ffbb4ca4cbc8293a8"},
         {CompanyName:"BMW",UUID:"0e35699837f1d2b1b6eb2b62cf418b3e"}, // BMW i Ventures
         {CompanyName:"Daimler",UUID:"5d6ed201f03268afb4227e7c68129485"},
@@ -387,7 +387,7 @@
         {CompanyName:"Volvo",UUID:"9a59d1e9d183001585270a39d01a9bfc"}, // Volvo Group Venture Capital
         {CompanyName:"Volvo",UUID:"86d2a05fdff04a4cbccb9f467e5ecc6e"}, // Volvo Cars Tech Fund
         {CompanyName:"Volkswagen",UUID:"8a2b18d24cfbac1708b207b01d092e2a"}, // Volkswagen Group
-        {CompanyName:"Volkswagen",UUID:"5449c78f0a2a24b1c2f1414ec2e27917"} // Volkswagen Financial Services
+        {CompanyName:"Volkswagen",UUID:"5449c78f0a2a24b1c2f1414ec2e27917"} // Volkswagen Financial Services*/
       ];
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
       doneCallback();
