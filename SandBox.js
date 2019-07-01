@@ -12,7 +12,7 @@
     var CrunchBaseCategory = "";
     var AllianceCategory = "";
 
-    for (var i=0, len=InputCategories.length; i < len; i++) {  // CrunchBase preferred category Assignment in case serveral assignment per company
+    for (var i=0, len=InputCategories.length; i < len; i++) {  // last category selected in case of multiple categories ... ;
       TempCrunchBaseCategory = InputCategories[i];
 
       // New Mobility
@@ -178,7 +178,7 @@
               var FundedCompanyUUID = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.uuid;
 
               // GET FUNDED COMPANY CATEGORIES
-              var CategoryTable = "";
+            /*  var CategoryTable = "";
               $.ajax({
                 url: "https://api.crunchbase.com/v3.1/organizations/" + FundedCompanyUUID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
                 async: false,
@@ -188,7 +188,7 @@
                     CategoryTable += categoriesJSON[iC].properties.name + "|";  // adds a pipe after last category ; example : Auto|Finance|
                   }
                 }
-              });
+              });*/
 
               investmentTableData.push({
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
@@ -196,9 +196,9 @@
                 "funding_type": FinalFundingType,
                 "funded_company": FundedCompany,
                 "money_raised": MoneyRaised,
-                "announced_date": Announced_Date,
+                "announced_date": Announced_Date/*,
                 "crunchBaseCategory": assignCategory(CategoryTable).crunchBaseCategory,
-                "allianceCategory": assignCategory(CategoryTable).allianceCategory
+                "allianceCategory": assignCategory(CategoryTable).allianceCategory*/
               });
             }
             p_table.appendRows(investmentTableData);
@@ -314,7 +314,7 @@
       id: "announced_date",
       alias: "Announced Date",
       dataType: tableau.dataTypeEnum.date
-    }, {
+    }/*, {
       id: "crunchBaseCategory",
       alias: "CrunchBase Category",
       dataType: tableau.dataTypeEnum.string
@@ -322,7 +322,8 @@
       id: "allianceCategory",
       alias: "Alliance Category",
       dataType: tableau.dataTypeEnum.string
-    }];
+    }*/
+    ];
     var Transactions_Schema = {
       id: "Transactions", // table.tableInfo.id
       alias: "Transactions",
@@ -347,7 +348,7 @@
 
     if (table.tableInfo.id == "Transactions") {
       var CompaniesList = [
-        {CompanyName:"Alliance RNM",UUID:"bded51bc070240d5ba0e6771d44c5146"}/*, // Alliance Ventures
+        {CompanyName:"Alliance RNM",UUID:"bded51bc070240d5ba0e6771d44c5146"}, // Alliance Ventures
         {CompanyName:"Audi",UUID:"81a1ceaa081ffe4ffbb4ca4cbc8293a8"},
         {CompanyName:"BMW",UUID:"0e35699837f1d2b1b6eb2b62cf418b3e"}, // BMW i Ventures
         {CompanyName:"Daimler",UUID:"5d6ed201f03268afb4227e7c68129485"},
@@ -387,7 +388,7 @@
         {CompanyName:"Volvo",UUID:"9a59d1e9d183001585270a39d01a9bfc"}, // Volvo Group Venture Capital
         {CompanyName:"Volvo",UUID:"86d2a05fdff04a4cbccb9f467e5ecc6e"}, // Volvo Cars Tech Fund
         {CompanyName:"Volkswagen",UUID:"8a2b18d24cfbac1708b207b01d092e2a"}, // Volkswagen Group
-        {CompanyName:"Volkswagen",UUID:"5449c78f0a2a24b1c2f1414ec2e27917"} // Volkswagen Financial Services*/
+        {CompanyName:"Volkswagen",UUID:"5449c78f0a2a24b1c2f1414ec2e27917"} // Volkswagen Financial Services
       ];
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
       doneCallback();
