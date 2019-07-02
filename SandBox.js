@@ -895,7 +895,8 @@
 {CompanyName:"Zonar",SubCategory:"",Category:""},
 {CompanyName:"ZoomCar",SubCategory:"",Category:""},
 {CompanyName:"ZRRO",SubCategory:"Electronics",Category:"Enterprise 2.0"},
-{CompanyName:"Zum",SubCategory:"Ride Sharing",Category:"New Mobility"}
+{CompanyName:"Zum",SubCategory:"Ride Sharing",Category:"New Mobility"},
+{CompanyName:"The Mobility House",SubCategory:"Charging",Category:"EV"}
       ];
       var categoriesTableData = [];
       for (var i = 0, len = CategoriesList.length; i < len; i++) {
