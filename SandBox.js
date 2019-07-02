@@ -340,7 +340,7 @@
       alias: "Sub Category",
       dataType: tableau.dataTypeEnum.string
     }, {
-      id: "Category",
+      id: "category",
       alias: "Category",
       dataType: tableau.dataTypeEnum.string
     }
