@@ -903,8 +903,8 @@
           "company_name": CategoriesList[i].CompanyName,
           "subcategory": CategoriesList[i].SubCategory,
           "category": CategoriesList[i].Category
-        });  
-        table.appendRows(investmentTableData);
+        });
+        table.appendRows(categoriesTableData);
       }
     doneCallback();
   }
