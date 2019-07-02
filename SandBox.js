@@ -352,7 +352,7 @@
     };
 
     // It's only when several schemas are passed to this function that the getData function is called several times
-    schemaCallback([Categories_Schema]);
+    schemaCallback([Transactions_Schema,Categories_Schema]);
   };
 
   // When you create multiple table schemas, the WDC API calls the getData function once for each schema.
