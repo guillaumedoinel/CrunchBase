@@ -149,7 +149,10 @@
   function getInvestmentsAcquisitionsByCompanies(p_companyList, p_table) {
     // Iterate for as many companies as listed above
     for (var i = 0, len = p_companyList.length; i < len; i++) {
-      var Investor = p_companyList[i].CompanyName;
+      var Sector = p_companyList[i].Sector;
+      var Group = p_companyList[i].Group;
+      var Company = p_companyList[i].Company;
+      var Investor = p_companyList[i].Investor;
       var UUID = p_companyList[i].UUID;
 
       // GET INVESTMENTS DATA
@@ -160,6 +163,9 @@
           url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "/investments?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo, // browse the list of investments
           async: false,
           indexValue: {
+            paramSector: Sector,
+            paramGroup: Group,
+            paramCompany: Company,
             paramInvestor: Investor
           }, // to get Investor value from out of the ajaxCall
           success: function(response) {
@@ -177,28 +183,16 @@
               var FundedCompany = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
               var FundedCompanyUUID = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.uuid;
 
-              // GET FUNDED COMPANY CATEGORIES
-            /*  var CategoryTable = "";
-              $.ajax({
-                url: "https://api.crunchbase.com/v3.1/organizations/" + FundedCompanyUUID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
-                async: false,
-                success: function(response3) {
-                  var categoriesJSON = response3.data.relationships.categories.items;
-                  for (var iC = 0, lenC = categoriesJSON.length; iC < lenC; iC++) {
-                    CategoryTable += categoriesJSON[iC].properties.name + "|";  // adds a pipe after last category ; example : Auto|Finance|
-                  }
-                }
-              });*/
-
               investmentTableData.push({
+                "sector": this.indexValue.paramSector,
+                "group": this.indexValue.paramGroup,
+                "company": this.indexValue.paramCompany,
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Investment",
                 "funding_type": FinalFundingType,
                 "funded_company": FundedCompany,
                 "money_raised": MoneyRaised,
-                "announced_date": Announced_Date/*,
-                "crunchBaseCategory": assignCategory(CategoryTable).crunchBaseCategory,
-                "allianceCategory": assignCategory(CategoryTable).allianceCategory*/
+                "announced_date": Announced_Date
               });
             }
             p_table.appendRows(investmentTableData);
@@ -217,6 +211,9 @@
           url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "/acquisitions?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo2, // browse the list of acquisitions
           async: false,
           indexValue: {
+            paramSector: Sector,
+            paramGroup: Group,
+            paramCompany: Company,
             paramInvestor: Investor
           }, // to get Investor value from out of the ajaxCall
           success: function(response2) {
@@ -229,6 +226,9 @@
               var AcquiredCompany = acquisitionsJSON[iA].relationships.acquiree.properties.name;
 
               acquisitionTableData.push({
+                "sector": this.indexValue.paramSector,
+                "group": this.indexValue.paramGroup,
+                "company": this.indexValue.paramCompany,
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Acquisition",
                 "funding_type": "",
@@ -290,7 +290,20 @@
     };
 
     // Transactions : Investments & Acquisitions
-    var Transactions_cols = [{
+    var Transactions_cols = [
+    {
+      id: "sector",
+      alias: "Sector",
+      dataType: tableau.dataTypeEnum.string
+    }, {
+      id: "group",
+      alias: "Group",
+      dataType: tableau.dataTypeEnum.string
+    }, {
+      id: "company",
+      alias: "Company",
+      dataType: tableau.dataTypeEnum.string
+    }, {
       id: "investor",
       alias: "Investor",
       dataType: tableau.dataTypeEnum.string
@@ -314,15 +327,7 @@
       id: "announced_date",
       alias: "Announced Date",
       dataType: tableau.dataTypeEnum.date
-    }/*, {
-      id: "crunchBaseCategory",
-      alias: "CrunchBase Category",
-      dataType: tableau.dataTypeEnum.string
-    }, {
-      id: "allianceCategory",
-      alias: "Alliance Category",
-      dataType: tableau.dataTypeEnum.string
-    }*/
+    }
     ];
     var Transactions_Schema = {
       id: "Transactions", // table.tableInfo.id
@@ -369,47 +374,56 @@
 
     if (table.tableInfo.id == "Transactions") {
       var CompaniesList = [
-        {CompanyName:"Alliance RNM",UUID:"bded51bc070240d5ba0e6771d44c5146"}, // Alliance Ventures
-        {CompanyName:"Volkswagen",UUID:"81a1ceaa081ffe4ffbb4ca4cbc8293a8"}, // Audi
-        {CompanyName:"BMW",UUID:"0e35699837f1d2b1b6eb2b62cf418b3e"}, // BMW i Ventures
-        {CompanyName:"Daimler",UUID:"5d6ed201f03268afb4227e7c68129485"},
-        {CompanyName:"Didi",UUID:"eab915a8f41464e05138c5f341596a5b"}, // Didi Chuxing
-        {CompanyName:"FIAT",UUID:"e7b7f5416f80e13f335f3b0932884c4c"}, // FIAT S.p.A
-        {CompanyName:"Ford",UUID:"9249e8b6409aa80c1a1e29ae21b1db47"}, // Ford Motor Company
-        {CompanyName:"Ford",UUID:"0ee8cd71bfd9bf6bfb96a38012b1e001"},    // Ford Foundation
-        {CompanyName:"Ford",UUID:"e5a7c1b5702f9efe3e3ebacc0e5e654c"}, // Ford Smart Mobility
-        {CompanyName:"Geely",UUID:"cbcae3286143e6a215efd8b736ca9fff"}, // Zhejiang Geely Holding Group
-        {CompanyName:"General Motors",UUID:"5087a04780c54aa3dfdf30dd8ac88b5e"},
-        {CompanyName:"General Motors",UUID:"759be29a69e1615d373f8f8d8f020591"}, // General Motors Ventures
-        {CompanyName:"General Motors",UUID:"a1d14b6f137ebeaa847a8ba7ad65b4ea"}, // General Motors Investment Management
-        {CompanyName:"Honda",UUID:"0017e370d941822e83bc538beaab28da"}, // Honda Motor
-        {CompanyName:"Hyundai",UUID:"271e1bf5086adbb89806b76a591b864e"}, // Hyundai Motor Company
-        {CompanyName:"Jaguar Land Rover",UUID:"4b6fd457050953c1db591f694f5ef77b"},
-        {CompanyName:"Jaguar Land Rover",UUID:"75213e229421b3687e50a36e9ddf1cec"}, // Jaguar Ventures
-        {CompanyName:"Kia",UUID:"396458db49b8888dfba24953402d3d66"}, // Kia Motors
-        {CompanyName:"Mitsubishi",UUID:"fe8f7d6b2f90470223b5d7f18ca63a51"}, // Mitsubishi Motors
-        {CompanyName:"Mitsubishi",UUID:"2e1e8791e661a34d9a78bcabfdd1825f"}, // Mitsubishi Electric
-        {CompanyName:"Mitsubishi",UUID:"d4974159c3765f1b93c50cc0c187423b"}, // Mitsubishi UFJ Financial Group
-        {CompanyName:"Mitsubishi",UUID:"b8d382916018dd9083ec0723756f2949"}, // Mitsubishi Corporation
-        {CompanyName:"Mitsubishi",UUID:"d300b7548f03f143a08309c355f716ba"}, // Mitsubishi UFJ Capital
-        {CompanyName:"Mitsubishi",UUID:"453bb5c7da0798805c29a960edbb0676"}, // Bank Of Tokyo - Mitsubishi UFJ
-        {CompanyName:"Mitsubishi",UUID:"176c343305f21c86a44393949ae65681"}, // Mitsubishi International Corporation (MIC)
-        {CompanyName:"Nissan",UUID:"718eb41ba3098cd45e019958ac876ee5"}, // Nissan Motor Corporation
-        {CompanyName:"Renault-Nissan-Mitsubishi",UUID:"96fa22e600c4656428f64b2066e4021d"}, // Renault-Nissan-Mitsubishi
-        {CompanyName:"Porsche",UUID:"68255d6d16144c7c1a0b3d3998c1d2c2"},
-        {CompanyName:"Porsche",UUID:"8ea457a172805992c020e741fef4a8dc"}, // Porsche Automobil Holding
-        {CompanyName:"PSA",UUID:"7c01753993a20640220b5b05a855210a"}, // PSA Group
-        {CompanyName:"Peugeot",UUID:"ee1dec4f08abb10cd37aa27ef162d215"}, // Peugeot SA
-        {CompanyName:"Renault",UUID:"96ff3fd230b3249437059d861033a53e"},
-        {CompanyName:"Tesla",UUID:"a367b036595254357541ad7ee8869e24"},
-        {CompanyName:"Toyota",UUID:"12b90373ab49a56a4b4ec7b3e9236faf"}, // Toyota Motor Corporation
-        {CompanyName:"Toyota",UUID:"4419828e7e06f10e323c4e985821dafd"}, // Toyota AI Ventures
-        {CompanyName:"Toyota",UUID:"4ecb67dc639df5b6cd57da212250cebc"}, // Toyota Tsusho
-        {CompanyName:"Volvo",UUID:"1894c8007d82904566067461508339da"}, // Volvo Cars Group
-        {CompanyName:"Volvo",UUID:"9a59d1e9d183001585270a39d01a9bfc"}, // Volvo Group Venture Capital
-        {CompanyName:"Volvo",UUID:"86d2a05fdff04a4cbccb9f467e5ecc6e"}, // Volvo Cars Tech Fund
-        {CompanyName:"Volkswagen",UUID:"8a2b18d24cfbac1708b207b01d092e2a"}, // Volkswagen Group
-        {CompanyName:"Volkswagen",UUID:"5449c78f0a2a24b1c2f1414ec2e27917"} // Volkswagen Financial Services
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Renault Nissan Mitsubishi",UUID:"96fa22e600c4656428f64b2066e4021d"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Alliance Ventures",UUID:"bded51bc070240d5ba0e6771d44c5146"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Motors",UUID:"fe8f7d6b2f90470223b5d7f18ca63a51"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Electric",UUID:"2e1e8791e661a34d9a78bcabfdd1825f"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi UFJ Financial Group",UUID:"d4974159c3765f1b93c50cc0c187423b"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Corporation",UUID:"b8d382916018dd9083ec0723756f2949"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi UFJ Capital",UUID:"d300b7548f03f143a08309c355f716ba"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Bank Of Tokyo - Mitsubishi UFJ",UUID:"453bb5c7da0798805c29a960edbb0676"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi International Corporation (MIC)",UUID:"176c343305f21c86a44393949ae65681"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Nissan",Investor:"Nissan Motor Corporation",UUID:"718eb41ba3098cd45e019958ac876ee5"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Renault",Investor:"Renault",UUID:"96ff3fd230b3249437059d861033a53e"},
+        {Sector:"OEM",Group:"BMW",Company:"BMW",Investor:"BMW",UUID:"b462608d8bf493f14f68e41ee10f0df2"},
+        {Sector:"OEM",Group:"BMW",Company:"BMW",Investor:"BMW i Ventures",UUID:"0e35699837f1d2b1b6eb2b62cf418b3e"},
+        {Sector:"OEM",Group:"Daimler",Company:"Daimler",Investor:"Daimler",UUID:"5d6ed201f03268afb4227e7c68129485"},
+        {Sector:"Mobility",Group:"Didi Chuxing",Company:"Didi",Investor:"Didi Chuxing",UUID:"eab915a8f41464e05138c5f341596a5b"},
+        {Sector:"OEM",Group:"FCA",Company:"Fiat",Investor:"FIAT S.p.A",UUID:"e7b7f5416f80e13f335f3b0932884c4c"},
+        {Sector:"OEM",Group:"Ford",Company:"Ford",Investor:"Ford Motor Company",UUID:"9249e8b6409aa80c1a1e29ae21b1db47"},
+        {Sector:"OEM",Group:"Ford",Company:"Ford",Investor:"Ford Foundation",UUID:"0ee8cd71bfd9bf6bfb96a38012b1e001"},
+        {Sector:"OEM",Group:"Ford",Company:"Ford",Investor:"Ford Smart Mobility",UUID:"e5a7c1b5702f9efe3e3ebacc0e5e654c"},
+        {Sector:"OEM",Group:"Geely",Company:"Geely",Investor:"Zhejiang Geely Holding Group",UUID:"cbcae3286143e6a215efd8b736ca9fff"},
+        {Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Group Venture Capital",UUID:"9a59d1e9d183001585270a39d01a9bfc"},
+        {Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Cars Group",UUID:"1894c8007d82904566067461508339da"},
+        {Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Cars Tech Fund",UUID:"86d2a05fdff04a4cbccb9f467e5ecc6e"},
+        {Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Investment Management",UUID:"a1d14b6f137ebeaa847a8ba7ad65b4ea"},
+        {Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors",UUID:"5087a04780c54aa3dfdf30dd8ac88b5e"},
+        {Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Ventures",UUID:"759be29a69e1615d373f8f8d8f020591"},
+        {Sector:"Mobility",Group:"Grab",Company:"Grab",Investor:"Grab",UUID:"a76824768a83dbcf73dc41a841ef850e"},
+        {Sector:"OEM",Group:"Honda",Company:"Honda",Investor:"Honda Motor",UUID:"0017e370d941822e83bc538beaab28da"},
+        {Sector:"OEM",Group:"Hyundai",Company:"Hyundai",Investor:"Hyundai Motor Company",UUID:"271e1bf5086adbb89806b76a591b864e"},
+        {Sector:"OEM",Group:"Hyundai",Company:"Hyundai",Investor:"Hyundai Venture Investment Corporation",UUID:"994661433b9eb9fc9283116b7b32af5a"},
+        {Sector:"OEM",Group:"JLR",Company:"JLR",Investor:"Jaguar Land Rover",UUID:"4b6fd457050953c1db591f694f5ef77b"},
+        {Sector:"OEM",Group:"JLR",Company:"JLR",Investor:"Jaguar Ventures",UUID:"75213e229421b3687e50a36e9ddf1cec"},
+        {Sector:"OEM",Group:"JLR",Company:"JLR",Investor:"Jaguar Land Rover’s venture capital fund",UUID:"ec11c33226e64c7db12a92b9305cf0dd"},
+        {Sector:"OEM",Group:"KIA",Company:"Kia",Investor:"Kia Motors",UUID:"396458db49b8888dfba24953402d3d66"},
+        {Sector:"Mobility",Group:"Lyft",Company:"Lyft",Investor:"Lyft",UUID:"33a97e70f137e90f8d68950a043ee09f"},
+        {Sector:"OEM",Group:"PSA",Company:"PSA",Investor:"PSA Group",UUID:"7c01753993a20640220b5b05a855210a"},
+        {Sector:"OEM",Group:"PSA",Company:"Peugeot",Investor:"Peugeot SA",UUID:"ee1dec4f08abb10cd37aa27ef162d215"},
+        {Sector:"OEM",Group:"Tesla",Company:"Tesla",Investor:"Tesla",UUID:"a367b036595254357541ad7ee8869e24"},
+        {Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota Motor Corporation",UUID:"12b90373ab49a56a4b4ec7b3e9236faf"},
+        {Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota Tsusho",UUID:"4ecb67dc639df5b6cd57da212250cebc"},
+        {Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota AI Ventures",UUID:"4419828e7e06f10e323c4e985821dafd"},
+        {Sector:"Mobility",Group:"Uber",Company:"Uber",Investor:"Uber",UUID:"1eb371093b9301a9177ffee2cb1bfcdc"},
+        {Sector:"OEM",Group:"VAG",Company:"Volkswagen",Investor:"Volkswagen group",UUID:"8a2b18d24cfbac1708b207b01d092e2a"},
+        {Sector:"OEM",Group:"VAG",Company:"Audi",Investor:"Audi",UUID:"81a1ceaa081ffe4ffbb4ca4cbc8293a8"},
+        {Sector:"OEM",Group:"VAG",Company:"Volkswagen",Investor:"Volkswagen We",UUID:"a31b34c32f6543789fb20993d74b4dad"},
+        {Sector:"OEM",Group:"VAG",Company:"Volkswagen",Investor:"Volkswagen Financial Services",UUID:"5449c78f0a2a24b1c2f1414ec2e27917"},
+        {Sector:"OEM",Group:"VAG",Company:"Porsche",Investor:"Porsche",UUID:"68255d6d16144c7c1a0b3d3998c1d2c2"},
+        {Sector:"OEM",Group:"VAG",Company:"Porsche",Investor:"Porsche Automobil Holding",UUID:"8ea457a172805992c020e741fef4a8dc"},
+        {Sector:"OEM",Group:"VAG",Company:"Seat",Investor:"Seat",UUID:"fdf2b2f2241533a054ad3b9755b84f33"},
+        {Sector:"OEM",Group:"VAG",Company:"Škoda",Investor:"Škoda Auto a.s ",UUID:"7c71810f27514e8c95d7e2fae0b96178"}
       ];
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
       doneCallback();
@@ -895,8 +909,8 @@
 {CompanyName:"Zonar",SubCategory:"",Category:""},
 {CompanyName:"ZoomCar",SubCategory:"",Category:""},
 {CompanyName:"ZRRO",SubCategory:"Electronics",Category:"Enterprise 2.0"},
-{CompanyName:"Zum",SubCategory:"Ride Sharing",Category:"New Mobility"}/*,
-{CompanyName:"The Mobility House",SubCategory:"Charging",Category:"EV"}*/
+{CompanyName:"Zum",SubCategory:"Ride Sharing",Category:"New Mobility"},
+{CompanyName:"The Mobility House",SubCategory:"Charging",Category:"EV"}
       ];
       var categoriesTableData = [];
       for (var i = 0, len = CategoriesList.length; i < len; i++) {
