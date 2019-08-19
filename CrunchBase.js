@@ -41,8 +41,8 @@
               var FinalFundingType = FundingRoundType + " " + FundingType + " " + Series;
               var FundedCompany = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
               var FundedCompanyUUID = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.uuid;
-              var ShortDescription = investmentsJSON[iI].relationships.funding_round.relationships.funded_organizationproperties.short_description;
-              var Description = investmentsJSON[iI].relationships.funding_round.relationships.funded_organizationproperties.description;
+              var ShortDescription = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.short_description;
+              var Description = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.description;
 
               investmentTableData.push({
                 "sector": this.indexValue.paramSector,
