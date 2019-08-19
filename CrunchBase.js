@@ -41,6 +41,8 @@
               var FinalFundingType = FundingRoundType + " " + FundingType + " " + Series;
               var FundedCompany = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
               var FundedCompanyUUID = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.uuid;
+              var ShortDescription = investmentsJSON[iI].relationships.funding_round.relationships.funded_organizationproperties.short_description;
+              var Description = investmentsJSON[iI].relationships.funding_round.relationships.funded_organizationproperties.description;
 
               investmentTableData.push({
                 "sector": this.indexValue.paramSector,
@@ -49,9 +51,11 @@
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Investment",
                 "funding_type": FinalFundingType,
-                "funded_company": FundedCompany,
                 "money_raised": MoneyRaised,
-                "announced_date": Announced_Date
+                "announced_date": Announced_Date,
+                "funded_company": FundedCompany,
+                "short_description": ShortDescription,
+                "description": Description
               });
             }
             p_table.appendRows(investmentTableData);
@@ -83,6 +87,8 @@
               var MoneyRaised = acquisitionsJSON[iA].properties.price_usd;
               if (MoneyRaised == null) MoneyRaised = 0;
               var AcquiredCompany = acquisitionsJSON[iA].relationships.acquiree.properties.name;
+              var ShortDescription = acquisitionsJSON[iA].relationships.acquiree.properties.short_description;
+              var Description = acquisitionsJSON[iA].relationships.acquiree.properties.description;
 
               acquisitionTableData.push({
                 "sector": this.indexValue.paramSector,
@@ -91,9 +97,11 @@
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Acquisition",
                 "funding_type": "",
-                "funded_company": AcquiredCompany,
                 "money_raised": MoneyRaised,
-                "announced_date": Announced_Date
+                "announced_date": Announced_Date,
+                "funded_company": AcquiredCompany,
+                "short_description": ShortDescription,
+                "description": Description
               });
             }
             p_table.appendRows(acquisitionTableData);
@@ -141,10 +149,6 @@
       alias: "Funding Type",
       dataType: tableau.dataTypeEnum.string
     }, {
-      id: "funded_company",
-      alias: "Funded Company",
-      dataType: tableau.dataTypeEnum.string
-    }, {
       id: "money_raised",
       alias: "Money Raised",
       dataType: tableau.dataTypeEnum.int
@@ -152,6 +156,18 @@
       id: "announced_date",
       alias: "Announced Date",
       dataType: tableau.dataTypeEnum.date
+    }, {
+      id: "funded_company",
+      alias: "Funded Company",
+      dataType: tableau.dataTypeEnum.string
+    }, {
+      id: "short_description",
+      alias: "Short Description",
+      dataType: tableau.dataTypeEnum.string
+    }, {
+      id: "description",
+      alias: "Description",
+      dataType: tableau.dataTypeEnum.string
     }
     ];
     var Transactions_Schema = {
@@ -161,7 +177,8 @@
     };
 
     // Categories : Companies and their categories, coming from StartUp Flow
-    var Categories_cols = [{
+    var Categories_cols = [
+    {
       id: "company_name",
       alias: "Company Name",
       dataType: tableau.dataTypeEnum.string
