@@ -243,7 +243,6 @@
 {Sector:"OEM",Group:"BMW",Company:"BMW",Investor:"BMW",TransactionType:"Partnership",CompanyNameJOIN:"Tencent",Company1:"Tencent"},
 {Sector:"OEM",Group:"BMW",Company:"BMW",Investor:"BMW",TransactionType:"Partnership",CompanyNameJOIN:"Baidu",Company1:"Baidu"},
 {Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota",TransactionType:"Partnership",CompanyNameJOIN:"BYD",Company1:"BYD"}
-,{Sector:"OEM",Group:"BMW",Company:"BMW",Investor:"BMW",TransactionType:"Partnership",CompanyNameJOIN:"BYD",Company1:"BYD"}
     ];
 
     var partnershipsTableData = [];
