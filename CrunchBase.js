@@ -265,6 +265,38 @@
     p_table.appendRows(partnershipsTableData);
   }
 
+  // Inserts HARDCODED subsidiaries into the same table as Investments/Acquisitions
+  function insertSubsidiaries(p_table) {
+    var SubsidiariesList = [
+      {Sector:"OEM",Group:"Daimler",Company:"Daimler",Investor:"Daimler",TransactionType:"Subsidiary",CompanyNameJOIN:"ShareNow",AnnouncedDate:"01/01/2019"},
+      {Sector:"OEM",Group:"BMW",Company:"BMW",Investor:"BMW",TransactionType:"Subsidiary",CompanyNameJOIN:"ShareNow",AnnouncedDate:"01/01/2019"},
+      {Sector:"OEM",Group:"PSA",Company:"PSA",Investor:"PSA",TransactionType:"Subsidiary",CompanyNameJOIN:"Free2Move",AnnouncedDate:"00/01/1900"},
+      {Sector:"OEM",Group:"PSA",Company:"PSA",Investor:"PSA",TransactionType:"Subsidiary",CompanyNameJOIN:"Free2Move Paris",AnnouncedDate:"00/01/1900"},
+      {Sector:"OEM",Group:"PSA",Company:"PSA",Investor:"PSA",TransactionType:"Subsidiary",CompanyNameJOIN:"eMov",AnnouncedDate:"00/01/1900"},
+      {Sector:"OEM",Group:"VAG",Company:"Volkswagen",Investor:"Volkswagen",TransactionType:"Subsidiary",CompanyNameJOIN:"WeShare",AnnouncedDate:"00/01/1900"},
+      {Sector:"OEM",Group:"BMW",Company:"BMW",Investor:"BMW",TransactionType:"Subsidiary",CompanyNameJOIN:"Hive",AnnouncedDate:"00/01/1900"},
+      {Sector:"OEM",Group:"Daimler",Company:"Daimler",Investor:"Daimler",TransactionType:"Subsidiary",CompanyNameJOIN:"Hive",AnnouncedDate:"00/01/1900"}
+    ];
+
+    var subsidiariesTableData = [];
+    for (var i = 0, len = SubsidiariesList.length; i < len; i++) {
+      subsidiariesTableData.push({
+        "sector": PartnershipsList[i].Sector,
+        "group": PartnershipsList[i].Group,
+        "company": PartnershipsList[i].Company,
+        "investor": PartnershipsList[i].Investor,
+        "transaction_type": PartnershipsList[i].TransactionType,
+        "funding_type": "",
+        "money_raised": "",
+        "announced_date": PartnershipsList[i].Date,
+        "company_name_JOIN": PartnershipsList[i].CompanyNameJOIN,
+        "target_company": PartnershipsList[i].CompanyNameJOIN,
+        "short_description": "",
+        "description": ""
+      });
+    }
+  }
+
   /***************************************************************************************************/
   /******************************** RUNNING CODE *****************************************************/
   /***************************************************************************************************/
@@ -417,6 +449,7 @@
       ];
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
       insertPartnerships(table);
+      insertSubsidiaries(table);
       doneCallback();
     }
 
