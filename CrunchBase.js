@@ -281,16 +281,16 @@
     var subsidiariesTableData = [];
     for (var i = 0, len = SubsidiariesList.length; i < len; i++) {
       subsidiariesTableData.push({
-        "sector": PartnershipsList[i].Sector,
-        "group": PartnershipsList[i].Group,
-        "company": PartnershipsList[i].Company,
-        "investor": PartnershipsList[i].Investor,
-        "transaction_type": PartnershipsList[i].TransactionType,
+        "sector": SubsidiariesList[i].Sector,
+        "group": SubsidiariesList[i].Group,
+        "company": SubsidiariesList[i].Company,
+        "investor": SubsidiariesList[i].Investor,
+        "transaction_type": SubsidiariesList[i].TransactionType,
         "funding_type": "",
         "money_raised": "",
-        "announced_date": PartnershipsList[i].Date,
-        "company_name_JOIN": PartnershipsList[i].CompanyNameJOIN,
-        "target_company": PartnershipsList[i].CompanyNameJOIN,
+        "announced_date": SubsidiariesList[i].Date,
+        "company_name_JOIN": SubsidiariesList[i].CompanyNameJOIN,
+        "target_company": SubsidiariesList[i].CompanyNameJOIN,
         "short_description": "",
         "description": ""
       });
