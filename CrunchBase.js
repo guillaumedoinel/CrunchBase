@@ -288,7 +288,7 @@
         "transaction_type": SubsidiariesList[i].TransactionType,
         "funding_type": "",
         "money_raised": "",
-        "announced_date": SubsidiariesList[i].Date,
+        "announced_date": SubsidiariesList[i].AnnouncedDate,
         "company_name_JOIN": SubsidiariesList[i].CompanyNameJOIN,
         "target_company": SubsidiariesList[i].CompanyNameJOIN,
         "short_description": "",
