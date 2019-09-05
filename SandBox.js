@@ -46,9 +46,9 @@
                       "uuid": this.indexValue.paramUUID, // to get UUID value from out of the ajaxCall
                       "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                       "nb_investments": Nb_Investments,
-                      "nb_acquisitions": Nb_Acquisitions,
-                      "crunchBaseCategory": assignCategory(CategoryTable).crunchBaseCategory,
-                      "allianceCategory": assignCategory(CategoryTable).allianceCategory
+                      "nb_acquisitions": Nb_Acquisitions
+                      //"crunchBaseCategory": assignCategory(CategoryTable).crunchBaseCategory,
+                      //"allianceCategory": assignCategory(CategoryTable).allianceCategory
                     });
                   }
                   p_table.appendRows(organizationTableData);
@@ -192,7 +192,7 @@
         id: "nb_acquisitions",
         alias: "Nb ACQUISITIONS",
         dataType: tableau.dataTypeEnum.int
-      }, {
+      }/*, {
         id: "crunchBaseCategory",
         alias: "CrunchBase Category",
         dataType: tableau.dataTypeEnum.string
@@ -200,7 +200,7 @@
         id: "allianceCategory",
         alias: "Alliance Category",
         dataType: tableau.dataTypeEnum.string
-      }
+      }*/
     ];
     var Companies_Schema = {
       id: "Companies", // table.tableInfo.id
