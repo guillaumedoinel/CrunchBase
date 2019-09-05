@@ -14,7 +14,8 @@
       var Next_page_url = "init";
       do {
         $.ajax({
-          url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&Categories=" + p_category + "&name=" + CompanyName + "&page=" + PageNo,
+          //url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&Categories=" + p_category + "&name=" + CompanyName + "&page=" + PageNo,
+          url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&name=" + CompanyName + "&page=" + PageNo,
           async: false,
           success: function(response) { // response is a custom name
             var organizationsJSON = response.data.items; // data.items is the CrunchBase API JSON Structure
@@ -285,9 +286,13 @@
 
     if (table.tableInfo.id == "Companies") {
       //var CategoriesList = ["Auto Insurance","Automotive","Autonomous Vehicles","Battery","Car Sharing","Electric Vehicle","Last Mile Transportation","Limousine Service","Ride Sharing","Taxi Service"];
-      //var CompaniesList = ["Audi","BMW", "Fiat","Chrysler","Ford","General Motors","Honda","Hyundai","Jaguar","Land Rover","KIA","Lexus","Mazda","Daimler","Mitsubishi","Nissan","Porsche","PSA","Peugeot","Citroen","Renault","Seat","Skoda","Tesla","Toyota","Volvo","Volkswagen" ];
-      var CompaniesList = ["BMW"];
-      listCompaniesByNameByCategory(CompaniesList, "Automotive", table);
+      var CompaniesList = ["Huawei Enterprise","Huawei Technologies","Baidu","Baidu Ventures","Baidu Capital","Baidu's Apolo fund","Waimai","Alibaba Group","Alibaba Cloud", "Alibaba Entrepreneurs fund", "Alibaba.com","Alibaba Capital Partners","Alibaba Innovation Investment",
+       "Tencent Holdings", "Tencent Cloud", "Tencent Industry Win-Win Fund", "Tencent WeStart", "Tencent AI Lab", "Shenzhen Tencent Computer System Company Limited", "Xiaomi", "Xiaomi Ventures", "Amazon", "Amazon Web Services", "Microsoft", "Intel", "Intel Capital",
+      "Google","Google Assistant Investments", "Alphabet", "Waymo", "Bosch", "Bosch Soft Tec", "Bosch Automotive Service Solutions", "Robert Bosch Venture Capital", "Hitachi", "Nvidia", "Nvidia GPU Ventures", "Aptiv", "Continental", "Continental Corporation", "Continental Tire",
+      "Valeo", "Valeo Siemens eAutomotive", "Valeo Group", "Faurecia", "LG", "Contemporary Amperex Technology", "BAIC Group", "BAIC BJEV", "BAIC Motor", "Panasonic", "Panasonic Automotive", "Panasonic Ventures", "Careem", "Uber", "Lyft", "Grab", "SoftBank",
+      "SoftBank Capital", "SoftBank Ventures Asia", "SoftBank Robotics Europe", "SoftBank Vision Fund", "SoftBank Robotics Holdings", "SoftBank Payment Service Corp.", "SoftBank Latin America Ventures", "SoftBank BB Corp", "SoftBank UK Ventures", "SoftBank Robotics America", "SoftBank-Indosat Fund"];
+      //var CompaniesList = ["BMW"];
+      listCompaniesByNameByCategory(CompaniesList, "Blabla", table);
       doneCallback();
     }
 
