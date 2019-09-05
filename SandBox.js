@@ -82,8 +82,8 @@
               var UUID = organizationsJSON[iO].uuid;
               var Investor = organizationsJSON[iO].properties.name;
               organizationTableData.push({
-                "uuid": this.indexValue.paramUUID,
-                "investor": this.indexValue.paramInvestor
+                "uuid": UUID,
+                "investor": Investor
               });
             }
             Next_page_url = response.data.paging.next_page_url;
