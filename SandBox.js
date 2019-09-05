@@ -63,6 +63,38 @@
     }
   }
 
+  // without investments acquisitions
+  function listCompaniesByName(p_companyList, p_table) {
+    for (var i = 0, len = p_companyList.length; i < len; i++) {
+      var CompanyName = p_companyList[i];
+      var PageNo = 1;
+      var Next_page_url = "init";
+      var organizationTableData = [];
+      do {
+        $.ajax({
+          //url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&Categories=" + p_category + "&name=" + CompanyName + "&page=" + PageNo,
+          url: "https://api.crunchbase.com/v3.1/organizations?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&name=" + CompanyName + "&page=" + PageNo,
+          async: false,
+          success: function(response) { // response is a custom name
+            var organizationsJSON = response.data.items; // data.items is the CrunchBase API JSON Structure
+            var organizationTableData = [];
+            for (var iO = 0, leniO = organizationsJSON.length; iO < leniO; iO++) { // For each organization, get the number of investments & acquisitions
+              var UUID = organizationsJSON[iO].uuid;
+              var Investor = organizationsJSON[iO].properties.name;
+              organizationTableData.push({
+                "uuid": this.indexValue.paramUUID,
+                "investor": this.indexValue.paramInvestor
+              });
+            }
+            Next_page_url = response.data.paging.next_page_url;
+            p_table.appendRows(organizationTableData);
+          }
+        });
+        PageNo++;
+      } while (Next_page_url != null); // while there are some data left
+    }
+  }
+
   // Browse companies listed as parameter by UUID & Name and get all investments & acquisitions
   function getInvestmentsAcquisitionsByCompanies(p_companyList, p_table) {
     // Iterate for as many companies as listed above
@@ -184,7 +216,7 @@
         id: "investor",
         alias: "Investor",
         dataType: tableau.dataTypeEnum.string
-      }, {
+      }/*, {
         id: "nb_investments",
         alias: "Nb INVESTMENTS",
         dataType: tableau.dataTypeEnum.int
@@ -192,7 +224,7 @@
         id: "nb_acquisitions",
         alias: "Nb ACQUISITIONS",
         dataType: tableau.dataTypeEnum.int
-      }/*, {
+      }, {
         id: "crunchBaseCategory",
         alias: "CrunchBase Category",
         dataType: tableau.dataTypeEnum.string
@@ -292,7 +324,7 @@
       "Valeo", "Valeo Siemens eAutomotive", "Valeo Group", "Faurecia", "LG", "Contemporary Amperex Technology", "BAIC Group", "BAIC BJEV", "BAIC Motor", "Panasonic", "Panasonic Automotive", "Panasonic Ventures", "Careem", "Uber", "Lyft", "Grab", "SoftBank",
       "SoftBank Capital", "SoftBank Ventures Asia", "SoftBank Robotics Europe", "SoftBank Vision Fund", "SoftBank Robotics Holdings", "SoftBank Payment Service Corp.", "SoftBank Latin America Ventures", "SoftBank BB Corp", "SoftBank UK Ventures", "SoftBank Robotics America", "SoftBank-Indosat Fund"];
       //var CompaniesList = ["BMW"];
-      listCompaniesByNameByCategory(CompaniesList, "Blabla", table);
+      listCompaniesByName(CompaniesList, table);
       doneCallback();
     }
 
