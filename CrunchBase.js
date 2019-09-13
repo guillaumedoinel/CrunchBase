@@ -481,6 +481,7 @@
 {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi International Corporation (MIC)",UUID:"176c343305f21c86a44393949ae65681"},
 {Sector:"OEM",Group:"Alliance RNM",Company:"Nissan",Investor:"Nissan Motor Corporation",UUID:"718eb41ba3098cd45e019958ac876ee5"},
 {Sector:"OEM",Group:"Alliance RNM",Company:"Renault",Investor:"Renault",UUID:"96ff3fd230b3249437059d861033a53e"},
+{Sector:"OEM",Group:"Alliance RNM",Company:"Renault",Investor:"RCI Bank and Services",UUID:"46aec950da914c3e91d556bf0cf20b29"},
 {Sector:"OEM",Group:"BMW",Company:"BMW",Investor:"BMW",UUID:"b462608d8bf493f14f68e41ee10f0df2"},
 {Sector:"OEM",Group:"BMW",Company:"BMW",Investor:"BMW i Ventures",UUID:"0e35699837f1d2b1b6eb2b62cf418b3e"},
 {Sector:"OEM",Group:"Daimler",Company:"Daimler",Investor:"Daimler",UUID:"5d6ed201f03268afb4227e7c68129485"},
