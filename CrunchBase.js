@@ -67,7 +67,7 @@
               });
             }
             //p_table.appendRows(investmentTableData);
-            finalSortedTable.appendRows(investmentTableData);
+            finalSortedTable = finalSortedTable.concat(investmentTableData);
             Next_page_url = response.data.paging.next_page_url;
           }
         });
@@ -117,7 +117,7 @@
               });
             }
             //p_table.appendRows(acquisitionTableData);
-            finalSortedTable.appendRows(acquisitionTableData);
+            finalSortedTable = finalSortedTable.concat(acquisitionTableData);
             Next_page_url2 = response2.data.paging.next_page_url;
           }
         });
