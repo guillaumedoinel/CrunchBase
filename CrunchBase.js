@@ -9,6 +9,8 @@
 
   // Browse companies listed as parameter by UUID & Name and get all investments & acquisitions from CrunchBase APIs
   function getInvestmentsAcquisitionsByCompanies(p_companyList, p_table) {
+    var finalSortedTable = [];
+
     // Iterate for as many companies as listed above
     for (var i = 0, len = p_companyList.length; i < len; i++) {
       var Sector = p_companyList[i].Sector;
@@ -63,15 +65,9 @@
                 "short_description": ShortDescription,
                 "description": Description
               });
-            }      
-            investmentTableData.sort(function (a,b) {
-              var x = a.transaction_ID.toLowerCase();
-              var y = b.transaction_ID.toLowerCase();
-              if (x < y) return 1;
-              else if (x > y) return -1;
-              return 0;
-            });
-            p_table.appendRows(investmentTableData);
+            }
+            //p_table.appendRows(investmentTableData);
+            finalSortedTable.appendRows(investmentTableData);
             Next_page_url = response.data.paging.next_page_url;
           }
         });
@@ -120,13 +116,23 @@
                 "description": Description
               });
             }
-            p_table.appendRows(acquisitionTableData);
+            //p_table.appendRows(acquisitionTableData);
+            finalSortedTable.appendRows(acquisitionTableData);
             Next_page_url2 = response2.data.paging.next_page_url;
           }
         });
         PageNo2++;
       } while (Next_page_url2 != null)
     }
+
+    finalSortedTable.sort(function (a,b) {
+      var x = a.transaction_ID.toLowerCase();
+      var y = b.transaction_ID.toLowerCase();
+      if (x < y) return -1;
+      else if (x > y) return 1;
+      return 0;
+    });
+    p_table.appendRows(finalSortedTable);
   }
 
   // Inserts HARDCODED partnerships into the same table as Investments/Acquisitions
