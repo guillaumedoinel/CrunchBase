@@ -63,8 +63,7 @@
                 "short_description": ShortDescription,
                 "description": Description
               });
-            }
-            p_table.appendRows(investmentTableData);
+            }      
             investmentTableData.sort(function (a,b) {
               var x = a.transaction_ID.toLowerCase();
               var y = b.transaction_ID.toLowerCase();
@@ -72,6 +71,7 @@
               else if (x > y) return -1;
               return 0;
             });
+            p_table.appendRows(investmentTableData);
             Next_page_url = response.data.paging.next_page_url;
           }
         });
