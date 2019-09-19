@@ -4,6 +4,14 @@
   /**************************** PREPARATION CODE *****************************************************/
   /***************************************************************************************************/
 
+  // To be able to sort the transactions array by Transaction ID
+  function compare(a,b) {
+    let comparison = 0;
+    if (a.transaction_ID < b.transaction_ID) comparison = 1;
+    else comparison = -1;
+    return comparison;
+  }
+
   // Browse companies listed as parameter by UUID & Name and get all investments & acquisitions from CrunchBase APIs
   function getInvestmentsAcquisitionsByCompanies(p_companyList, p_table) {
     // Iterate for as many companies as listed above
@@ -117,6 +125,9 @@
         PageNo2++;
       } while (Next_page_url2 != null)
     }
+
+    p_table.sort(compare);
+
   }
 
   // Inserts HARDCODED partnerships into the same table as Investments/Acquisitions
