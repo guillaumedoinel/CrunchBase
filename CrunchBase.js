@@ -121,14 +121,13 @@
       } while (Next_page_url2 != null)
     }
 
-    function compare(a,b) {
-      var comparison = 0;
-      if (a.transaction_ID < b.transaction_ID) comparison = 1;
-      else if (a.transaction_ID > b.transaction_ID) comparison = -1;
-      return comparison;
-    }
-
-    p_table.sort(compare);
+    p_table.sort(function (a,b) {
+      var x = a.transaction_ID.toLowerCase();
+      var y = b.transaction_ID.toLowerCase();
+      if (x < y) return 1;
+      else if (x > y) return = -1;
+      return 0;
+    });
 
   }
 
