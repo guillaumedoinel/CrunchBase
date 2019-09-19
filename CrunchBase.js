@@ -65,6 +65,13 @@
               });
             }
             p_table.appendRows(investmentTableData);
+            investmentTableData.sort(function (a,b) {
+              var x = a.transaction_ID.toLowerCase();
+              var y = b.transaction_ID.toLowerCase();
+              if (x < y) return 1;
+              else if (x > y) return -1;
+              return 0;
+            });
             Next_page_url = response.data.paging.next_page_url;
           }
         });
@@ -120,15 +127,6 @@
         PageNo2++;
       } while (Next_page_url2 != null)
     }
-
-    p_table.sort(function (a,b) {
-      var x = a.transaction_ID.toLowerCase();
-      var y = b.transaction_ID.toLowerCase();
-      if (x < y) return 1;
-      else if (x > y) return -1;
-      return 0;
-    });
-
   }
 
   // Inserts HARDCODED partnerships into the same table as Investments/Acquisitions
