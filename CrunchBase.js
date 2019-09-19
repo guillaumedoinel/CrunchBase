@@ -125,7 +125,7 @@
       var x = a.transaction_ID.toLowerCase();
       var y = b.transaction_ID.toLowerCase();
       if (x < y) return 1;
-      else if (x > y) return = -1;
+      else if (x > y) return -1;
       return 0;
     });
 
