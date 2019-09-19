@@ -6,7 +6,7 @@
 
   // To be able to sort the transactions array by Transaction ID
   function compare(a,b) {
-    let comparison = 0;
+    var comparison = 0;
     if (a.transaction_ID < b.transaction_ID) comparison = 1;
     else comparison = -1;
     return comparison;
