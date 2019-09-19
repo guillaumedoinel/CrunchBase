@@ -36,6 +36,7 @@
               if (MoneyRaised == null) MoneyRaised = 0;
               var FundingRoundType = investmentsJSON[iI].relationships.funding_round.type;
               var FundingType = investmentsJSON[iI].relationships.funding_round.properties.funding_type;
+              var Transaction_ID = investmentsJSON[iI].relationships.funding_round.properties.permalink;
               var Series = investmentsJSON[iI].relationships.funding_round.properties.series;
               if (Series == null) Series = "";
               var FinalFundingType = FundingRoundType + " " + FundingType + " " + Series;
@@ -50,6 +51,7 @@
                 "company": this.indexValue.paramCompany,
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Investment",
+                "transaction_ID": Transaction_ID,
                 "funding_type": FinalFundingType,
                 "money_raised": MoneyRaised,
                 "announced_date": Announced_Date,
@@ -85,6 +87,7 @@
             var acquisitionTableData = [];
             for (var iA = 0, leniA = acquisitionsJSON.length; iA < leniA; iA++) {
               var Announced_Date = acquisitionsJSON[iA].properties.announced_on;
+              var Transaction_ID = acquisitionsJSON[iA].properties.permalink;
               var MoneyRaised = acquisitionsJSON[iA].properties.price_usd;
               if (MoneyRaised == null) MoneyRaised = 0;
               var AcquiredCompany = acquisitionsJSON[iA].relationships.acquiree.properties.name;
@@ -97,6 +100,7 @@
                 "company": this.indexValue.paramCompany,
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Acquisition",
+                "transaction_ID": Transaction_ID,
                 "funding_type": "",
                 "money_raised": MoneyRaised,
                 "announced_date": Announced_Date,
@@ -307,6 +311,7 @@
         "company": PartnershipsList[i].Company,
         "investor": PartnershipsList[i].Investor,
         "transaction_type": PartnershipsList[i].TransactionType,
+        "transaction_ID": "",
         "funding_type": "",
         "money_raised": "",
         "announced_date": "",
@@ -355,6 +360,7 @@
         "company": SubsidiariesList[i].Company,
         "investor": SubsidiariesList[i].Investor,
         "transaction_type": SubsidiariesList[i].TransactionType,
+        "transaction_ID": "",
         "funding_type": "",
         "money_raised": "",
         "announced_date": SubsidiariesList[i].AnnouncedDate,
@@ -397,6 +403,10 @@
     }, {
       id: "transaction_type",
       alias: "Transaction Type",
+      dataType: tableau.dataTypeEnum.string
+    }, {
+      id: "transaction_ID",
+      alias: "Transaction ID",
       dataType: tableau.dataTypeEnum.string
     }, {
       id: "funding_type",
