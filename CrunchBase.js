@@ -141,7 +141,7 @@
     var FinalTable = [];
 
     for (var i = 0, len = SortedTable.length; i < len; i++) {
-      if (TempTransactionID = SortedTable[i].transaction_ID) {
+      if (TempTransactionID == SortedTable[i].transaction_ID) {
         Counter+=1;
       } else {
         TempTransactionID = SortedTable[i].transaction_ID;
@@ -157,7 +157,6 @@
       }
       TempTable.push(SortedTable[i]);
     }
-    // deal with transcation ID NULL (partnerships / subsidiaries)
 
     for (var j = 0, lenJ = TempTable.length; j < lenJ; j++ ) {
       TempTable[j].nb_investors = Counter;
