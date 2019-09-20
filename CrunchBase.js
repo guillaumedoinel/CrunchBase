@@ -59,7 +59,8 @@
                 "transaction_ID": Transaction_ID,
                 "nb_investors": 1,
                 "funding_type": FinalFundingType,
-                "money_raised": MoneyRaised,
+                "total_money_raised": MoneyRaised,
+                "money_raised": 0,
                 "announced_date": Announced_Date,
                 "company_name_JOIN": FundedCompany,
                 "target_company": FundedCompany,
@@ -109,7 +110,8 @@
                 "transaction_ID": Transaction_ID,
                 "nb_investors": 1,
                 "funding_type": "",
-                "money_raised": MoneyRaised,
+                "total_money_raised": MoneyRaised,
+                "money_raised": 0,
                 "announced_date": Announced_Date,
                 "company_name_JOIN": AcquiredCompany,
                 "target_company": AcquiredCompany,
@@ -134,20 +136,21 @@
       return 0;
     });
 
-    // When table is sorted by transaction ID, goal is to compute indicator of multiple investors investments ; ie count number of lines per Transaction ID
+    // When table is sorted by transaction ID, goal is to compute nb_investors (number of investors per investments) ; ie count number of lines per Transaction ID
     var Counter = 1;
     var TempTransactionID = "";
     var TempTable = [];
     var FinalTable = [];
 
     for (var i = 0, len = SortedTable.length; i < len; i++) {
-      if (TempTransactionID == SortedTable[i].transaction_ID) {
+      if (TempTransactionID == SortedTable[i].transaction_ID) { // = is to assign, == is to compare value, === to compare value AND type
         Counter+=1;
       } else {
         TempTransactionID = SortedTable[i].transaction_ID;
         if (i != 0) { // do this unless for the first line
           for (var j = 0, lenJ = TempTable.length; j < lenJ; j++ ) {
             TempTable[j].nb_investors = Counter;
+            TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
             FinalTable.push(TempTable[j]);
           }
           // reinit variables
@@ -157,15 +160,15 @@
       }
       TempTable.push(SortedTable[i]);
     }
-
     for (var j = 0, lenJ = TempTable.length; j < lenJ; j++ ) {
       TempTable[j].nb_investors = Counter;
+      TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
       FinalTable.push(TempTable[j]);
     }
 
+
+
     p_table.appendRows(FinalTable);
-
-
   }
 
   // Inserts HARDCODED partnerships into the same table as Investments/Acquisitions
@@ -363,7 +366,8 @@
         "transaction_ID": "",
         "nb_investors": 0,
         "funding_type": "",
-        "money_raised": "",
+        "total_money_raised": 0,
+        "money_raised": 0,
         "announced_date": "",
         "company_name_JOIN": PartnershipsList[i].CompanyNameJOIN,
         "target_company": PartnershipsList[i].Company1,
@@ -413,7 +417,8 @@
         "transaction_ID": "",
         "nb_investors": 0,
         "funding_type": "",
-        "money_raised": "",
+        "total_money_raised": 0,
+        "money_raised": 0,
         "announced_date": SubsidiariesList[i].AnnouncedDate,
         "company_name_JOIN": SubsidiariesList[i].CompanyNameJOIN,
         "target_company": SubsidiariesList[i].CompanyNameJOIN,
@@ -467,6 +472,10 @@
       id: "funding_type",
       alias: "Funding Type",
       dataType: tableau.dataTypeEnum.string
+    }, {
+      id: "total_money_raised",
+      alias: "Total Money Raised",
+      dataType: tableau.dataTypeEnum.int
     }, {
       id: "money_raised",
       alias: "Money Raised",
