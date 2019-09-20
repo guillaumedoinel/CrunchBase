@@ -461,6 +461,10 @@
       alias: "Transaction ID",
       dataType: tableau.dataTypeEnum.string
     }, {
+      id: "nb_investors",
+      alias: "Nb Investors",
+      dataType: tableau.dataTypeEnum.int
+    }, {
       id: "funding_type",
       alias: "Funding Type",
       dataType: tableau.dataTypeEnum.string
