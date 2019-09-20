@@ -9,7 +9,7 @@
 
   // Browse companies listed as parameter by UUID & Name and get all investments & acquisitions from CrunchBase APIs
   function getInvestmentsAcquisitionsByCompanies(p_companyList, p_table) {
-    var finalSortedTable = [];
+    var SortedTable = [];
 
     // Iterate for as many companies as listed above
     for (var i = 0, len = p_companyList.length; i < len; i++) {
@@ -57,6 +57,7 @@
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Investment",
                 "transaction_ID": Transaction_ID,
+                "nb_investors": 1,
                 "funding_type": FinalFundingType,
                 "money_raised": MoneyRaised,
                 "announced_date": Announced_Date,
@@ -66,8 +67,7 @@
                 "description": Description
               });
             }
-            //p_table.appendRows(investmentTableData);
-            finalSortedTable = finalSortedTable.concat(investmentTableData);
+            SortedTable = SortedTable.concat(investmentTableData);
             Next_page_url = response.data.paging.next_page_url;
           }
         });
@@ -107,6 +107,7 @@
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Acquisition",
                 "transaction_ID": Transaction_ID,
+                "nb_investors": 1,
                 "funding_type": "",
                 "money_raised": MoneyRaised,
                 "announced_date": Announced_Date,
@@ -116,8 +117,7 @@
                 "description": Description
               });
             }
-            //p_table.appendRows(acquisitionTableData);
-            finalSortedTable = finalSortedTable.concat(acquisitionTableData);
+            SortedTable = SortedTable.concat(acquisitionTableData);
             Next_page_url2 = response2.data.paging.next_page_url;
           }
         });
@@ -125,14 +125,48 @@
       } while (Next_page_url2 != null)
     }
 
-    finalSortedTable.sort(function (a,b) {
+    // Sort table by Transaction ID to then identify grouped investments
+    SortedTable.sort(function (a,b) {
       var x = a.transaction_ID.toLowerCase();
       var y = b.transaction_ID.toLowerCase();
       if (x < y) return -1;
       else if (x > y) return 1;
       return 0;
     });
-    p_table.appendRows(finalSortedTable);
+
+    // When table is sorted by transaction ID, goal is to compute indicator of multiple investors investments ; ie count number of lines per Transaction ID
+    var Counter = 1;
+    var TempTransactionID = "";
+    var TempTable = [];
+    var FinalTable = [];
+
+    for (var i = 0, len = SortedTable.length; i < len; i++) {
+      if (TempTransactionID = SortedTable[i].transaction_ID) {
+        Counter+=1;
+      } else {
+        TempTransactionID = SortedTable[i].transaction_ID;
+        if (i != 0) { // do this unless for the first line
+          for (var j = 0, lenJ = TempTable.length; j < lenJ; j++ ) {
+            TempTable[j].nb_investors = Counter;
+            FinalTable.push(TempTable[j]);
+          }
+          // reinit variables
+          Counter = 1;
+          TempTable = [];
+        }
+      }
+      TempTable.push(SortedTable[i]);
+    }
+    // deal with transcation ID NULL (partnerships / subsidiaries)
+
+    for (var j = 0, lenJ = TempTable.length; j < lenJ; j++ ) {
+      TempTable[j].nb_investors = Counter;
+      FinalTable.push(TempTable[j]);
+    }
+
+    p_table.appendRows(FinalTable);
+
+
   }
 
   // Inserts HARDCODED partnerships into the same table as Investments/Acquisitions
@@ -328,6 +362,7 @@
         "investor": PartnershipsList[i].Investor,
         "transaction_type": PartnershipsList[i].TransactionType,
         "transaction_ID": "",
+        "nb_investors": 0,
         "funding_type": "",
         "money_raised": "",
         "announced_date": "",
@@ -377,6 +412,7 @@
         "investor": SubsidiariesList[i].Investor,
         "transaction_type": SubsidiariesList[i].TransactionType,
         "transaction_ID": "",
+        "nb_investors": 0,
         "funding_type": "",
         "money_raised": "",
         "announced_date": SubsidiariesList[i].AnnouncedDate,
