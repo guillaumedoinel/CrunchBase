@@ -548,7 +548,7 @@
 {Sector:"OEM",Group:"Geely",Company:"Geely",Investor:"Zhejiang Geely Holding Group",UUID:"cbcae3286143e6a215efd8b736ca9fff"},
 {Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Group Venture Capital",UUID:"9a59d1e9d183001585270a39d01a9bfc"},
 {Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Cars Group",UUID:"1894c8007d82904566067461508339da"},
-{Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Cars Tech Fund",UUID:"86d2a05fdff04a4cbccb9f467e5ecc6e"},*/
+{Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Cars Tech Fund",UUID:"86d2a05fdff04a4cbccb9f467e5ecc6e"},
 {Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Investment Management",UUID:"a1d14b6f137ebeaa847a8ba7ad65b4ea"},
 {Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors",UUID:"5087a04780c54aa3dfdf30dd8ac88b5e"},
 {Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Ventures",UUID:"759be29a69e1615d373f8f8d8f020591"},
