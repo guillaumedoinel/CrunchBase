@@ -54,7 +54,6 @@
               var Nb_Investors = 0;
               $.getJSON("https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3", function(resp) {
                 Nb_Investors = resp.data.relationships.investors.paging.total_items; // data Structure in JSON to read
-                doneCallback();
               });
 
               investmentTableData.push({
