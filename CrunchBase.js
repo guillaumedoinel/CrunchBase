@@ -77,8 +77,8 @@
       while (Next_page_url != null)
 
       // Get number of investors to see if it is a grouped investment
-      for (var i = 0, len = SortedTable.length; i < len; i++) {
-        var Transaction_ID = SortedTable[i].transaction_ID;
+      for (var j = 0, lenJ = SortedTable.length; j < lenJ; j++) {
+        var Transaction_ID = SortedTable[j].transaction_ID;
         var Nb_Investors = 0;
         $.ajax({
           url: "https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
@@ -87,8 +87,8 @@
             Nb_Investors = resp.data.relationships.investors.paging.total_items;
           }
         });
-        SortedTable[i].nb_investors = Nb_Investors;
-        SortedTable[i].money_raised = SortedTable[i].total_money_raised / Nb_Investors;
+        SortedTable[j].nb_investors = Nb_Investors;
+        SortedTable[j].money_raised = SortedTable[j].total_money_raised / Nb_Investors;
       }
 
 
@@ -141,7 +141,7 @@
         });
         PageNo2++;
       } while (Next_page_url2 != null)
-    }
+    } // End for on companies List
 
     // Sort table by Transaction ID to then identify grouped investments
     /*SortedTable.sort(function (a,b) {
