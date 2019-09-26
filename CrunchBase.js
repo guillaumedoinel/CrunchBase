@@ -9,7 +9,7 @@
 
   // Browse companies listed as parameter by UUID & Name and get all investments & acquisitions from CrunchBase APIs
   function getInvestmentsAcquisitionsByCompanies(p_companyList, p_table) {
-    var FinalTable = [];
+    var SortedTable = [];
 
     // Iterate for as many companies as listed above
     for (var i = 0, len = p_companyList.length; i < len; i++) {
@@ -68,7 +68,7 @@
                 "description": Description
               });
             }
-            FinalTable = FinalTable.concat(investmentTableData);
+            SortedTable = SortedTable.concat(investmentTableData);
             Next_page_url = response.data.paging.next_page_url;
           }
         });
@@ -77,8 +77,8 @@
       while (Next_page_url != null)
 
       // Get number of investors to see if it is a grouped investment
-      for (var i = 0, len = FinalTable.length; i < len; i++) {
-        var Transaction_ID = FinalTable[i].transaction_ID;
+      /*for (var i = 0, len = SortedTable.length; i < len; i++) {
+        var Transaction_ID = SortedTable[i].transaction_ID;
         var Nb_Investors = 0;
         $.ajax({
           url: "https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
@@ -87,9 +87,9 @@
             Nb_Investors = resp.data.relationships.investors.paging.total_items;
           }
         });
-        FinalTable[i].nb_investors = Nb_Investors;
-        FinalTable[i].money_raised = FinalTable[i].total_money_raised / Nb_Investors;
-      }
+        SortedTable[i].nb_investors = Nb_Investors;
+        SortedTable[i].money_raised = SortedTable[i].total_money_raised / Nb_Investors;
+      }*/
 
 
       // GET ACQUISITIONS DATA
@@ -135,12 +135,50 @@
                 "description": Description
               });
             }
-            FinalTable = FinalTable.concat(acquisitionTableData);
+            SortedTable = SortedTable.concat(acquisitionTableData);
             Next_page_url2 = response2.data.paging.next_page_url;
           }
         });
         PageNo2++;
       } while (Next_page_url2 != null)
+    }
+
+    // Sort table by Transaction ID to then identify grouped investments
+    SortedTable.sort(function (a,b) {
+      var x = a.transaction_ID.toLowerCase();
+      var y = b.transaction_ID.toLowerCase();
+      if (x < y) return -1;
+      else if (x > y) return 1;
+      return 0;
+    });
+    // When table is sorted by transaction ID, goal is to compute nb_investors (number of investors per investments) ; ie count number of lines per Transaction ID
+    var Counter = 1;
+    var TempTransactionID = "";
+    var TempTable = [];
+    var FinalTable = [];
+
+    for (var i = 0, len = SortedTable.length; i < len; i++) {
+      if (TempTransactionID == SortedTable[i].transaction_ID) { // = is to assign, == is to compare value, === to compare value AND type
+        Counter+=1;
+      } else {
+        TempTransactionID = SortedTable[i].transaction_ID;
+        if (i != 0) { // do this unless for the first line
+          for (var j = 0, lenJ = TempTable.length; j < lenJ; j++ ) {
+            TempTable[j].nb_investors = Counter;
+            TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
+            FinalTable.push(TempTable[j]);
+          }
+          // reinit variables
+          Counter = 1;
+          TempTable = [];
+        }
+      }
+      TempTable.push(SortedTable[i]);
+    }
+    for (var j = 0, lenJ = TempTable.length; j < lenJ; j++ ) {
+      TempTable[j].nb_investors = Counter;
+      TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
+      FinalTable.push(TempTable[j]);
     }
 
     p_table.appendRows(FinalTable);
