@@ -77,7 +77,7 @@
       while (Next_page_url != null)
 
       // Get number of investors to see if it is a grouped investment
-      /*for (var i = 0, len = SortedTable.length; i < len; i++) {
+      for (var i = 0, len = SortedTable.length; i < len; i++) {
         var Transaction_ID = SortedTable[i].transaction_ID;
         var Nb_Investors = 0;
         $.ajax({
@@ -89,7 +89,7 @@
         });
         SortedTable[i].nb_investors = Nb_Investors;
         SortedTable[i].money_raised = SortedTable[i].total_money_raised / Nb_Investors;
-      }*/
+      }
 
 
       // GET ACQUISITIONS DATA
@@ -144,7 +144,7 @@
     }
 
     // Sort table by Transaction ID to then identify grouped investments
-    SortedTable.sort(function (a,b) {
+    /*SortedTable.sort(function (a,b) {
       var x = a.transaction_ID.toLowerCase();
       var y = b.transaction_ID.toLowerCase();
       if (x < y) return -1;
@@ -179,9 +179,9 @@
       TempTable[j].nb_investors = Counter;
       TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
       FinalTable.push(TempTable[j]);
-    }
+    }*/
 
-    p_table.appendRows(FinalTable);
+    p_table.appendRows(SortedTable);
   }
 
   // Inserts HARDCODED partnerships into the same table as Investments/Acquisitions
