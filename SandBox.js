@@ -941,3 +941,45 @@ do {
     doneCallback();
   });
 }*/
+
+
+
+/*
+    // Sort table by Transaction ID to then identify grouped investments
+    SortedTable.sort(function (a,b) {
+      var x = a.transaction_ID.toLowerCase();
+      var y = b.transaction_ID.toLowerCase();
+      if (x < y) return -1;
+      else if (x > y) return 1;
+      return 0;
+    });
+    // When table is sorted by transaction ID, goal is to compute nb_investors (number of investors per investments) ; ie count number of lines per Transaction ID
+    var Counter = 1;
+    var TempTransactionID = "";
+    var TempTable = [];
+    var FinalTable = [];
+
+    for (var i = 0, len = SortedTable.length; i < len; i++) {
+      if (TempTransactionID == SortedTable[i].transaction_ID) { // = is to assign, == is to compare value, === to compare value AND type
+        Counter+=1;
+      } else {
+        TempTransactionID = SortedTable[i].transaction_ID;
+        if (i != 0) { // do this unless for the first line
+          for (var j = 0, lenJ = TempTable.length; j < lenJ; j++ ) {
+            TempTable[j].nb_investors = Counter;
+            TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
+            FinalTable.push(TempTable[j]);
+          }
+          // reinit variables
+          Counter = 1;
+          TempTable = [];
+        }
+      }
+      TempTable.push(SortedTable[i]);
+    }
+    for (var j = 0, lenJ = TempTable.length; j < lenJ; j++ ) {
+      TempTable[j].nb_investors = Counter;
+      TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
+      FinalTable.push(TempTable[j]);
+    }
+*/

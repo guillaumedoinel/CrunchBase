@@ -9,7 +9,7 @@
 
   // Browse companies listed as parameter by UUID & Name and get all investments & acquisitions from CrunchBase APIs
   function getInvestmentsAcquisitionsByCompanies(p_companyList, p_table) {
-    var SortedTable = [];
+    var FinalTable = [];
 
     // Iterate for as many companies as listed above
     for (var i = 0, len = p_companyList.length; i < len; i++) {
@@ -68,7 +68,7 @@
                 "description": Description
               });
             }
-            SortedTable = SortedTable.concat(investmentTableData);
+            FinalTable = FinalTable.concat(investmentTableData);
             Next_page_url = response.data.paging.next_page_url;
           }
         });
@@ -76,14 +76,10 @@
       }
       while (Next_page_url != null)
 
-      for (var i = 0, len = SortedTable.length; i < len; i++) {
-        // Get number of investors to see if it is a grouped investment
-        var Transaction_ID = SortedTable[i].transaction_ID;
+      // Get number of investors to see if it is a grouped investment
+      for (var i = 0, len = FinalTable.length; i < len; i++) {
+        var Transaction_ID = FinalTable[i].transaction_ID;
         var Nb_Investors = 0;
-        /*$.getJSON("https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3", function(resp) {
-          Nb_Investors = resp.data.relationships.investors.paging.total_items; // data Structure in JSON to read
-        });*/
-
         $.ajax({
           url: "https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
           async: false,
@@ -91,8 +87,8 @@
             Nb_Investors = resp.data.relationships.investors.paging.total_items;
           }
         });
-        SortedTable[i].nb_investors = Nb_Investors;
-        SortedTable[i].money_raised = SortedTable[i].total_money_raised / Nb_Investors;
+        FinalTable[i].nb_investors = Nb_Investors;
+        FinalTable[i].money_raised = FinalTable[i].total_money_raised / Nb_Investors;
       }
 
 
@@ -131,7 +127,7 @@
                 "nb_investors": 1,
                 "funding_type": "",
                 "total_money_raised": MoneyRaised,
-                "money_raised": 0,
+                "money_raised": MoneyRaised,
                 "announced_date": Announced_Date,
                 "company_name_JOIN": AcquiredCompany,
                 "target_company": AcquiredCompany,
@@ -139,55 +135,15 @@
                 "description": Description
               });
             }
-            SortedTable = SortedTable.concat(acquisitionTableData);
+            FinalTable = FinalTable.concat(acquisitionTableData);
             Next_page_url2 = response2.data.paging.next_page_url;
           }
         });
         PageNo2++;
       } while (Next_page_url2 != null)
     }
-/*
-    // Sort table by Transaction ID to then identify grouped investments
-    SortedTable.sort(function (a,b) {
-      var x = a.transaction_ID.toLowerCase();
-      var y = b.transaction_ID.toLowerCase();
-      if (x < y) return -1;
-      else if (x > y) return 1;
-      return 0;
-    });
-    // When table is sorted by transaction ID, goal is to compute nb_investors (number of investors per investments) ; ie count number of lines per Transaction ID
-    var Counter = 1;
-    var TempTransactionID = "";
-    var TempTable = [];
-    var FinalTable = [];
 
-    for (var i = 0, len = SortedTable.length; i < len; i++) {
-      if (TempTransactionID == SortedTable[i].transaction_ID) { // = is to assign, == is to compare value, === to compare value AND type
-        Counter+=1;
-      } else {
-        TempTransactionID = SortedTable[i].transaction_ID;
-        if (i != 0) { // do this unless for the first line
-          for (var j = 0, lenJ = TempTable.length; j < lenJ; j++ ) {
-            TempTable[j].nb_investors = Counter;
-            TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
-            FinalTable.push(TempTable[j]);
-          }
-          // reinit variables
-          Counter = 1;
-          TempTable = [];
-        }
-      }
-      TempTable.push(SortedTable[i]);
-    }
-    for (var j = 0, lenJ = TempTable.length; j < lenJ; j++ ) {
-      TempTable[j].nb_investors = Counter;
-      TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
-      FinalTable.push(TempTable[j]);
-    }
-*/
-
-
-    p_table.appendRows(SortedTable);
+    p_table.appendRows(FinalTable);
   }
 
   // Inserts HARDCODED partnerships into the same table as Investments/Acquisitions
@@ -569,7 +525,7 @@
 
     if (table.tableInfo.id == "Transactions") {
       var CompaniesList = [
-        /*{Sector:"Mobility",Group:"Didi Chuxing",Company:"Didi",Investor:"Didi Chuxing",UUID:"eab915a8f41464e05138c5f341596a5b"},
+        {Sector:"Mobility",Group:"Didi Chuxing",Company:"Didi",Investor:"Didi Chuxing",UUID:"eab915a8f41464e05138c5f341596a5b"},
 {Sector:"Mobility",Group:"Grab",Company:"Grab",Investor:"Grab",UUID:"a76824768a83dbcf73dc41a841ef850e"},
 {Sector:"Mobility",Group:"Lyft",Company:"Lyft",Investor:"Lyft",UUID:"33a97e70f137e90f8d68950a043ee09f"},
 {Sector:"Mobility",Group:"Uber",Company:"Uber",Investor:"Uber",UUID:"1eb371093b9301a9177ffee2cb1bfcdc"},
@@ -595,7 +551,7 @@
 {Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Cars Tech Fund",UUID:"86d2a05fdff04a4cbccb9f467e5ecc6e"},*/
 {Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Investment Management",UUID:"a1d14b6f137ebeaa847a8ba7ad65b4ea"},
 {Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors",UUID:"5087a04780c54aa3dfdf30dd8ac88b5e"},
-{Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Ventures",UUID:"759be29a69e1615d373f8f8d8f020591"}/*,
+{Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Ventures",UUID:"759be29a69e1615d373f8f8d8f020591"},
 {Sector:"OEM",Group:"Honda",Company:"Honda",Investor:"Honda Motor",UUID:"0017e370d941822e83bc538beaab28da"},
 {Sector:"OEM",Group:"Hyundai",Company:"Hyundai",Investor:"Hyundai Motor Company",UUID:"271e1bf5086adbb89806b76a591b864e"},
 {Sector:"OEM",Group:"Hyundai",Company:"Hyundai",Investor:"Hyundai Venture Investment Corporation",UUID:"994661433b9eb9fc9283116b7b32af5a"},
@@ -616,7 +572,7 @@
 {Sector:"OEM",Group:"VAG",Company:"Porsche",Investor:"Porsche",UUID:"68255d6d16144c7c1a0b3d3998c1d2c2"},
 {Sector:"OEM",Group:"VAG",Company:"Porsche",Investor:"Porsche Automobil Holding",UUID:"8ea457a172805992c020e741fef4a8dc"},
 {Sector:"OEM",Group:"VAG",Company:"Seat",Investor:"Seat",UUID:"fdf2b2f2241533a054ad3b9755b84f33"},
-{Sector:"OEM",Group:"VAG",Company:"Škoda",Investor:"Škoda Auto a.s",UUID:"7c71810f27514e8c95d7e2fae0b96178"},
+{Sector:"OEM",Group:"VAG",Company:"Škoda",Investor:"Škoda Auto a.s",UUID:"7c71810f27514e8c95d7e2fae0b96178"}/*,
 {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Enterprise",UUID:"cf93455ea23645ad97ff1f059a1ebecc"},
 {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Technologies",UUID:"09cce08ac9fc0e79e825249b00642c79"},
 {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu",UUID:"c273424ac118e7ab29a6843775e7e6d0"},
