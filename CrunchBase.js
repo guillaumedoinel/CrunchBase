@@ -80,10 +80,17 @@
         // Get number of investors to see if it is a grouped investment
         var Transaction_ID = SortedTable[i].transaction_ID;
         var Nb_Investors = 0;
-        $.getJSON("https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3", function(resp) {
+        /*$.getJSON("https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3", function(resp) {
           Nb_Investors = resp.data.relationships.investors.paging.total_items; // data Structure in JSON to read
-        });
+        });*/
 
+        $.ajax({
+          url: "https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
+          async: false,
+          success: function(resp) {
+            Nb_Investors = resp.data.relationships.investors.paging.total_items;
+          }
+        });
         SortedTable[i].nb_investors = Nb_Investors;
         SortedTable[i].money_raised = SortedTable[i].total_money_raised / Nb_Investors;
       }
