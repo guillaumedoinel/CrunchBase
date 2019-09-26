@@ -50,12 +50,6 @@
               var ShortDescription = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.short_description;
               var Description = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.description;
 
-              // Get number of investors to see if it is a grouped investment
-              var Nb_Investors = 0;
-              $.getJSON("https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3", function(resp) {
-                Nb_Investors = resp.data.relationships.investors.paging.total_items; // data Structure in JSON to read
-              });
-
               investmentTableData.push({
                 "sector": this.indexValue.paramSector,
                 "group": this.indexValue.paramGroup,
@@ -63,10 +57,10 @@
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Investment",
                 "transaction_ID": Transaction_ID,
-                "nb_investors": Nb_Investors,
+                "nb_investors": 0,
                 "funding_type": FinalFundingType,
                 "total_money_raised": MoneyRaised,
-                "money_raised": MoneyRaised/Nb_Investors,
+                "money_raised": 0,
                 "announced_date": Announced_Date,
                 "company_name_JOIN": FundedCompany,
                 "target_company": FundedCompany,
@@ -81,6 +75,19 @@
         PageNo++;
       }
       while (Next_page_url != null)
+
+      for (var i = 0, len = SortedTable.length; i < len; i++) {
+        // Get number of investors to see if it is a grouped investment
+        var Transaction_ID = SortedTable[i].transaction_ID;
+        var Nb_Investors = 0;
+        $.getJSON("https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3", function(resp) {
+          Nb_Investors = resp.data.relationships.investors.paging.total_items; // data Structure in JSON to read
+        });
+
+        SortedTable[i].nb_investors = Nb_Investors;
+        SortedTable[i].money_raised = SortedTable[i].total_money_raised / Nb_Investors;
+      }
+
 
       // GET ACQUISITIONS DATA
       var PageNo2 = 1;
