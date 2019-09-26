@@ -50,6 +50,13 @@
               var ShortDescription = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.short_description;
               var Description = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.description;
 
+              // Get number of investors to see if it is a grouped investment
+              var Nb_Investors = 0;
+              $.getJSON("https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3", function(resp) {
+                Nb_Investors = resp.data.relationships.investors.paging.total_items, // data Structure in JSON to read
+                doneCallback();
+              });
+
               investmentTableData.push({
                 "sector": this.indexValue.paramSector,
                 "group": this.indexValue.paramGroup,
@@ -57,10 +64,10 @@
                 "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
                 "transaction_type": "Investment",
                 "transaction_ID": Transaction_ID,
-                "nb_investors": 1,
+                "nb_investors": Nb_Investors,
                 "funding_type": FinalFundingType,
                 "total_money_raised": MoneyRaised,
-                "money_raised": 0,
+                "money_raised": MoneyRaised/Nb_Investors,
                 "announced_date": Announced_Date,
                 "company_name_JOIN": FundedCompany,
                 "target_company": FundedCompany,
@@ -126,7 +133,7 @@
         PageNo2++;
       } while (Next_page_url2 != null)
     }
-
+/*
     // Sort table by Transaction ID to then identify grouped investments
     SortedTable.sort(function (a,b) {
       var x = a.transaction_ID.toLowerCase();
@@ -135,7 +142,6 @@
       else if (x > y) return 1;
       return 0;
     });
-
     // When table is sorted by transaction ID, goal is to compute nb_investors (number of investors per investments) ; ie count number of lines per Transaction ID
     var Counter = 1;
     var TempTransactionID = "";
@@ -165,10 +171,10 @@
       TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
       FinalTable.push(TempTable[j]);
     }
+*/
 
 
-
-    p_table.appendRows(FinalTable);
+    p_table.appendRows(SortedTable);
   }
 
   // Inserts HARDCODED partnerships into the same table as Investments/Acquisitions
@@ -558,10 +564,7 @@
 {Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Alliance Ventures",UUID:"bded51bc070240d5ba0e6771d44c5146"},
 {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Motors",UUID:"fe8f7d6b2f90470223b5d7f18ca63a51"},
 {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Electric",UUID:"2e1e8791e661a34d9a78bcabfdd1825f"},
-{Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi UFJ Financial Group",UUID:"d4974159c3765f1b93c50cc0c187423b"},
 {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Corporation",UUID:"b8d382916018dd9083ec0723756f2949"},
-{Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi UFJ Capital",UUID:"d300b7548f03f143a08309c355f716ba"},
-{Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Bank Of Tokyo - Mitsubishi UFJ",UUID:"453bb5c7da0798805c29a960edbb0676"},
 {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi International Corporation (MIC)",UUID:"176c343305f21c86a44393949ae65681"},
 {Sector:"OEM",Group:"Alliance RNM",Company:"Nissan",Investor:"Nissan Motor Corporation",UUID:"718eb41ba3098cd45e019958ac876ee5"},
 {Sector:"OEM",Group:"Alliance RNM",Company:"Renault",Investor:"Renault",UUID:"96ff3fd230b3249437059d861033a53e"},
