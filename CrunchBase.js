@@ -77,7 +77,7 @@
       while (Next_page_url != null)
 
       // Get number of investors to see if it is a grouped investment
-      for (var j = 0, lenJ = SortedTable.length; j < lenJ; j++) {
+      /*for (var j = 0, lenJ = SortedTable.length; j < lenJ; j++) {
         var Transaction_ID = SortedTable[j].transaction_ID;
         var Nb_Investors = 0;
         $.ajax({
@@ -89,7 +89,7 @@
         });
         SortedTable[j].nb_investors = Nb_Investors;
         SortedTable[j].money_raised = SortedTable[j].total_money_raised / Nb_Investors;
-      }
+      }*/
 
 
       // GET ACQUISITIONS DATA
@@ -145,7 +145,7 @@
 
 
     // Sort table by Transaction ID to then identify grouped investments
-    /*SortedTable.sort(function (a,b) {
+    SortedTable.sort(function (a,b) {
       var x = a.transaction_ID.toLowerCase();
       var y = b.transaction_ID.toLowerCase();
       if (x < y) return -1;
@@ -180,9 +180,9 @@
       TempTable[j].nb_investors = Counter;
       TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
       FinalTable.push(TempTable[j]);
-    }*/
+    }
 
-    p_table.appendRows(SortedTable);
+    p_table.appendRows(FinalTable);
   }
 
   // Inserts HARDCODED partnerships into the same table as Investments/Acquisitions
@@ -607,7 +607,7 @@
 {Sector:"OEM",Group:"VAG",Company:"Porsche",Investor:"Porsche",UUID:"68255d6d16144c7c1a0b3d3998c1d2c2"},
 {Sector:"OEM",Group:"VAG",Company:"Porsche",Investor:"Porsche Automobil Holding",UUID:"8ea457a172805992c020e741fef4a8dc"},
 {Sector:"OEM",Group:"VAG",Company:"Seat",Investor:"Seat",UUID:"fdf2b2f2241533a054ad3b9755b84f33"},
-{Sector:"OEM",Group:"VAG",Company:"Škoda",Investor:"Škoda Auto a.s",UUID:"7c71810f27514e8c95d7e2fae0b96178"}/*,
+{Sector:"OEM",Group:"VAG",Company:"Škoda",Investor:"Škoda Auto a.s",UUID:"7c71810f27514e8c95d7e2fae0b96178"},
 {Sector:"Mobility",Group:"Didi Chuxing",Company:"Didi",Investor:"Didi Chuxing",UUID:"eab915a8f41464e05138c5f341596a5b"},
 {Sector:"Mobility",Group:"Grab",Company:"Grab",Investor:"Grab",UUID:"a76824768a83dbcf73dc41a841ef850e"},
 {Sector:"Mobility",Group:"Lyft",Company:"Lyft",Investor:"Lyft",UUID:"33a97e70f137e90f8d68950a043ee09f"},
@@ -684,7 +684,7 @@
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank BB Corp",UUID:"d6718551778f02d2c5ceb864e36ece04"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank UK Ventures",UUID:"d9e08d1bae5073f6a3a39f7679815c16"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Robotics America",UUID:"5ad359c1d49f4003ae6fcf4d49c8a5c4"},
-{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank-Indosat Fund",UUID:"577c769e4d6d0f4356722a55f1f34e1c"}*/
+{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank-Indosat Fund",UUID:"577c769e4d6d0f4356722a55f1f34e1c"}
       ];
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
       insertPartnerships(table);
