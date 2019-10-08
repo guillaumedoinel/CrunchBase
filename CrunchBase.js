@@ -67,7 +67,7 @@
               //}
 
               // only keep AI companies
-              if (Categories.includes("Artificial Intelligence")) {
+              if (Categories.indexOf("Artificial Intelligence") >=0) {
               investmentTableData.push({
                 "sector": this.indexValue.paramSector,
                 "group": this.indexValue.paramGroup,
@@ -151,7 +151,7 @@
                 }
               });
 
-              if (Categories.includes("Artificial Intelligence")) {
+              if (Categories.indexOf("Artificial Intelligence") >=0) {
               acquisitionTableData.push({
                 "sector": this.indexValue.paramSector,
                 "group": this.indexValue.paramGroup,
@@ -672,7 +672,7 @@
         {Sector:"Supplier",Group:"Panasonic",Company:"Panasonic",Investor:"Panasonic Ventures",UUID:"27aacf7f4692e0ddf5ee5630278a0b42"},
         {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Enterprise",UUID:"cf93455ea23645ad97ff1f059a1ebecc"},
         {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Technologies",UUID:"09cce08ac9fc0e79e825249b00642c79"},*/
-        {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu",UUID:"c273424ac118e7ab29a6843775e7e6d0"},
+        {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu",UUID:"c273424ac118e7ab29a6843775e7e6d0"}/*,
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu Ventures",UUID:"7d2096a8c85d135a5d87fbbd89ade46a"},
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu Capital",UUID:"b8faf0f503a431ef91f9859ab9283428"},
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu's Apollo fund",UUID:"e2c9981616d44a0fa70f4c43c17779f0"},
