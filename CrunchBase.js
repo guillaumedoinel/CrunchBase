@@ -54,7 +54,7 @@
               // To get the funded organizations categories from CrunchBase
               // Baidu Alibaba Tencent Xiaomi
             //  if (this.indexValue.paramCompany == "Baidu") {
-                $.ajax({
+              /*  $.ajax({
                   url: "https://api.crunchbase.com/v3.1/organizations/" + FundedCompanyUUID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
                   async: false,
                   success: function(resp) {
@@ -63,11 +63,11 @@
                       Categories = Categories + " " + CategoriesList[c].properties.name + " ";
                     }
                   }
-                });
+                });*/
               //}
 
               // only keep AI companies
-              if (Categories.indexOf("Artificial Intelligence") >=0) {
+            //  if (Categories.indexOf("Artificial Intelligence") >=0) {
               investmentTableData.push({
                 "sector": this.indexValue.paramSector,
                 "group": this.indexValue.paramGroup,
@@ -86,7 +86,7 @@
                 "description": Description,
                 "categories": Categories
               });
-              }
+              //}
             }
             SortedTable = SortedTable.concat(investmentTableData);
             Next_page_url = response.data.paging.next_page_url;
@@ -140,7 +140,7 @@
               var Categories = "";
 
 
-              $.ajax({
+            /*  $.ajax({
                 url: "https://api.crunchbase.com/v3.1/organizations/" + AcquireeUUID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
                 async: false,
                 success: function(resp) {
@@ -149,9 +149,9 @@
                     Categories = Categories + " " + CategoriesList[c].properties.name + " ";
                   }
                 }
-              });
+              });*/
 
-              if (Categories.indexOf("Artificial Intelligence") >=0) {
+              //if (Categories.indexOf("Artificial Intelligence") >=0) {
               acquisitionTableData.push({
                 "sector": this.indexValue.paramSector,
                 "group": this.indexValue.paramGroup,
@@ -170,7 +170,7 @@
                 "description": Description,
                 "categories": Categories
               });
-              }
+              //}
             }
             SortedTable = SortedTable.concat(acquisitionTableData);
             Next_page_url2 = response2.data.paging.next_page_url;
@@ -605,7 +605,7 @@
 
     if (table.tableInfo.id == "Transactions") {
       var CompaniesList = [
-        /*{Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Renault Nissan Mitsubishi",UUID:"96fa22e600c4656428f64b2066e4021d"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Renault Nissan Mitsubishi",UUID:"96fa22e600c4656428f64b2066e4021d"},
         {Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Alliance Ventures",UUID:"bded51bc070240d5ba0e6771d44c5146"},
         {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Motors",UUID:"fe8f7d6b2f90470223b5d7f18ca63a51"},
         {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Electric",UUID:"2e1e8791e661a34d9a78bcabfdd1825f"},
@@ -671,7 +671,7 @@
         {Sector:"Supplier",Group:"Panasonic",Company:"Panasonic",Investor:"Panasonic Automotive",UUID:"bcf9a888b96a5bf8e5a1c16f20ccce64"},
         {Sector:"Supplier",Group:"Panasonic",Company:"Panasonic",Investor:"Panasonic Ventures",UUID:"27aacf7f4692e0ddf5ee5630278a0b42"},
         {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Enterprise",UUID:"cf93455ea23645ad97ff1f059a1ebecc"},
-        {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Technologies",UUID:"09cce08ac9fc0e79e825249b00642c79"},*/
+        {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Technologies",UUID:"09cce08ac9fc0e79e825249b00642c79"},
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu",UUID:"c273424ac118e7ab29a6843775e7e6d0"},
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu Ventures",UUID:"7d2096a8c85d135a5d87fbbd89ade46a"},
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu Capital",UUID:"b8faf0f503a431ef91f9859ab9283428"},
@@ -699,7 +699,7 @@
         {Sector:"Technology",Group:"Google",Company:"Google",Investor:"Google",UUID:"6acfa7da1dbd936ed985cf07a1b27711"},
         {Sector:"Technology",Group:"Google",Company:"Google",Investor:"Google Assistant Investments",UUID:"783b321986bd4ef183d888bc130e24f2"},
         {Sector:"Technology",Group:"Google",Company:"Google",Investor:"Alphabet",UUID:"096694c6bcd2a975b95cfab77c81d915"},
-        {Sector:"Technology",Group:"Google",Company:"Google",Investor:"Waymo",UUID:"c1833ca685d5e3b808e58fcceb76717b"}/*,
+        {Sector:"Technology",Group:"Google",Company:"Google",Investor:"Waymo",UUID:"c1833ca685d5e3b808e58fcceb76717b"},
         {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank",UUID:"1a4103983a72588299b86318cf594850"},
         {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Capital",UUID:"ec26a756d387a455c6fc90fe11ece02c"},
         {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank Ventures Asia",UUID:"4710cdd6d89239adc10afe217e5cb7ca"},
@@ -722,7 +722,7 @@
         {Sector:"Technology",Group:"CATL",Company:"CATL",Investor:"Contemporary Amperex Technology",UUID:"d04bc1442b384132b65709c55b2e97d8"},
         {Sector:"Technology",Group:"BAIC",Company:"BAIC",Investor:"BAIC Group",UUID:"4bb45afb34cd9a713a4d3a361f9a7660"},
         {Sector:"Technology",Group:"BAIC",Company:"BAIC",Investor:"BAIC BJEV",UUID:"e50e8a77b017b04fed2aa5383714e67c"},
-        {Sector:"Technology",Group:"BAIC",Company:"BAIC",Investor:"BAIC Motor",UUID:"dac217e44545db54f780a8d12bc0eef4"}*/
+        {Sector:"Technology",Group:"BAIC",Company:"BAIC",Investor:"BAIC Motor",UUID:"dac217e44545db54f780a8d12bc0eef4"}
       ];
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
       insertPartnerships(table);
