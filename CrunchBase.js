@@ -54,18 +54,18 @@
 
               // To get the funded organizations categories from CrunchBase
               // Baidu Alibaba Tencent Xiaomi
-              if (this.indexValue.paramCompany == "Baidu") {
+            //  if (this.indexValue.paramCompany == "Baidu") {
                 $.ajax({
                   url: "https://api.crunchbase.com/v3.1/organizations/" + UUIDFundedOrg + "?user_key=9df45b533650fb1b95e83357b5da2db3",
                   async: false,
                   success: function(resp) {
                     var CategoriesList = resp.data.relationships.categories.items;
                     for (var c = 0, lenC = CategoriesList.length; c < lenC; c++) {
-                      Categories += CategoriesList[c].properties.name + " ";
+                      Categories = Categories + " " + CategoriesList[c].properties.name + " ";
                     }
                   }
                 });
-              }
+              //}
 
               investmentTableData.push({
                 "sector": this.indexValue.paramSector,
