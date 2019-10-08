@@ -66,6 +66,8 @@
                 });
               //}
 
+              // only keep AI companies
+              if (Categories.includes("Artificial Intelligence")) {
               investmentTableData.push({
                 "sector": this.indexValue.paramSector,
                 "group": this.indexValue.paramGroup,
@@ -84,6 +86,7 @@
                 "description": Description,
                 "categories": Categories
               });
+              }
             }
             SortedTable = SortedTable.concat(investmentTableData);
             Next_page_url = response.data.paging.next_page_url;
@@ -148,6 +151,7 @@
                 }
               });
 
+              if (Categories.includes("Artificial Intelligence")) {
               acquisitionTableData.push({
                 "sector": this.indexValue.paramSector,
                 "group": this.indexValue.paramGroup,
@@ -166,6 +170,7 @@
                 "description": Description,
                 "categories": Categories
               });
+              }
             }
             SortedTable = SortedTable.concat(acquisitionTableData);
             Next_page_url2 = response2.data.paging.next_page_url;
