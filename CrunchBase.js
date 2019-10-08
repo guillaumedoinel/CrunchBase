@@ -605,7 +605,7 @@
 
     if (table.tableInfo.id == "Transactions") {
       var CompaniesList = [
-        /*{Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Renault Nissan Mitsubishi",UUID:"96fa22e600c4656428f64b2066e4021d"},
+        {Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Renault Nissan Mitsubishi",UUID:"96fa22e600c4656428f64b2066e4021d"},
         {Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Alliance Ventures",UUID:"bded51bc070240d5ba0e6771d44c5146"},
         {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Motors",UUID:"fe8f7d6b2f90470223b5d7f18ca63a51"},
         {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Electric",UUID:"2e1e8791e661a34d9a78bcabfdd1825f"},
@@ -648,12 +648,12 @@
         {Sector:"OEM",Group:"VAG",Company:"Porsche",Investor:"Porsche",UUID:"68255d6d16144c7c1a0b3d3998c1d2c2"},
         {Sector:"OEM",Group:"VAG",Company:"Porsche",Investor:"Porsche Automobil Holding",UUID:"8ea457a172805992c020e741fef4a8dc"},
         {Sector:"OEM",Group:"VAG",Company:"Seat",Investor:"Seat",UUID:"fdf2b2f2241533a054ad3b9755b84f33"},
-        {Sector:"OEM",Group:"VAG",Company:"Škoda",Investor:"Škoda Auto a.s",UUID:"7c71810f27514e8c95d7e2fae0b96178"},
+        {Sector:"OEM",Group:"VAG",Company:"Škoda",Investor:"Škoda Auto a.s",UUID:"7c71810f27514e8c95d7e2fae0b96178"}/*,
         {Sector:"Mobility",Group:"Careem",Company:"Careem",Investor:"Careem",UUID:"8044fef371078de49564ab7ecf80eae4"},
         {Sector:"Mobility",Group:"Uber",Company:"Uber",Investor:"Uber",UUID:"1eb371093b9301a9177ffee2cb1bfcdc"},
         {Sector:"Mobility",Group:"Lyft ",Company:"Lyft ",Investor:"Lyft",UUID:"33a97e70f137e90f8d68950a043ee09f"},
         {Sector:"Mobility",Group:"Didi Chuxing",Company:"Didi",Investor:"Didi Chuxing",UUID:"eab915a8f41464e05138c5f341596a5b"},
-        {Sector:"Mobility",Group:"Grab",Company:"Grab",Investor:"Grab",UUID:"a76824768a83dbcf73dc41a841ef850e"},*/
+        {Sector:"Mobility",Group:"Grab",Company:"Grab",Investor:"Grab",UUID:"a76824768a83dbcf73dc41a841ef850e"},
         {Sector:"Supplier",Group:"Bosch",Company:"Bosch",Investor:"Bosch",UUID:"dcf152a123fc6a0e9a7668c3fc2ec472"},
         {Sector:"Supplier",Group:"Bosch",Company:"Bosch",Investor:"Bosch SoftTec",UUID:"ccbeec7c29e8feb7c014e6f7f63ac972"},
         {Sector:"Supplier",Group:"Bosch",Company:"Bosch",Investor:"Bosch Automotive Service Solutions",UUID:"88289b6675924d40bc9a4ac8e8e2961d"},
@@ -669,7 +669,7 @@
         {Sector:"Supplier",Group:"LG",Company:"LG",Investor:"LG",UUID:"17f849175568f1e2508a44c37b8070c8"},
         {Sector:"Supplier",Group:"Panasonic",Company:"Panasonic",Investor:"Panasonic",UUID:"824fd405fe30fb47a4626d0e056c3d1d"},
         {Sector:"Supplier",Group:"Panasonic",Company:"Panasonic",Investor:"Panasonic Automotive",UUID:"bcf9a888b96a5bf8e5a1c16f20ccce64"},
-        {Sector:"Supplier",Group:"Panasonic",Company:"Panasonic",Investor:"Panasonic Ventures",UUID:"27aacf7f4692e0ddf5ee5630278a0b42"}/*,
+        {Sector:"Supplier",Group:"Panasonic",Company:"Panasonic",Investor:"Panasonic Ventures",UUID:"27aacf7f4692e0ddf5ee5630278a0b42"},
         {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Enterprise",UUID:"cf93455ea23645ad97ff1f059a1ebecc"},
         {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Technologies",UUID:"09cce08ac9fc0e79e825249b00642c79"},
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu",UUID:"c273424ac118e7ab29a6843775e7e6d0"},
