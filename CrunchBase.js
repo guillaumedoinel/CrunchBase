@@ -54,7 +54,7 @@
 
               // To get the funded organizations categories from CrunchBase
               // Baidu Alibaba Tencent Xiaomi
-              if (Company == "Baidu") {
+              if (this.indexValue.paramCompany == "Baidu") {
                 $.ajax({
                   url: "https://api.crunchbase.com/v3.1/organizations/" + UUIDFundedOrg + "?user_key=9df45b533650fb1b95e83357b5da2db3",
                   async: false,
@@ -659,7 +659,7 @@
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu Ventures",UUID:"7d2096a8c85d135a5d87fbbd89ade46a"},
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu Capital",UUID:"b8faf0f503a431ef91f9859ab9283428"},
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu's Apollo fund",UUID:"e2c9981616d44a0fa70f4c43c17779f0"},
-        {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Waimai",UUID:"3932dd5dd3c759f686fe7bf42c6af05d"},
+        {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Waimai",UUID:"3932dd5dd3c759f686fe7bf42c6af05d"}/*,
         {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Group",UUID:"17d626a727a7a51b93373839f8ed055e"},
         {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Cloud",UUID:"77347697f336af8aa4e2ae9897c6bfde"},
         {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Entrepreneurs fund",UUID:"d27edf4c9e7ceeb867f377e1c607fc55"},
