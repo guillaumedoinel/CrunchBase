@@ -49,14 +49,13 @@
               var FundedCompanyUUID = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.uuid;
               var ShortDescription = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.short_description;
               var Description = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.description;
-              var UUIDFundedOrg = investmentsJSON[iI].relationships.funding_round.uuid;
               var Categories = "";
 
               // To get the funded organizations categories from CrunchBase
               // Baidu Alibaba Tencent Xiaomi
             //  if (this.indexValue.paramCompany == "Baidu") {
                 $.ajax({
-                  url: "https://api.crunchbase.com/v3.1/organizations/" + UUIDFundedOrg + "?user_key=9df45b533650fb1b95e83357b5da2db3",
+                  url: "https://api.crunchbase.com/v3.1/organizations/" + FundedCompanyUUID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
                   async: false,
                   success: function(resp) {
                     var CategoriesList = resp.data.relationships.categories.items;
