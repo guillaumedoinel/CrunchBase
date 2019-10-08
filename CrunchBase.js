@@ -49,6 +49,23 @@
               var FundedCompanyUUID = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.uuid;
               var ShortDescription = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.short_description;
               var Description = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.description;
+              var UUIDFundedOrg = investmentsJSON[iI].relationships.funding_round.uuid;
+              var Categories = "";
+
+              // To get the funded organizations categories from CrunchBase
+              // Baidu Alibaba Tencent Xiaomi
+              if (Company == "Baidu") {
+                $.ajax({
+                  url: "https://api.crunchbase.com/v3.1/organizations/" + UUIDFundedOrg + "?user_key=9df45b533650fb1b95e83357b5da2db3",
+                  async: false,
+                  success: function(resp) {
+                    var CategoriesList = resp.data.relationships.categories.items;
+                    for (var c = 0, lenC = CategoriesList.length; c < lenC; c++) {
+                      Categories += CategoriesList[c].properties.name + " ";
+                    }
+                  }
+                });
+              }
 
               investmentTableData.push({
                 "sector": this.indexValue.paramSector,
@@ -65,7 +82,8 @@
                 "company_name_JOIN": FundedCompany,
                 "target_company": FundedCompany,
                 "short_description": ShortDescription,
-                "description": Description
+                "description": Description,
+                "categories": Categories
               });
             }
             SortedTable = SortedTable.concat(investmentTableData);
@@ -116,6 +134,7 @@
               var AcquiredCompany = acquisitionsJSON[iA].relationships.acquiree.properties.name;
               var ShortDescription = acquisitionsJSON[iA].relationships.acquiree.properties.short_description;
               var Description = acquisitionsJSON[iA].relationships.acquiree.properties.description;
+              var Categories = "";
 
               acquisitionTableData.push({
                 "sector": this.indexValue.paramSector,
@@ -132,7 +151,8 @@
                 "company_name_JOIN": AcquiredCompany,
                 "target_company": AcquiredCompany,
                 "short_description": ShortDescription,
-                "description": Description
+                "description": Description,
+                "categories": Categories
               });
             }
             SortedTable = SortedTable.concat(acquisitionTableData);
@@ -523,6 +543,10 @@
     }, {
       id: "description",
       alias: "Description",
+      dataType: tableau.dataTypeEnum.string
+    }, {
+      id: "categories",
+      alias: "Categories",
       dataType: tableau.dataTypeEnum.string
     }
     ];
