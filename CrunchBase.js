@@ -588,7 +588,7 @@
 
     if (table.tableInfo.id == "Transactions") {
       var CompaniesList = [
-        {Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Renault Nissan Mitsubishi",UUID:"96fa22e600c4656428f64b2066e4021d"},
+        /*{Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Renault Nissan Mitsubishi",UUID:"96fa22e600c4656428f64b2066e4021d"},
         {Sector:"OEM",Group:"Alliance RNM",Company:"Alliance",Investor:"Alliance Ventures",UUID:"bded51bc070240d5ba0e6771d44c5146"},
         {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Motors",UUID:"fe8f7d6b2f90470223b5d7f18ca63a51"},
         {Sector:"OEM",Group:"Alliance RNM",Company:"Mitsubishi",Investor:"Mitsubishi Electric",UUID:"2e1e8791e661a34d9a78bcabfdd1825f"},
@@ -654,7 +654,7 @@
         {Sector:"Supplier",Group:"Panasonic",Company:"Panasonic",Investor:"Panasonic Automotive",UUID:"bcf9a888b96a5bf8e5a1c16f20ccce64"},
         {Sector:"Supplier",Group:"Panasonic",Company:"Panasonic",Investor:"Panasonic Ventures",UUID:"27aacf7f4692e0ddf5ee5630278a0b42"},
         {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Enterprise",UUID:"cf93455ea23645ad97ff1f059a1ebecc"},
-        {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Technologies",UUID:"09cce08ac9fc0e79e825249b00642c79"},
+        {Sector:"Technology",Group:"Huawei",Company:"Huawei",Investor:"Huawei Technologies",UUID:"09cce08ac9fc0e79e825249b00642c79"},*/
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu",UUID:"c273424ac118e7ab29a6843775e7e6d0"},
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu Ventures",UUID:"7d2096a8c85d135a5d87fbbd89ade46a"},
         {Sector:"Technology",Group:"Baidu",Company:"Baidu",Investor:"Baidu Capital",UUID:"b8faf0f503a431ef91f9859ab9283428"},
@@ -673,7 +673,7 @@
         {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent AI Lab",UUID:"9bfd896137b34f87888ce99895f58456"},
         {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Shenzhen Tencent Computer Systems Company Limited",UUID:"603ba3d2cb94a954f56039e97ad5083c"},
         {Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi",UUID:"1ac252063b8ab4a648b35df4b671e586"},
-        {Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi Ventures",UUID:"94df65d648b34aeda07d89b0b9eefee8"},
+        {Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi Ventures",UUID:"94df65d648b34aeda07d89b0b9eefee8"}/*,
         {Sector:"Technology",Group:"Amazon",Company:"Amazon",Investor:"Amazon",UUID:"05554f656aa94dd162718ce2d60f10c4"},
         {Sector:"Technology",Group:"Amazon",Company:"Amazon",Investor:"Amazon Web Services",UUID:"bd23a50d2ae3be332a35383ea9ed13fd"},
         {Sector:"Technology",Group:"Microsoft",Company:"Microsoft",Investor:"Microsoft",UUID:"fd80725f53fc70099878aeecf1e9ffbb"},
@@ -705,7 +705,7 @@
         {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank BB Corp",UUID:"d6718551778f02d2c5ceb864e36ece04"},
         {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank UK Ventures",UUID:"d9e08d1bae5073f6a3a39f7679815c16"},
         {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Robotics America",UUID:"5ad359c1d49f4003ae6fcf4d49c8a5c4"},
-        {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank-Indosat Fund",UUID:"577c769e4d6d0f4356722a55f1f34e1c"}
+        {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank-Indosat Fund",UUID:"577c769e4d6d0f4356722a55f1f34e1c"}*/
       ];
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
       insertPartnerships(table);
