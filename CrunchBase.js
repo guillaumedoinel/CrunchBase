@@ -4610,7 +4610,22 @@
         {CompanyNameJOIN:"iXs",SubCategory:"AI / Big Data / Machine learning",Category:"Traditional Market"},
         {CompanyNameJOIN:"JOLED",SubCategory:"IVI Technology",Category:"Connected"},
         {CompanyNameJOIN:"Credi2 GmbH",SubCategory:"Financial Services",Category:"Traditional Market"},
-        {CompanyNameJOIN:"Autotech Ventures",SubCategory:"Financial Services",Category:"Traditional Market"}
+        {CompanyNameJOIN:"Autotech Ventures",SubCategory:"Financial Services",Category:"Traditional Market"},
+        {CompanyNameJOIN:"DIGITAL GRID",SubCategory:"Supply Chain",Category:"Traditional Market"},
+        {CompanyNameJOIN:"Kardome",SubCategory:"VPA",Category:"Connected"},
+        {CompanyNameJOIN:"PeptiStar",SubCategory:"Chemicals",Category:"Others"},
+        {CompanyNameJOIN:"moons",SubCategory:"Health services",Category:"Others"},
+        {CompanyNameJOIN:"MONET Technologies",SubCategory:"Mobility Data",Category:"Sharing/Subscription"},
+        {CompanyNameJOIN:"Magellan Systems Japan, Inc.",SubCategory:"Location",Category:"Connected"},
+        {CompanyNameJOIN:"GuardKnox",SubCategory:"Cybersecurity",Category:"Traditional Market"},
+        {CompanyNameJOIN:"Bumblebee Spaces",SubCategory:"Robotics",Category:"Traditional Market"},
+        {CompanyNameJOIN:"M-aid",SubCategory:"Health services",Category:"Others"},
+        {CompanyNameJOIN:"Kyoto Robotics",SubCategory:"Robotics",Category:"Traditional Market"},
+        {CompanyNameJOIN:"Kyusyu Nanotec Optics",SubCategory:"Car components",Category:"Traditional Market"},
+        {CompanyNameJOIN:"Masters of Pie",SubCategory:"VR/AR tech",Category:"Connected"},
+        {CompanyNameJOIN:"MICIN",SubCategory:"Health services",Category:"Others"},
+        {CompanyNameJOIN:"Sendy",SubCategory:"Delivery",Category:"Connected"},
+        {CompanyNameJOIN:"Software Motor Company",SubCategory:"Car components",Category:"Traditional Market"}
       ];
       var categoriesTableData = [];
       for (var i = 0, len = CategoriesList.length; i < len; i++) {
