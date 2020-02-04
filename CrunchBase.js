@@ -4608,7 +4608,9 @@
         {CompanyNameJOIN:"ZZNode Science and Technology",SubCategory:"",Category:""},
         {CompanyNameJOIN:"Credi2",SubCategory:"Financial Services",Category:"Traditional Market"},
         {CompanyNameJOIN:"iXs",SubCategory:"AI / Big Data / Machine learning",Category:"Traditional Market"},
-        {CompanyNameJOIN:"JOLED",SubCategory:"IVI Technology",Category:"Connected"}
+        {CompanyNameJOIN:"JOLED",SubCategory:"IVI Technology",Category:"Connected"},
+        {CompanyNameJOIN:"Credi2 GmbH",SubCategory:"Financial Services",Category:"Traditional Market"},
+        {CompanyNameJOIN:"Autotech Ventures",SubCategory:"Financial Services",Category:"Traditional Market"}
       ];
       var categoriesTableData = [];
       for (var i = 0, len = CategoriesList.length; i < len; i++) {
