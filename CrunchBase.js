@@ -4634,7 +4634,10 @@
 {CompanyNameJOIN:"Poppy",SubCategory:"Mobility Provider",Category:"Sharing/Subscription"},
 {CompanyNameJOIN:"Wible",SubCategory:"Car Sharing BtoC",Category:"Sharing/Subscription"},
 {CompanyNameJOIN:"Lev",SubCategory:"Car Sharing BtoC",Category:"Sharing/Subscription"},
-{CompanyNameJOIN:"Emov",SubCategory:"Car Sharing BtoC",Category:"Sharing/Subscription"}
+{CompanyNameJOIN:"Emov",SubCategory:"Car Sharing BtoC",Category:"Sharing/Subscription"},
+{CompanyNameJOIN:"Prodrone",SubCategory:"Robotics",Category:"Traditional Market"},
+{CompanyNameJOIN:"Oravel Stays",SubCategory:"Hotel",Category:"Others"},
+{CompanyNameJOIN:"Bento",SubCategory:"Software",Category:"Others"}
       ];
       var categoriesTableData = [];
       for (var i = 0, len = CategoriesList.length; i < len; i++) {
