@@ -4637,7 +4637,10 @@
 {CompanyNameJOIN:"Emov",SubCategory:"Car Sharing BtoC",Category:"Sharing/Subscription"},
 {CompanyNameJOIN:"Prodrone",SubCategory:"Robotics",Category:"Traditional Market"},
 {CompanyNameJOIN:"Oravel Stays",SubCategory:"Hotel",Category:"Others"},
-{CompanyNameJOIN:"Bento",SubCategory:"Software",Category:"Others"}
+{CompanyNameJOIN:"Bento",SubCategory:"Software",Category:"Others"},
+{CompanyNameJOIN:"UltraSense Systems",SubCategory:"IVI Technology",Category:"Connected"},
+{CompanyNameJOIN:"Backyard Brains",SubCategory:"Neuroscience technology",Category:"Others"},
+{CompanyNameJOIN:"Seven Dreamers Laboratories",SubCategory:"Electronics",Category:"Others"}
       ];
       var categoriesTableData = [];
       for (var i = 0, len = CategoriesList.length; i < len; i++) {
