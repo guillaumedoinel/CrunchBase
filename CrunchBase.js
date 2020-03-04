@@ -4640,7 +4640,10 @@
 {CompanyNameJOIN:"Bento",SubCategory:"Software",Category:"Others"},
 {CompanyNameJOIN:"UltraSense Systems",SubCategory:"IVI Technology",Category:"Connected"},
 {CompanyNameJOIN:"Backyard Brains",SubCategory:"Neuroscience technology",Category:"Others"},
-{CompanyNameJOIN:"Seven Dreamers Laboratories",SubCategory:"Electronics",Category:"Others"}
+{CompanyNameJOIN:"Seven Dreamers Laboratories",SubCategory:"Electronics",Category:"Others"},
+{CompanyNameJOIN:"WhereIsMyTransport",SubCategory:"MaaS Platform",Category:"Sharing/Subscription"},
+{CompanyNameJOIN:"Halo Cars",SubCategory:"Advertising",Category:"Traditional Market"},
+{CompanyNameJOIN:"UISEE",SubCategory:"Software",Category:"Autonomous"}
       ];
       var categoriesTableData = [];
       for (var i = 0, len = CategoriesList.length; i < len; i++) {
