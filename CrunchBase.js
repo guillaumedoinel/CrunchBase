@@ -3545,7 +3545,7 @@
 {CompanyNameJOIN:"Rivals.com",SubCategory:"",Category:""},
 {CompanyNameJOIN:"Rivermine Software",SubCategory:"",Category:""},
 {CompanyNameJOIN:"Rivet Games",SubCategory:"",Category:""},
-{CompanyNameJOIN:"Rivian",SubCategory:"Software",Category:"Autonomous"},
+{CompanyNameJOIN:"Rivian",SubCategory:"Cars",Category:"Electrification"},
 {CompanyNameJOIN:"Riviera Tool LLC",SubCategory:"Car components",Category:"Traditional Market"},
 {CompanyNameJOIN:"Rize Inc.",SubCategory:"",Category:""},
 {CompanyNameJOIN:"Moneytree",SubCategory:"Financial Services",Category:"Others"},
