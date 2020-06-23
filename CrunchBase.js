@@ -650,7 +650,7 @@
 
     if (table.tableInfo.id == "Transactions") {
       var CompaniesList = [
-        {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Group",UUID:"17d626a727a7a51b93373839f8ed055e"},
+        {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Group",UUID:"17d626a727a7a51b93373839f8ed055e"},/*
 {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Cloud",UUID:"77347697f336af8aa4e2ae9897c6bfde"},
 {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Entrepreneurs fund",UUID:"d27edf4c9e7ceeb867f377e1c607fc55"},
 {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba.com",UUID:"c79315efd45b44baa355ad3a7caf3667"},
@@ -769,7 +769,7 @@
 {Sector:"Supplier",Group:"Valeo ",Company:"Valeo ",Investor:"Valeo",UUID:"b8f83b16a8928c024221dcb7862b6e2c"},
 {Sector:"Supplier",Group:"Valeo ",Company:"Valeo ",Investor:"Valeo Siemens eAutomotive",UUID:"16460dd0a6154e4f8abea6a720f5b349"},
 {Sector:"Supplier",Group:"Valeo ",Company:"Valeo ",Investor:"Valeo Group",UUID:"a9377eecaafacd53339173ae8121bb66"},
-{Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi",UUID:"1ac252063b8ab4a648b35df4b671e586"},
+{Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi",UUID:"1ac252063b8ab4a648b35df4b671e586"},*/
 {Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi Ventures",UUID:"94df65d648b34aeda07d89b0b9eefee8"} ];
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
       insertPartnerships(table);
