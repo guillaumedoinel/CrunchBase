@@ -730,7 +730,6 @@
 {Sector:"OEM",Group:"PSA",Company:"PSA",Investor:"PSA Group",UUID:"7c01753993a20640220b5b05a855210a"},
 {Sector:"OEM",Group:"PSA",Company:"Peugeot",Investor:"Peugeot SA",UUID:"ee1dec4f08abb10cd37aa27ef162d215"},
 {Sector:"OEM",Group:"SAIC Motor",Company:"SAIC Motor",Investor:"SAIC Motor",UUID:"394f725221e66d622f697a243197d428"},
-/*{Sector:"OEM",Group:"SAIC Motor",Company:"SAIC Motor",Investor:"Saic Motor",UUID:"67922ed1f18643b78177f4f9dd1aa9a4"},*/
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank",UUID:"1a4103983a72588299b86318cf594850"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Capital",UUID:"ec26a756d387a455c6fc90fe11ece02c"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank Ventures Asia",UUID:"4710cdd6d89239adc10afe217e5cb7ca"},
@@ -738,7 +737,7 @@
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Vision Fund",UUID:"3a1f2e3a9a6243f992615b58190532ce"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Robotics Holdings",UUID:"e1d576736a6014bc7214b0d9719c417d"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Mobile",UUID:"eff0f5ede56ae33e7c854fab24235fb7"},
-{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank Commerce Corp",UUID:"53de7d25ac6185fca8cd91fabd1a8eac"}, // OK
+{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank Commerce Corp",UUID:"53de7d25ac6185fca8cd91fabd1a8eac"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Telecom Corp",UUID:"0ce0f4eb35149d152d64291cb3171fb0"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank China & India Holdings",UUID:"726402cd0a8e280da87dee7b339085eb"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Payment Service Corp.",UUID:"5a2f05f5d67cda4080bce6d443c97b3a"},
