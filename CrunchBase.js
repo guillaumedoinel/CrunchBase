@@ -746,17 +746,17 @@
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank BB Corp",UUID:"d6718551778f02d2c5ceb864e36ece04"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank UK Ventures",UUID:"d9e08d1bae5073f6a3a39f7679815c16"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Robotics America",UUID:"5ad359c1d49f4003ae6fcf4d49c8a5c4"},
-{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank-Indosat Fund",UUID:"577c769e4d6d0f4356722a55f1f34e1c"},*/
+{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank-Indosat Fund",UUID:"577c769e4d6d0f4356722a55f1f34e1c"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent Holdings",UUID:"3cae090bed2d95f879a9e32ca480258f"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent Cloud",UUID:"62e44cabec754bbda7a72021842562fd"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent Industry Win-Win Fund",UUID:"d53f2332b68c20e62741fcacf60eb62f"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent WeStart",UUID:"1fb0af95267d4de0b5548e739c719826"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent AI Lab",UUID:"9bfd896137b34f87888ce99895f58456"},
-{Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Shenzhen Tencent Computer Systems Company Limited",UUID:"603ba3d2cb94a954f56039e97ad5083c"},
+{Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Shenzhen Tencent Computer Systems Company Limited",UUID:"603ba3d2cb94a954f56039e97ad5083c"},*/
 {Sector:"OEM",Group:"Tesla",Company:"Tesla",Investor:"Tesla",UUID:"a367b036595254357541ad7ee8869e24"},
-{Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota Motor Corporation",UUID:"12b90373ab49a56a4b4ec7b3e9236faf"},
+/*{Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota Motor Corporation",UUID:"12b90373ab49a56a4b4ec7b3e9236faf"},
 {Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota Tsusho",UUID:"4ecb67dc639df5b6cd57da212250cebc"},
-{Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota AI Ventures",UUID:"4419828e7e06f10e323c4e985821dafd"},
+{Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota AI Ventures",UUID:"4419828e7e06f10e323c4e985821dafd"},*/
 {Sector:"Mobility",Group:"Uber",Company:"Uber",Investor:"Uber",UUID:"1eb371093b9301a9177ffee2cb1bfcdc"},
 {Sector:"OEM",Group:"VAG",Company:"Volkswagen",Investor:"Volkswagen group",UUID:"8a2b18d24cfbac1708b207b01d092e2a"},
 {Sector:"OEM",Group:"VAG",Company:"Audi",Investor:"Audi",UUID:"81a1ceaa081ffe4ffbb4ca4cbc8293a8"},
