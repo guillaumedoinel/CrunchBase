@@ -650,7 +650,7 @@
 
     if (table.tableInfo.id == "Transactions") {
       var CompaniesList = [
-        /*{Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Group",UUID:"17d626a727a7a51b93373839f8ed055e"},
+        {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Group",UUID:"17d626a727a7a51b93373839f8ed055e"},
 {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Cloud",UUID:"77347697f336af8aa4e2ae9897c6bfde"},
 {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Entrepreneurs fund",UUID:"d27edf4c9e7ceeb867f377e1c607fc55"},
 {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba.com",UUID:"c79315efd45b44baa355ad3a7caf3667"},
@@ -689,7 +689,8 @@
 {Sector:"Supplier",Group:"Continental",Company:"Continental",Investor:"Continental Tire",UUID:"ffeda93f9f4d964c7ff246484825d018"},
 {Sector:"OEM",Group:"Daimler",Company:"Daimler",Investor:"Daimler",UUID:"5d6ed201f03268afb4227e7c68129485"},
 {Sector:"Mobility",Group:"Didi Chuxing",Company:"Didi",Investor:"Didi Chuxing",UUID:"eab915a8f41464e05138c5f341596a5b"},
-{Sector:"Supplier",Group:"Faurecia",Company:"Faurecia",Investor:"Faurecia",UUID:"55c2d41d9ddcb9ab978ed86cca6f0c47"},
+{Sector:"Supplier",Group:"Faurecia",Company:"Faurecia",Investor:"Faurecia",UUID:"55c2d41d9ddcb9ab978ed86cca6f0c47"}/*,
+
 {Sector:"OEM",Group:"FCA",Company:"Fiat",Investor:"FIAT S.p.A",UUID:"e7b7f5416f80e13f335f3b0932884c4c"},
 {Sector:"OEM",Group:"Ford",Company:"Ford",Investor:"Ford Motor Company",UUID:"9249e8b6409aa80c1a1e29ae21b1db47"},
 {Sector:"OEM",Group:"Ford",Company:"Ford",Investor:"Ford Foundation",UUID:"0ee8cd71bfd9bf6bfb96a38012b1e001"},
@@ -753,12 +754,12 @@
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent Industry Win-Win Fund",UUID:"d53f2332b68c20e62741fcacf60eb62f"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent WeStart",UUID:"1fb0af95267d4de0b5548e739c719826"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent AI Lab",UUID:"9bfd896137b34f87888ce99895f58456"},
-{Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Shenzhen Tencent Computer Systems Company Limited",UUID:"603ba3d2cb94a954f56039e97ad5083c"},*/
+{Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Shenzhen Tencent Computer Systems Company Limited",UUID:"603ba3d2cb94a954f56039e97ad5083c"},
 {Sector:"OEM",Group:"Tesla",Company:"Tesla",Investor:"Tesla",UUID:"a367b036595254357541ad7ee8869e24"},
 /*{Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota Motor Corporation",UUID:"12b90373ab49a56a4b4ec7b3e9236faf"},
 {Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota Tsusho",UUID:"4ecb67dc639df5b6cd57da212250cebc"},
-{Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota AI Ventures",UUID:"4419828e7e06f10e323c4e985821dafd"},*/
-{Sector:"Mobility",Group:"Uber",Company:"Uber",Investor:"Uber",UUID:"1eb371093b9301a9177ffee2cb1bfcdc"}/*,
+{Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota AI Ventures",UUID:"4419828e7e06f10e323c4e985821dafd"},
+{Sector:"Mobility",Group:"Uber",Company:"Uber",Investor:"Uber",UUID:"1eb371093b9301a9177ffee2cb1bfcdc"},
 {Sector:"OEM",Group:"VAG",Company:"Volkswagen",Investor:"Volkswagen group",UUID:"8a2b18d24cfbac1708b207b01d092e2a"},
 {Sector:"OEM",Group:"VAG",Company:"Audi",Investor:"Audi",UUID:"81a1ceaa081ffe4ffbb4ca4cbc8293a8"},
 {Sector:"OEM",Group:"VAG",Company:"Volkswagen",Investor:"Volkswagen We",UUID:"a31b34c32f6543789fb20993d74b4dad"},
