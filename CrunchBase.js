@@ -689,7 +689,7 @@
 {Sector:"Supplier",Group:"Continental",Company:"Continental",Investor:"Continental Tire",UUID:"ffeda93f9f4d964c7ff246484825d018"},
 {Sector:"OEM",Group:"Daimler",Company:"Daimler",Investor:"Daimler",UUID:"5d6ed201f03268afb4227e7c68129485"},
 {Sector:"Mobility",Group:"Didi Chuxing",Company:"Didi",Investor:"Didi Chuxing",UUID:"eab915a8f41464e05138c5f341596a5b"},
-{Sector:"Supplier",Group:"Faurecia",Company:"Faurecia",Investor:"Faurecia",UUID:"55c2d41d9ddcb9ab978ed86cca6f0c47"}*/,
+{Sector:"Supplier",Group:"Faurecia",Company:"Faurecia",Investor:"Faurecia",UUID:"55c2d41d9ddcb9ab978ed86cca6f0c47"},*/
 {Sector:"OEM",Group:"FCA",Company:"Fiat",Investor:"FIAT S.p.A",UUID:"e7b7f5416f80e13f335f3b0932884c4c"},
 {Sector:"OEM",Group:"Ford",Company:"Ford",Investor:"Ford Motor Company",UUID:"9249e8b6409aa80c1a1e29ae21b1db47"},
 {Sector:"OEM",Group:"Ford",Company:"Ford",Investor:"Ford Foundation",UUID:"0ee8cd71bfd9bf6bfb96a38012b1e001"},
