@@ -737,7 +737,7 @@
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Robotics Europe",UUID:"cb14755a0091475589652e0a6928be8e"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Vision Fund",UUID:"3a1f2e3a9a6243f992615b58190532ce"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Robotics Holdings",UUID:"e1d576736a6014bc7214b0d9719c417d"},
-{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Mobile",UUID:"eff0f5ede56ae33e7c854fab24235fb7"},
+{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Mobile",UUID:"eff0f5ede56ae33e7c854fab24235fb7"},*/
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank Commerce Corp",UUID:"53de7d25ac6185fca8cd91fabd1a8eac"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Telecom Corp",UUID:"0ce0f4eb35149d152d64291cb3171fb0"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank China & India Holdings",UUID:"726402cd0a8e280da87dee7b339085eb"},
@@ -746,12 +746,12 @@
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank BB Corp",UUID:"d6718551778f02d2c5ceb864e36ece04"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank UK Ventures",UUID:"d9e08d1bae5073f6a3a39f7679815c16"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Robotics America",UUID:"5ad359c1d49f4003ae6fcf4d49c8a5c4"},
-{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank-Indosat Fund",UUID:"577c769e4d6d0f4356722a55f1f34e1c"},*/
-{Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent Holdings",UUID:"3cae090bed2d95f879a9e32ca480258f"},
+{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank-Indosat Fund",UUID:"577c769e4d6d0f4356722a55f1f34e1c"},
+{Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent Holdings",UUID:"3cae090bed2d95f879a9e32ca480258f"}, // OK
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent Cloud",UUID:"62e44cabec754bbda7a72021842562fd"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent Industry Win-Win Fund",UUID:"d53f2332b68c20e62741fcacf60eb62f"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent WeStart",UUID:"1fb0af95267d4de0b5548e739c719826"},
-{Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent AI Lab",UUID:"9bfd896137b34f87888ce99895f58456"}, // OK
+{Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent AI Lab",UUID:"9bfd896137b34f87888ce99895f58456"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Shenzhen Tencent Computer Systems Company Limited",UUID:"603ba3d2cb94a954f56039e97ad5083c"},
 {Sector:"OEM",Group:"Tesla",Company:"Tesla",Investor:"Tesla",UUID:"a367b036595254357541ad7ee8869e24"},
 {Sector:"OEM",Group:"Toyota",Company:"Toyota",Investor:"Toyota Motor Corporation",UUID:"12b90373ab49a56a4b4ec7b3e9236faf"},
