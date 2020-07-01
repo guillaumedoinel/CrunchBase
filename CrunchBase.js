@@ -730,7 +730,7 @@
 {Sector:"Supplier",Group:"Panasonic",Company:"Panasonic",Investor:"Panasonic Ventures",UUID:"27aacf7f4692e0ddf5ee5630278a0b42"},
 {Sector:"OEM",Group:"PSA",Company:"PSA",Investor:"PSA Group",UUID:"7c01753993a20640220b5b05a855210a"},
 {Sector:"OEM",Group:"PSA",Company:"Peugeot",Investor:"Peugeot SA",UUID:"ee1dec4f08abb10cd37aa27ef162d215"},
-{Sector:"OEM",Group:"SAIC Motor",Company:"SAIC Motor",Investor:"SAIC Motor",UUID:"394f725221e66d622f697a243197d428"}/*,
+{Sector:"OEM",Group:"SAIC Motor",Company:"SAIC Motor",Investor:"SAIC Motor",UUID:"394f725221e66d622f697a243197d428"},
 
 /*{Sector:"OEM",Group:"SAIC Motor",Company:"SAIC Motor",Investor:"Saic Motor",UUID:"67922ed1f18643b78177f4f9dd1aa9a4"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank",UUID:"1a4103983a72588299b86318cf594850"},
@@ -767,12 +767,12 @@
 {Sector:"OEM",Group:"VAG",Company:"Porsche",Investor:"Porsche",UUID:"68255d6d16144c7c1a0b3d3998c1d2c2"},
 {Sector:"OEM",Group:"VAG",Company:"Porsche",Investor:"Porsche Automobil Holding",UUID:"8ea457a172805992c020e741fef4a8dc"},
 {Sector:"OEM",Group:"VAG",Company:"Seat",Investor:"Seat",UUID:"fdf2b2f2241533a054ad3b9755b84f33"},
-{Sector:"OEM",Group:"VAG",Company:"Škoda",Investor:"Škoda Auto a.s",UUID:"7c71810f27514e8c95d7e2fae0b96178"},
+{Sector:"OEM",Group:"VAG",Company:"Škoda",Investor:"Škoda Auto a.s",UUID:"7c71810f27514e8c95d7e2fae0b96178"},*/
 {Sector:"Supplier",Group:"Valeo ",Company:"Valeo ",Investor:"Valeo",UUID:"b8f83b16a8928c024221dcb7862b6e2c"},
 {Sector:"Supplier",Group:"Valeo ",Company:"Valeo ",Investor:"Valeo Siemens eAutomotive",UUID:"16460dd0a6154e4f8abea6a720f5b349"},
 {Sector:"Supplier",Group:"Valeo ",Company:"Valeo ",Investor:"Valeo Group",UUID:"a9377eecaafacd53339173ae8121bb66"},
 {Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi",UUID:"1ac252063b8ab4a648b35df4b671e586"},
-{Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi Ventures",UUID:"94df65d648b34aeda07d89b0b9eefee8"}*/];
+{Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi Ventures",UUID:"94df65d648b34aeda07d89b0b9eefee8"}];
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
       insertPartnerships(table);
       insertSubsidiaries(table);
