@@ -731,7 +731,7 @@
 {Sector:"OEM",Group:"PSA",Company:"Peugeot",Investor:"Peugeot SA",UUID:"ee1dec4f08abb10cd37aa27ef162d215"},
 {Sector:"OEM",Group:"SAIC Motor",Company:"SAIC Motor",Investor:"SAIC Motor",UUID:"394f725221e66d622f697a243197d428"},*/
 {Sector:"OEM",Group:"SAIC Motor",Company:"SAIC Motor",Investor:"Saic Motor",UUID:"67922ed1f18643b78177f4f9dd1aa9a4"},
-{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank",UUID:"1a4103983a72588299b86318cf594850"},
+/*{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank",UUID:"1a4103983a72588299b86318cf594850"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Capital",UUID:"ec26a756d387a455c6fc90fe11ece02c"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank Ventures Asia",UUID:"4710cdd6d89239adc10afe217e5cb7ca"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Robotics Europe",UUID:"cb14755a0091475589652e0a6928be8e"},
@@ -746,7 +746,7 @@
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank BB Corp",UUID:"d6718551778f02d2c5ceb864e36ece04"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank UK Ventures",UUID:"d9e08d1bae5073f6a3a39f7679815c16"},
 {Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"SoftBank Robotics America",UUID:"5ad359c1d49f4003ae6fcf4d49c8a5c4"},
-{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank-Indosat Fund",UUID:"577c769e4d6d0f4356722a55f1f34e1c"},
+{Sector:"Technology",Group:"Softbank",Company:"Softbank",Investor:"Softbank-Indosat Fund",UUID:"577c769e4d6d0f4356722a55f1f34e1c"},*/
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent Holdings",UUID:"3cae090bed2d95f879a9e32ca480258f"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent Cloud",UUID:"62e44cabec754bbda7a72021842562fd"},
 {Sector:"Technology",Group:"Tencent",Company:"Tencent",Investor:"Tencent Industry Win-Win Fund",UUID:"d53f2332b68c20e62741fcacf60eb62f"},
