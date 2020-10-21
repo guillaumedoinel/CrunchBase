@@ -20,11 +20,11 @@
       var UUID = p_companyList[i].UUID;
 
       // GET INVESTMENTS DATA
-      //var PageNo = 1;
-      //var Next_page_url = "init";
-      //do {
+      var PageNo = 1;
+      var Next_page_url = "init";
+      do {
         $.ajax({
-          url: "https://api.crunchbase.com/api/v4/entities/organizations/" + UUID + "/card_ids=participated_investments&user_key=6677554af8f112f1a065561ee7b49233" //+ PageNo, // browse the list of investments
+          url: "https://api.crunchbase.com/v3.1/organizations/" + UUID + "/investments?user_key=9df45b533650fb1b95e83357b5da2db3&items_per_page=250&page=" + PageNo, // browse the list of investments
           async: false,
           indexValue: {
             paramSector: Sector,
@@ -33,20 +33,41 @@
             paramInvestor: Investor
           }, // to get Investor value from out of the ajaxCall
           success: function(response) {
-            var investmentsJSON = response.cards.participated_investments;
+            var investmentsJSON = response.data.items;
             var investmentTableData = [];
             for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
-              var Announced_Date = investmentsJSON[iI].announced_on;
-              var MoneyRaised = investmentsJSON[iI].funding_round_money_raised.value_usd;
+              var Announced_Date = investmentsJSON[iI].properties.announced_on;
+              var MoneyRaised = investmentsJSON[iI].relationships.funding_round.properties.money_raised_usd;
               if (MoneyRaised == null) MoneyRaised = 0;
-              var Transaction_ID = investmentsJSON[iI].identifier.uuid;
-              var FinalFundingType =  investmentsJSON[iI].funding_round_identifier.value; // récupérer avant " - "
-              var FundedCompany = investmentsJSON[iI].organization_identifier.value;
-              var FundedCompanyUUID = investmentsJSON[iI].organization_identifier.uuid;
-              var ShortDescription = "";
-              var Description = "";
+              var FundingRoundType = investmentsJSON[iI].relationships.funding_round.type;
+              var FundingType = investmentsJSON[iI].relationships.funding_round.properties.funding_type;
+              var Transaction_ID = investmentsJSON[iI].relationships.funding_round.properties.permalink;
+              var Series = investmentsJSON[iI].relationships.funding_round.properties.series;
+              if (Series == null) Series = "";
+              var FinalFundingType = FundingRoundType + " " + FundingType + " " + Series;
+              var FundedCompany = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.name;
+              var FundedCompanyUUID = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.uuid;
+              var ShortDescription = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.short_description;
+              var Description = investmentsJSON[iI].relationships.funding_round.relationships.funded_organization.properties.description;
               var Categories = "";
 
+              // To get the funded organizations categories from CrunchBase
+              // Baidu Alibaba Tencent Xiaomi
+
+              /*$.ajax({
+                url: "https://api.crunchbase.com/v3.1/organizations/" + FundedCompanyUUID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
+                async: false,
+                success: function(resp) {
+                  var CategoriesList = resp.data.relationships.categories.items;
+                  for (var c = 0, lenC = CategoriesList.length; c < lenC; c++) {
+                    Categories = Categories + " " + CategoriesList[c].properties.name + " ";
+                  }
+                }
+              });*/
+
+
+              // only keep AI companies
+            //  if (Categories.indexOf("Artificial Intelligence") >=0) {
               investmentTableData.push({
                 "sector": this.indexValue.paramSector,
                 "group": this.indexValue.paramGroup,
@@ -68,14 +89,29 @@
               //}
             }
             SortedTable = SortedTable.concat(investmentTableData);
-            //Next_page_url = response.data.paging.next_page_url;
+            Next_page_url = response.data.paging.next_page_url;
           }
         });
-      //  PageNo++;
-    //  }
-    //  while (Next_page_url != null)
+        PageNo++;
+      }
+      while (Next_page_url != null)
 
-/*
+      // Get number of investors to see if it is a grouped investment
+      /*for (var j = 0, lenJ = SortedTable.length; j < lenJ; j++) {
+        var Transaction_ID = SortedTable[j].transaction_ID;
+        var Nb_Investors = 0;
+        $.ajax({
+          url: "https://api.crunchbase.com/v3.1/funding-rounds/" + Transaction_ID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
+          async: false,
+          success: function(resp) {
+            Nb_Investors = resp.data.relationships.investors.paging.total_items;
+          }
+        });
+        SortedTable[j].nb_investors = Nb_Investors;
+        SortedTable[j].money_raised = SortedTable[j].total_money_raised / Nb_Investors;
+      }*/
+
+
       // GET ACQUISITIONS DATA
       var PageNo2 = 1;
       var Next_page_url2 = "init";
@@ -103,6 +139,19 @@
               var AcquireeUUID = acquisitionsJSON[iA].relationships.acquiree.uuid;
               var Categories = "";
 
+              /*
+              $.ajax({
+                url: "https://api.crunchbase.com/v3.1/organizations/" + AcquireeUUID + "?user_key=9df45b533650fb1b95e83357b5da2db3",
+                async: false,
+                success: function(resp) {
+                  var CategoriesList = resp.data.relationships.categories.items;
+                  for (var c = 0, lenC = CategoriesList.length; c < lenC; c++) {
+                    Categories = Categories + " " + CategoriesList[c].properties.name + " ";
+                  }
+                }
+              });*/
+
+              //if (Categories.indexOf("Artificial Intelligence") >=0) {
               acquisitionTableData.push({
                 "sector": this.indexValue.paramSector,
                 "group": this.indexValue.paramGroup,
@@ -121,6 +170,7 @@
                 "description": Description,
                 "categories": Categories
               });
+              //}
             }
             SortedTable = SortedTable.concat(acquisitionTableData);
             Next_page_url2 = response2.data.paging.next_page_url;
@@ -130,7 +180,7 @@
       } while (Next_page_url2 != null)
     } // End for on companies List
 
-*/
+
     // Sort table by Transaction ID to then identify grouped investments
     SortedTable.sort(function (a,b) {
       var x = a.transaction_ID.toLowerCase();
