@@ -65,7 +65,6 @@
                 "description": Description,
                 "categories": Categories
               });
-              //}
             }
             SortedTable = SortedTable.concat(investmentTableData);
             //Next_page_url = response.data.paging.next_page_url;
@@ -75,9 +74,9 @@
     //  }
     //  while (Next_page_url != null)
 
-/*
+
       // GET ACQUISITIONS DATA
-      var PageNo2 = 1;
+/*      var PageNo2 = 1;
       var Next_page_url2 = "init";
       do {
         $.ajax({
