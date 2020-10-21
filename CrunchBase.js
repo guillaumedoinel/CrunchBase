@@ -127,9 +127,11 @@
         });
         PageNo2++;
       } while (Next_page_url2 != null)
+      */
+
     } // End for on companies List
 
-*/
+
     // Sort table by Transaction ID to then identify grouped investments
     SortedTable.sort(function (a,b) {
       var x = a.transaction_ID.toLowerCase();
