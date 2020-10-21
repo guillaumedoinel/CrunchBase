@@ -129,9 +129,9 @@
       } while (Next_page_url2 != null)
       */
 
-    } // End for on companies List
+    }// End for on companies List
 
-
+/*
     // Sort table by Transaction ID to then identify grouped investments
     SortedTable.sort(function (a,b) {
       var x = a.transaction_ID.toLowerCase();
@@ -169,8 +169,9 @@
       TempTable[j].money_raised = TempTable[j].total_money_raised / Counter;
       FinalTable.push(TempTable[j]);
     }
-
-    p_table.appendRows(FinalTable);
+*/
+    //p_table.appendRows(FinalTable);
+    p_table.appendRows(SortedTable);
   }
 
   // Inserts HARDCODED partnerships into the same table as Investments/Acquisitions
