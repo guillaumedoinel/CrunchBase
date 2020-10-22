@@ -69,9 +69,9 @@
             SortedTable = SortedTable.concat(investmentTableData);
             //Next_page_url = response.data.paging.next_page_url;
           },
-          error: function(xhr, ajaxOptions, thrownError) {
+          error: function(jqXHR, textStatus, errorThrown) {
             var investmentTableData = [];
-            var Error = xhr.responseText;
+            var Error = jqXHR.responseText + textStatus + errorThrown;
             investmentTableData.push({
               "sector": this.indexValue.paramSector,
               "group": this.indexValue.paramGroup,
@@ -625,7 +625,7 @@
 
     if (table.tableInfo.id == "Transactions") {
       var CompaniesList = [
-        {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Group",UUID:"17d626a727a7a51b93373839f8ed055e"},
+        /*{Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Group",UUID:"17d626a727a7a51b93373839f8ed055e"},
 {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Cloud",UUID:"77347697f336af8aa4e2ae9897c6bfde"},
 {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba Entrepreneurs fund",UUID:"d27edf4c9e7ceeb867f377e1c607fc55"},
 {Sector:"Technology",Group:"Alibaba",Company:"Alibaba",Investor:"Alibaba.com",UUID:"c79315efd45b44baa355ad3a7caf3667"},
@@ -673,8 +673,8 @@
 {Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Group Venture Capital",UUID:"9a59d1e9d183001585270a39d01a9bfc"},
 {Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Cars Group",UUID:"1894c8007d82904566067461508339da"},
 {Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Cars Tech Fund",UUID:"86d2a05fdff04a4cbccb9f467e5ecc6e"},
-{Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Investment Management",UUID:"a1d14b6f137ebeaa847a8ba7ad65b4ea"},
-{Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors",UUID:"general-motors"},
+{Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Investment Management",UUID:"a1d14b6f137ebeaa847a8ba7ad65b4ea"},*/
+{Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors",UUID:"general-motors"}/*,
 {Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Ventures",UUID:"759be29a69e1615d373f8f8d8f020591"},
 {Sector:"Technology",Group:"Google",Company:"Google",Investor:"Google",UUID:"6acfa7da1dbd936ed985cf07a1b27711"},
 {Sector:"Technology",Group:"Google",Company:"Google",Investor:"Google Assistant Investments",UUID:"783b321986bd4ef183d888bc130e24f2"},
@@ -744,7 +744,7 @@
 {Sector:"Supplier",Group:"Valeo ",Company:"Valeo ",Investor:"Valeo Siemens eAutomotive",UUID:"16460dd0a6154e4f8abea6a720f5b349"},
 {Sector:"Supplier",Group:"Valeo ",Company:"Valeo ",Investor:"Valeo Group",UUID:"a9377eecaafacd53339173ae8121bb66"},
 {Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi",UUID:"1ac252063b8ab4a648b35df4b671e586"},
-{Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi Ventures",UUID:"94df65d648b34aeda07d89b0b9eefee8"}];
+{Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi Ventures",UUID:"94df65d648b34aeda07d89b0b9eefee8"}*/];
 
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
     //  insertPartnerships(table);
