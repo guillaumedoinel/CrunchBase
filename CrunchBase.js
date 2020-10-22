@@ -69,6 +69,26 @@
                 "description": Description,
                 "categories": Categories
               });
+
+              investmentTableData.push({
+                "sector": this.indexValue.paramSector,
+                "group": this.indexValue.paramGroup,
+                "company": this.indexValue.paramCompany,
+                "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
+                "transaction_type": "Investment",
+                "transaction_ID": "",
+                "nb_investors": 0,
+                "funding_type": "",
+                "total_money_raised": 0,
+                "money_raised": 0,
+                "announced_date": "",
+                "company_name_JOIN": "",
+                "target_company": "",
+                "short_description": "",
+                "description": "TEST SI REQUESTE OK",
+                "categories": ""
+              });
+
             }
             SortedTable = SortedTable.concat(investmentTableData);
             //Next_page_url = response.data.paging.next_page_url;
