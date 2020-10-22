@@ -68,6 +68,29 @@
             }
             SortedTable = SortedTable.concat(investmentTableData);
             //Next_page_url = response.data.paging.next_page_url;
+          },
+          error: function(xhr, ajaxOptions, thrownError) {
+            var investmentTableData = [];
+            var Error = chr.responseText;
+            investmentTableData.push({
+              "sector": this.indexValue.paramSector,
+              "group": this.indexValue.paramGroup,
+              "company": this.indexValue.paramCompany,
+              "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
+              "transaction_type": "Investment",
+              "transaction_ID": "",
+              "nb_investors": 0,
+              "funding_type": "",
+              "total_money_raised": 0,
+              "money_raised": 0,
+              "announced_date": "",
+              "company_name_JOIN": "",
+              "target_company": "",
+              "short_description": "",
+              "description": Error,
+              "categories": ""
+            });
+            SortedTable = SortedTable.concat(investmentTableData);
           }
         });
       //  PageNo++;
@@ -722,6 +745,7 @@
 {Sector:"Supplier",Group:"Valeo ",Company:"Valeo ",Investor:"Valeo Group",UUID:"a9377eecaafacd53339173ae8121bb66"},
 {Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi",UUID:"1ac252063b8ab4a648b35df4b671e586"},
 {Sector:"Technology",Group:"Xiaomi",Company:"Xiaomi",Investor:"Xiaomi Ventures",UUID:"94df65d648b34aeda07d89b0b9eefee8"}];
+
       getInvestmentsAcquisitionsByCompanies(CompaniesList, table);
     //  insertPartnerships(table);
     //  insertSubsidiaries(table);
