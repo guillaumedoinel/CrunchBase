@@ -29,7 +29,6 @@
           async: false,
           cache: false,
           crossDomain: true,
-          dataType: 'jsonp',
           indexValue: {
             paramSector: Sector,
             paramGroup: Group,
