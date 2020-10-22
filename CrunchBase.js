@@ -19,14 +19,54 @@
       var Investor = p_companyList[i].Investor;
       var UUID = p_companyList[i].UUID;
 
+
+      $.get("https://api.crunchbase.com/api/v4/entities/organizations/" + UUID + "?card_ids=participated_investments&user_key=6677554af8f112f1a065561ee7b49233",
+        function (data, status) {
+          var investmentsJSON = data.cards.participated_investments;
+          var investmentTableData = [];
+          for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
+            var Announced_Date = investmentsJSON[iI].announced_on;
+            var MoneyRaised = investmentsJSON[iI].funding_round_money_raised.value_usd;
+            if (MoneyRaised == null) MoneyRaised = 0;
+            var Transaction_ID = investmentsJSON[iI].identifier.uuid;
+            var FinalFundingType =  investmentsJSON[iI].funding_round_identifier.value; // récupérer avant " - "
+            var FundedCompany = investmentsJSON[iI].organization_identifier.value;
+            var FundedCompanyUUID = investmentsJSON[iI].organization_identifier.uuid;
+            var ShortDescription = "";
+            var Description = "";
+            var Categories = "";
+
+            investmentTableData.push({
+              "sector": this.indexValue.paramSector,
+              "group": this.indexValue.paramGroup,
+              "company": this.indexValue.paramCompany,
+              "investor": this.indexValue.paramInvestor, // to get Investor value from out of the ajaxCall
+              "transaction_type": "Investment",
+              "transaction_ID": Transaction_ID,
+              "nb_investors": 0,
+              "funding_type": FinalFundingType,
+              "total_money_raised": MoneyRaised,
+              "money_raised": 0,
+              "announced_date": Announced_Date,
+              "company_name_JOIN": FundedCompany,
+              "target_company": FundedCompany,
+              "short_description": ShortDescription,
+              "description": Description,
+              "categories": Categories
+            });
+          }
+          SortedTable = SortedTable.concat(investmentTableData);
+      });
+
+
       // GET INVESTMENTS DATA
       //var PageNo = 1;
       //var Next_page_url = "init";
       //do {
-        $.ajax({
+    /*    $.ajax({
           url: "https://api.crunchbase.com/api/v4/entities/organizations/" + UUID + "?card_ids=participated_investments&user_key=6677554af8f112f1a065561ee7b49233", //+ PageNo, // browse the list of investments
-          //async: false,
-          async: true,
+          async: false,
+          //async: true,
           //type: "GET",
           //cache: false,
           //crossDomain: true,
@@ -121,7 +161,7 @@
       //  PageNo++;
     //  }
     //  while (Next_page_url != null)
-
+*/
 
       // GET ACQUISITIONS DATA
 /*      var PageNo2 = 1;
