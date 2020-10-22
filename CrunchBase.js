@@ -71,7 +71,7 @@
           },
           error: function(xhr, ajaxOptions, thrownError) {
             var investmentTableData = [];
-            var Error = chr.responseText;
+            var Error = xhr.responseText;
             investmentTableData.push({
               "sector": this.indexValue.paramSector,
               "group": this.indexValue.paramGroup,
