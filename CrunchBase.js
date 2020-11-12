@@ -69,9 +69,15 @@
           async: false,
           //async: true, aucun résultat
           type: "POST",
+          headers: {
+            'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Content-Type':'application/json; charset=utf-8',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
+          },
+
           //cache: false,
           //crossDomain: true,
-          contentType: "application/json; charset=utf-8", // The type of data you're sending
+          //contentType: "application/json; charset=utf-8", // The type of data you're sending
           dataType: 'json', //The type of data that you're expecting back from the server
           data: {
             user_key:"user_key=6677554af8f112f1a065561ee7b49233",
