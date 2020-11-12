@@ -64,8 +64,8 @@
       //var Next_page_url = "init";
       //do {
         $.ajax({
-          url: "https://api.crunchbase.com/api/v4/entities/organizations/general-motors", //+ PageNo, // browse the list of investments
-          url: "http://api.prioridata.com/api/v1/app/metadata.json"
+          //url: "https://api.crunchbase.com/api/v4/entities/organizations/general-motors", //+ PageNo, // browse the list of investments
+          url: "http://api.prioridata.com/api/v1/app/metadata.json",
           async: false,
           //async: true, aucun résultat
           type: "POST",
