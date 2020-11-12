@@ -70,7 +70,8 @@
           //type: "GET",
           //cache: false,
           //crossDomain: true,
-          //dataType: 'jsonp',
+          contentType: "application/json; charset=utf-8", // The type of data you're sending
+          dataType: 'json', //The type of data that you're expecting back from the server
           indexValue: {
             paramSector: Sector,
             paramGroup: Group,
