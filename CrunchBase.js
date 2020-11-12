@@ -19,7 +19,7 @@
       var Investor = p_companyList[i].Investor;
       var UUID = p_companyList[i].UUID;
 
-
+/*
       $.get("https://api.crunchbase.com/api/v4/entities/organizations/" + UUID + "?card_ids=participated_investments&user_key=6677554af8f112f1a065561ee7b49233",
         function (data, status) {
           var investmentsJSON = data.cards.participated_investments;
@@ -57,13 +57,13 @@
           }
           SortedTable = SortedTable.concat(investmentTableData);
       });
-
+*/
 
       // GET INVESTMENTS DATA
       //var PageNo = 1;
       //var Next_page_url = "init";
       //do {
-    /*    $.ajax({
+        $.ajax({
           url: "https://api.crunchbase.com/api/v4/entities/organizations/" + UUID + "?card_ids=participated_investments&user_key=6677554af8f112f1a065561ee7b49233", //+ PageNo, // browse the list of investments
           async: false,
           //async: true,
@@ -161,7 +161,7 @@
       //  PageNo++;
     //  }
     //  while (Next_page_url != null)
-*/
+
 
       // GET ACQUISITIONS DATA
 /*      var PageNo2 = 1;
