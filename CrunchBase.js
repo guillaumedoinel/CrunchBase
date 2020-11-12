@@ -78,7 +78,7 @@
             'Sec-Fetch-Mode':'navigate',
             'Sec-Fetch-Site':'none',
             'Sec-Fetch-User':'?1',
-            'Upgrade-Insecure-Requests:'1',
+            'Upgrade-Insecure-Requests':'1',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
           },
           dataType: 'json', //The type of data that you're expecting back from the server
