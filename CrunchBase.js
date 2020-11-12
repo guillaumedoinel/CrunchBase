@@ -80,7 +80,7 @@
           success: function(response) {
             var investmentsJSON = response.cards.participated_investments;
             var investmentTableData = [];
-            for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
+            /*for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
               var Announced_Date = investmentsJSON[iI].announced_on;
               var MoneyRaised = investmentsJSON[iI].funding_round_money_raised.value_usd;
               if (MoneyRaised == null) MoneyRaised = 0;
@@ -110,7 +110,7 @@
                 "description": Description,
                 "categories": Categories
               });
-            }
+            }*/
 
             investmentTableData.push({
               "sector": this.indexValue.paramSector,
