@@ -73,7 +73,7 @@
           contentType: "application/json; charset=utf-8", // The type of data you're sending
           dataType: 'json', //The type of data that you're expecting back from the server
           data: {
-            card_ids:participated_investments
+            card_ids:"participated_investments"
           },
           indexValue: {
             paramSector: Sector,
