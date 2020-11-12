@@ -65,13 +65,13 @@
       //do {
         $.ajax({
           url: "https://api.crunchbase.com/api/v4/entities/organizations/general-motors", //+ PageNo, // browse the list of investments
-          //url: "http://api.prioridata.com/api/v1/app/metadata.json",
           async: false,
           //async: true, aucun résultat
+          crossDomain: true,
           type: "POST",
           headers: {
             'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Content-Type':'application/json; charset=utf-8',
+            'Content-Type':'application/json; charset=utf-8',  // The type of data you're sending
             'Host':'api.crunchbase.com',
             'Pragma':'no-cache',
             'Sec-Fetch-Dest':'document',
@@ -82,15 +82,10 @@
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
           },
 
-          //cache: false,
-          //crossDomain: true,
-          //contentType: "application/json; charset=utf-8", // The type of data you're sending
           dataType: 'json', //The type of data that you're expecting back from the server
           data: {
-            user_key:"user_key=6677554af8f112f1a065561ee7b49233",
+            user_key:"6677554af8f112f1a065561ee7b49233",
             card_ids:"participated_investments"
-            /*api_key:"iM1g1a_1pIM2oCx0KG-9aA",
-            app_id:"com.citymapper.app.release"*/
           },
           indexValue: {
             paramSector: Sector,
