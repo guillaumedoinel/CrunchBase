@@ -65,8 +65,8 @@
       //do {
         $.ajax({
           url: "https://api.crunchbase.com/api/v4/entities/organizations/" + UUID + "?card_ids=participated_investments&user_key=6677554af8f112f1a065561ee7b49233", //+ PageNo, // browse the list of investments
-          async: false,
-          //async: true,
+          //async: false,
+          async: true,
           //type: "GET",
           //cache: false,
           //crossDomain: true,
