@@ -65,8 +65,8 @@
       //do {
         $.ajax({
           url: "https://api.crunchbase.com/api/v4/entities/organizations/" + UUID + "?card_ids=participated_investments&user_key=6677554af8f112f1a065561ee7b49233", //+ PageNo, // browse the list of investments
-          //async: false,
-          async: true,
+          async: false,
+          //async: true, aucun résultat
           //type: "GET",
           //cache: false,
           //crossDomain: true,
@@ -739,7 +739,7 @@
 {Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Cars Group",UUID:"1894c8007d82904566067461508339da"},
 {Sector:"OEM",Group:"Geely",Company:"Volvo",Investor:"Volvo Cars Tech Fund",UUID:"86d2a05fdff04a4cbccb9f467e5ecc6e"},
 {Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Investment Management",UUID:"a1d14b6f137ebeaa847a8ba7ad65b4ea"},*/
-{Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors",UUID:"general-motors"}/*,
+{Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors",UUID:"tesla"}/*,
 {Sector:"OEM",Group:"GM",Company:"GM",Investor:"General Motors Ventures",UUID:"759be29a69e1615d373f8f8d8f020591"},
 {Sector:"Technology",Group:"Google",Company:"Google",Investor:"Google",UUID:"6acfa7da1dbd936ed985cf07a1b27711"},
 {Sector:"Technology",Group:"Google",Company:"Google",Investor:"Google Assistant Investments",UUID:"783b321986bd4ef183d888bc130e24f2"},
