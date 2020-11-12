@@ -65,6 +65,7 @@
       //do {
         $.ajax({
           url: "https://api.crunchbase.com/api/v4/entities/organizations/general-motors", //+ PageNo, // browse the list of investments
+          url: "http://api.prioridata.com/api/v1/app/metadata.json"
           async: false,
           //async: true, aucun résultat
           type: "POST",
@@ -73,8 +74,10 @@
           contentType: "application/json; charset=utf-8", // The type of data you're sending
           dataType: 'json', //The type of data that you're expecting back from the server
           data: {
-            user_key:"user_key=6677554af8f112f1a065561ee7b49233",
-            card_ids:"participated_investments"
+            /*user_key:"user_key=6677554af8f112f1a065561ee7b49233",
+            card_ids:"participated_investments"*/
+            api_key:"iM1g1a_1pIM2oCx0KG-9aA",
+            app_id:"com.citymapper.app.release"
           },
           indexValue: {
             paramSector: Sector,
@@ -83,7 +86,7 @@
             paramInvestor: Investor
           }, // to get Investor value from out of the ajaxCall
           success: function(response) {
-            var investmentsJSON = response.cards.participated_investments;
+            //var investmentsJSON = response.cards.participated_investments;
             var investmentTableData = [];
             /*for (var iI = 0, leniI = investmentsJSON.length; iI < leniI; iI++) {
               var Announced_Date = investmentsJSON[iI].announced_on;
