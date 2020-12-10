@@ -67,9 +67,12 @@
           url: "https://api.crunchbase.com/api/v4/entities/organizations/general-motors", //+ PageNo, // browse the list of investments
           async: false,
           //async: true, aucun résultat
-          crossDomain: true,
+          //crossDomain: true,
           type: "POST",
-          dataType: 'json', //The type of data that you're expecting back from the server
+          headers: {
+            'origin':'https://guillaumedoinel.github.io'
+          },
+          //dataType: 'json', //The type of data that you're expecting back from the server
           data: {
             user_key:"6677554af8f112f1a065561ee7b49233",
             card_ids:"participated_investments"
